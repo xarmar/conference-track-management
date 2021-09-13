@@ -91,11 +91,11 @@ So here's my breakdown of the instructions:
 
         // If input is a number
         if (!isNaN(minutesInput)) {
-            if(minutesInput >= 5 && <= 180) {
+            if(minutesInput >= 5 && <= 60) {
                 // accept input
             }
             else {
-                // reject & warn user no one can listen to a talk for more than 3 hours
+                // reject & warn user no one can listen to a talk for more than 1 hour
             }
         }
 
@@ -115,3 +115,15 @@ So here's my breakdown of the instructions:
 
 **Presenters will be very punctual; there needs to be no gap between sessions.**
 - Just stack talks one after another.
+
+<br>
+
+### **DEVELOPMENT GAMEPLAN:**
+
+I don't want to overcomplicate things. **I will start with the logic first.** After the logic is working, I build the front-end:
+
+- Inputs are given in PDF, along with the expected outputs. Take advantage of this by using use Jest and having a **test driven development mentality**.
+
+- Developing the front-end is secondary. It will be something simple. A single-page React application which will help me get more confortable with functional components and challenge myself to use Hooks.
+
+- I will be using **Gitflow as my git approach**.
