@@ -3,7 +3,7 @@ import Talk from './Talk';
 
 class Track extends Component <any, any> {
 
-    day: Number
+    day: number
 
     // Each track has a morning and afternoon session
     sessions: {
@@ -19,7 +19,7 @@ class Track extends Component <any, any> {
         }
     }
 
-    constructor(day: Number, morningStartTime: Date, afternoonStartTime: Date, props: any) {
+    constructor(day: number, morningStartTime: Date, afternoonStartTime: Date, props: any) {
         super(props);
         this.day = day;
 
@@ -42,6 +42,8 @@ class Track extends Component <any, any> {
             }
         }
     }
+
+     
 
     render() {
         return null

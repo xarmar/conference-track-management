@@ -2,12 +2,12 @@ import React, {Component} from 'react'
 
 class Talk extends Component<any, any> {
 
-    duration: Number;
+    duration: number;
     hasSpot: Boolean;
     title: String;
     startTime: any;
 
-    constructor(duration: Number, title: String, props: any) {
+    constructor(duration: number, title: String, props: any) {
         super(props);
         this.duration = duration;
         this.hasSpot = false;
