@@ -8,16 +8,18 @@ class Track extends Component <any, any> {
     // Each track has a morning and afternoon session
     sessions: {
         morning: {
-            talks: Talk[],
-            remainingMinutes: number
+            availableMinutes: number,
+            startTime: Date,
+            talks: Talk[]
         }
         afternoon: {
-            talks: Talk[],
-            remainingMinutes: number
+            availableMinutes: number,
+            startTime: Date,
+            talks: Talk[]
         }
     }
 
-    constructor(day: Number, props: any) {
+    constructor(day: Number, morningStartTime: Date, afternoonStartTime: Date, props: any) {
         super(props);
         this.day = day;
 
@@ -29,12 +31,14 @@ class Track extends Component <any, any> {
         */
         this.sessions = {
             morning: {
-                talks: [],
-                remainingMinutes: 180
+                availableMinutes: 180,
+                startTime: morningStartTime,
+                talks: []
             },
             afternoon: {
-                talks: [],
-                remainingMinutes: 240
+                availableMinutes: 240,
+                startTime: afternoonStartTime,
+                talks: []
             }
         }
     }
