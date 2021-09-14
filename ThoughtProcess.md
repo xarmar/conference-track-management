@@ -190,8 +190,15 @@ Tracks also need to somehow keep track of the start hour of each talk. This is t
             }
         }
 
-After writing the code above I realized that the 'Talks' Component will have to have a 'hasSpot' and 'startTime' property and the 'Track' Component will have to have a property that keeps track of morning and afternoon start times.
+After writing the code above I realized that the 'Talks' Component will have to have a 'hasSpot' and 'startTime' attribute and the 'Track' Component will have to have a attribute that keeps track of morning and afternoon start times.
 
+
+**Afternoon Update**
+
+Ok so I've just added the missing attributes to my Classes. I might need to add some more after, but I'm happy that I catched this early on by thinking and going over the project this morning.
+
+- So now I checked that the Components are being created as expected when we used the Object Constructor method, that's good.
+- Right now I need to keep working on my integration testing, before I even start adding methods to my Components. I need to make sure everything is working as expected.
 
 
 
