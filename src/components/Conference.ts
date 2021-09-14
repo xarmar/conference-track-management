@@ -4,14 +4,14 @@ import Track from './Track';
 
 class Conference extends Component<any,any> {
 
-    dayCounter: number;
+    trackCounter: number;
     morningStartTime: Date;
     afternoonStartTime: Date;
     tracks: Track[]
     
     constructor(tracks: Track[], props: any) {
         super(props);
-        this.dayCounter = 0;
+        this.trackCounter = 0;
         this.tracks = tracks;
 
         // Set Schedule For Conference
@@ -23,9 +23,9 @@ class Conference extends Component<any,any> {
 
     createNewTrack() {
         // Increment Counter
-        this.dayCounter++;
+        this.trackCounter++;
         // Create new Track
-        const newTrack = new Track(this.dayCounter, this.morningStartTime, this.afternoonStartTime, null);
+        const newTrack = new Track(this.trackCounter, this.morningStartTime, this.afternoonStartTime, null);
         // Add Track to Conference Array
         this.tracks.push(newTrack);
     }
