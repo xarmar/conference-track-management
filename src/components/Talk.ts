@@ -18,6 +18,14 @@ class Talk extends Component<any, any> {
     render() {
         return null
     }
+
+    // Checks if a Talk is already assigned to a Track
+    talkAssignedToTrack() {
+        if(this.hasSpot) {
+            return true
+        }
+        return false
+    }
 }
 
 export default Talk
