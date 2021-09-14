@@ -11,7 +11,7 @@ describe("It is possible to create a 'Track' object with the 'new' keyword", () 
 
         let trackExample = new Track(1, morningStartTime, afternoonStartTime, null);
         expect(trackExample).toEqual(expect.objectContaining({
-            day: 1,
+            trackNumber: 1,
             sessions: {
                 morning: {
                     availableMinutes: 180,
