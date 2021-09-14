@@ -127,3 +127,72 @@ I don't want to overcomplicate things. **I will start with the logic first.** Af
 - Developing the front-end is secondary. It will be something simple. A single-page React application which will help me get more confortable with functional components and challenge myself to use Hooks.
 
 - I will be using **Gitflow as my git approach**.
+
+<br>
+
+## **14/09/2021 - Day 2**
+I don't have as much time as I'd like during the week, but that is no excuse.
+
+Yesterday I was able to create the basic class Components for 'Conference', 'Track' and 'Talk'. These classes are still missing their methods and I will address that at a later date. Right now my focus is on getting all the current unit tests to pass.
+
+I won't touch the front-end until a later. All the logic needs to be flawless first, otherwise I will be wasting time on UI and the back end logic will fail.
+
+**Conference**
+
+It's obvious that there will be a unique 'Conference' that will hold multiple 'Tracks' and each track will hold in their morning or afternoon sessions some talks.
+
+To do this, the 'Conference' parent will have a counter and it will increment whenever a new 'Track' is created, passing that number as props to the 'Track'. 
+
+The 'Conference' Component will have to run a loop that creates new 'Tracks' when talks don't fit in the current track.
+
+**Track**
+
+Each track will keep track of their morning and afternoon sessions and how many minutes they have remaining to fit Talks. If a talk doesn't fit, a method will be called to create a new Track. Then the loop starts all over again, but this time, the Talks will check for slots in the newly created Track too.
+
+Tracks also need to somehow keep track of the start hour of each talk. This is the part that I will have to think about better. Right now, I'm thinking I can do something like:
+
+        let trackOne = new Track(arguments);
+        let trackTwo = new Track(arguments);
+        
+        // Using 5 examples of Talks
+        Talk A 60min
+        Talk B 60min
+        Talk C: 45min
+        
+        let morningStartHour = new Date();
+        morningStartHour.setHours(9, 0, 0);
+
+        let afternoonStartHour = new Date();
+        afternoonStartHour.setHours(13, 0, 0);
+
+        // Loop over Talks
+
+        //If Talk doesn't have a spot in a track yet
+        if (!currentTalk.hasSpot) {
+            // Loop Over Tracks
+
+            // Check if it fits inside the Track's morning
+            if (currentTalk.duration < currentTrack.sessions.morning.availableMinutes) {
+                currentTalk.startTime = morningStartHour;
+                morningStartHour.setMinutes(currentTalk.duration);
+                // add talk to currentTrack.sessions.morning.talks[]
+                talk.hasSpot = true
+            }
+            else if (currentTalk.duration < currentTrack.sessions.afternoon.availableMinutes) {
+                currentTalk.startTime = afternoonStartHour;
+                afternoonStartHour.setMinutes(currentTalk.duration);
+                // add talk to currentTrack.sessions.afternoon.currentTalks[];
+                currentTalk.hasSpot = true
+            }
+
+            else {
+                // create another Track and call function to loop over Talks again to check for spots. To this until all Talks have hasSpot = true
+            }
+        }
+
+After writing the code above I realized that the 'Talks' Component will have to have a 'hasSpot' and 'startTime' property and the 'Track' Component will have to have a property that keeps track of morning and afternoon start times.
+
+
+
+
+
