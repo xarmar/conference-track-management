@@ -24,7 +24,7 @@ describe("talkAssignedToTrack Method returns true and false when expected", () =
         awesomeTypeScript.hasSpot = true;
         expect(awesomeTypeScript.talkAssignedToTrack()).toBe(true);
     });
-    
+
     test('talkAssignedToTrack works with arrays', () => {
         let loveCoding = new Talk(20, 'Love Coding', null);
         loveCoding.hasSpot = true;
@@ -38,15 +38,10 @@ describe("talkAssignedToTrack Method returns true and false when expected", () =
         let awesomeArrayThatWillPass = [loveCoding, thisProject, dogsAreAwesome];
         let thisArrayWillFailTest = [loveCoding, thisProject, dogsAreAwesome, thisTalkWillReturnFalse];
 
-        
-        expect(awesomeArrayThatWillPass.every(talk => {
-            return talk.talkAssignedToTrack();
-        })).toBe(true);
+        expect(awesomeArrayThatWillPass.every(talk => talk.talkAssignedToTrack())).toBe(true);
 
         expect(thisArrayWillFailTest.every(talk => {
             return talk.talkAssignedToTrack();
         })).toBe(false);
     });
-
 })
-
