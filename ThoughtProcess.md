@@ -211,4 +211,6 @@ Now I need to start using Jest to validade my code. I hope things keep going lik
 
 Because I have 14 days total to finish the project, I want to leave an extra 4 days just in case something goes wrong or if I want to get fancy and start a new branch to work on some new features.
 
+*Warning*
 
+Just noticed that when using the normal Javascript date(), there is an offset of hours. This can compromise the project as the numbers displayed will be different. Must find solution, either in VanillaJS or by using an external Js Library.
