@@ -141,7 +141,7 @@ I won't touch the front-end until a later. All the logic needs to be flawless fi
 
 It's obvious that there will be a unique 'Conference' that will hold multiple 'Tracks' and each track will hold in their morning or afternoon sessions some talks.
 
-To do this, the 'Conference' parent will have a counter and it will increment whenever a new 'Track' is created, passing that number as props to the 'Track'. 
+To do this, the 'Conference' parent will have a counter and it will increment whenever a new 'Track' is created, passing that number to the 'Track'. 
 
 The 'Conference' Component will have to run a loop that creates new 'Tracks' when talks don't fit in the current track.
 
@@ -154,11 +154,12 @@ Tracks also need to somehow keep track of the start hour of each talk. This is t
         let trackOne = new Track(arguments);
         let trackTwo = new Track(arguments);
         
-        // Using 5 examples of Talks
+        // Using 3 examples of Talks
         Talk A 60min
         Talk B 60min
         Talk C: 45min
         
+        // These hours come directly from the 'Conference' Component and will be incremented in each Track Object as Talks are added
         let morningStartHour = new Date();
         morningStartHour.setHours(9, 0, 0);
 
@@ -200,6 +201,14 @@ Ok so I've just added the missing attributes to my Classes. I might need to add 
 - So now I checked that the Components are being created as expected when we used the Object Constructor method, that's good.
 - Right now I need to keep working on my integration testing, before I even start adding methods to my Components. I need to make sure everything is working as expected.
 
+<br>
 
+**Evening Update**
+
+Ok, so I've just uploaded the main logic for the App. I added the methods: buildTrackList, placeTalks and createNewTrack to the 'parent' Class Conference. 
+
+Now I need to start using Jest to validade my code. I hope things keep going like this as I am aiming to finish the project in 10 days. I estimated 6 days (12 hours total) for building the logic and 4 days (8 hours total) for building the front-end.
+
+Because I have 14 days total to finish the project, I want to leave an extra 4 days just in case something goes wrong or if I want to get fancy and start a new branch to work on some new features.
 
 
