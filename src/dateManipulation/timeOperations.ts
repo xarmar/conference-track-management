@@ -14,15 +14,15 @@ const convertToAmPm = (date: Date) => {
     return formatedDate
 };
 
-const addMinutes = (originalDate: Date, minutesToAdd: number) => {
-    const manipulatedDate = <Date> addMinutes(originalDate, minutesToAdd);
+const addMinutesToDate = (originalDate: Date, minutesToAdd: number) => {
+    const manipulatedDate = addMinutes(originalDate, minutesToAdd);
     return manipulatedDate
 };
 
     return {
         createDate,
         convertToAmPm,
-        addMinutes,
+        addMinutesToDate: addMinutesToDate,
     }
 
 })();
