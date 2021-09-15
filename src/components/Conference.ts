@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Talk from './Talk';
 import Track from './Track';
+import timeOperation from '../dateManipulation/timeOperations';
 
 class Conference extends Component<any,any> {
 
@@ -15,10 +16,8 @@ class Conference extends Component<any,any> {
         this.tracks = tracks;
 
         // Set Schedule For Conference
-        this.morningStartTime = new Date();
-        this.afternoonStartTime = new Date();
-        this.morningStartTime.setHours(9,0,0);
-        this.afternoonStartTime.setHours(13,0,0);
+        this.morningStartTime = timeOperation.createDate(9,0,0);
+        this.afternoonStartTime = timeOperation.createDate(13,0,0);
     }
 
     createNewTrack() {
