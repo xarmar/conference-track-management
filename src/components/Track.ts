@@ -9,17 +9,19 @@ class Track extends Component <any, any> {
     sessions: {
         morning: {
             availableMinutes: number,
+            finishTalksBy: Date,
             startTime: Date,
             talks: Talk[]
         }
         afternoon: {
             availableMinutes: number,
+            finishTalksBy: Date,
             startTime: Date,
             talks: Talk[]
         }
     }
 
-    constructor(trackNumber: number, morningStartTime: Date, afternoonStartTime: Date, props: any) {
+    constructor(trackNumber: number, morningStartTime: Date, afternoonStartTime: Date, finishMorningTalksBy:Date, finishAfternoonTalksBy:Date, props: any) {
         super(props);
         this.trackNumber = trackNumber;
 
@@ -33,11 +35,13 @@ class Track extends Component <any, any> {
             morning: {
                 availableMinutes: 180,
                 startTime: morningStartTime,
+                finishTalksBy: finishMorningTalksBy,
                 talks: []
             },
             afternoon: {
                 availableMinutes: 240,
                 startTime: afternoonStartTime,
+                finishTalksBy: finishAfternoonTalksBy,
                 talks: []
             }
         }
