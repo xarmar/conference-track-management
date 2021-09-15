@@ -5,16 +5,18 @@ import Track from "./Track";
 var morningDate: Date;
 var afternoonDate: Date;
 var timeInAmPm : String;
+var trackExample : Track;
 
 // Before Each to Keep Code DRY
 beforeEach(() => {
     morningDate = createDate(9,0,0);
     afternoonDate = createDate(13,0,0);
     timeInAmPm = "";
+    trackExample = new Track(1, morningDate, afternoonDate, null);
 });
 
 describe("It is possible to create a 'Talk' object with the 'new' keyword", () => {
-    test('creates a new Talk object with the expected attributes', () => {
+    test("creates a new Talk object with the expected attributes", () => {
         let reactForever = new Talk(20, 'React Forever', null);
         expect(reactForever).toEqual(expect.objectContaining({
             duration: 20,
@@ -27,18 +29,18 @@ describe("It is possible to create a 'Talk' object with the 'new' keyword", () =
 })
 
 describe("talkAssignedToTrack Method returns true and false when expected", () => {
-    test('talkAssignedToTrack returns false when track.hasPlace = false', () => {
+    test("talkAssignedToTrack returns false when track.hasPlace = false", () => {
         let reactForever = new Talk(20, 'React Forever', null);
         expect(reactForever.talkAssignedToTrack()).toBe(false);
     });
 
-    test('talkAssignedToTrack returns true when track.hasPlace = true', () => {
+    test("talkAssignedToTrack returns true when track.hasPlace = true", () => {
         let awesomeTypeScript = new Talk(20, 'Awesome Typescript', null);
         awesomeTypeScript.hasSpot = true;
         expect(awesomeTypeScript.talkAssignedToTrack()).toBe(true);
     });
 
-    test('talkAssignedToTrack works with arrays', () => {
+    test("talkAssignedToTrack works with arrays", () => {
         let loveCoding = new Talk(20, 'Love Coding', null);
         loveCoding.hasSpot = true;
         let thisProject = new Talk(20, 'This Project', null);
@@ -61,7 +63,7 @@ describe("talkAssignedToTrack Method returns true and false when expected", () =
 
 
 describe("placeTalk Method places Talks correctly", () => {
-    test('placeTalk correctly places a Talk when possible', () => {
+    test("placeTalk correctly places a Talk when possible", () => {
         // Create Track
         let trackOneMorningAvailable = new Track(1, morningDate, afternoonDate, null);
         
@@ -69,7 +71,7 @@ describe("placeTalk Method places Talks correctly", () => {
         trackOneMorningAvailable.sessions.morning.availableMinutes = 66;
         trackOneMorningAvailable.sessions.afternoon.availableMinutes = 0;
 
-        // Create Talks that will try to fit in track 1
+        // Create Talks
         let reactForever = new Talk(60, 'React Forever', null);
         let iWontFitinTrackOne = new Talk(5, 'Fast Talk', null);
 
@@ -81,7 +83,7 @@ describe("placeTalk Method places Talks correctly", () => {
         expect(iWontFitinTrackOne.hasSpot).toBe(true);
     });
 
-    test('placeTalk correctly places a Talk when possible and reject another when appropriate', () => {
+    test("placeTalk correctly places a Talk when possible and reject another when appropriate", () => {
         // Create Track
         let trackTwoAfternoonAvailable = new Track(2, morningDate, afternoonDate, null);
 
@@ -89,7 +91,7 @@ describe("placeTalk Method places Talks correctly", () => {
         trackTwoAfternoonAvailable.sessions.morning.availableMinutes = 0;
         trackTwoAfternoonAvailable.sessions.afternoon.availableMinutes = 120;
 
-        // Create Talks that will try to fit in track 2
+        // Create Talks
         let iLoveJest = new Talk(60, 'I love Jest', null);
         let iGoTrackTwo = new Talk(60, 'I go track two', null);
         let iWontFitInTrackTwo = new Talk(5, 'I wont fit', null);
@@ -108,11 +110,8 @@ describe("placeTalk Method places Talks correctly", () => {
 })
 
 describe("placeTalk correctly increments a Talks morning/afternoon time correctly", () => {
-    test('placeTalk correctly increments a Talks morning time correctly', () => {
-        // Create Track
-        let trackExample = new Track(2, morningDate, afternoonDate, null);
-
-        // Create Talks that will fit in Track's Morning
+    test("placeTalk correctly increments a Talks morning time correctly", () => {
+        // Create Talks
         let iLoveJest = new Talk(60, 'I love Jest', null);
         let iGoTrackTwo = new Talk(45, 'I go track two', null);
         let letsGo = new Talk(25, 'Lets go', null);
@@ -131,14 +130,11 @@ describe("placeTalk correctly increments a Talks morning/afternoon time correctl
         expect(timeInAmPm).toBe("11:10 AM")
     });
 
-    test('placeTalk correctly increments a Talks afternooon time correctly', () => {
-        // Create Track
-        let trackExample = new Track(2, morningDate, afternoonDate, null);
-        
+    test("placeTalk correctly increments a Talks afternooon time correctly", () => {
         // Pretend Track has time constraits
         trackExample.sessions.morning.availableMinutes = 0;
 
-        // Create Talks that will fit in Track's Morning
+        // Create Talks
         let iLoveJest = new Talk(60, 'I love Jest', null);
         let iGoTrackTwo = new Talk(45, 'I go track two', null);
         let letsGo = new Talk(25, 'Lets go', null);
@@ -155,5 +151,25 @@ describe("placeTalk correctly increments a Talks morning/afternoon time correctl
         letsGo.placeTalk(trackExample);
         timeInAmPm = convertToAmPm(trackExample.sessions.afternoon.startTime);
         expect(timeInAmPm).toBe("3:10 PM")
+    });
+});
+
+describe("placeTalk pushes Talks to the correct array", () => {
+    test("placeTalk pushes to a session's morning and afternoon correcy", () => {
+        // Pretend Track has time constraits
+        trackExample.sessions.morning.availableMinutes = 60;
+        
+        // Create Talks
+        let iLoveJest = new Talk(60, 'I love Jest', null);
+        let iGoTrackTwo = new Talk(45, 'I go track two', null);
+        let letsGo = new Talk(25, 'Lets go', null);
+
+        // Place tracks
+        iLoveJest.placeTalk(trackExample);
+        iGoTrackTwo.placeTalk(trackExample);
+        letsGo.placeTalk(trackExample);
+
+        expect(trackExample.sessions.morning.talks).toEqual([iLoveJest]);
+        expect(trackExample.sessions.afternoon.talks).toEqual([iGoTrackTwo, letsGo]);
     });
 });
