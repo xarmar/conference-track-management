@@ -286,3 +286,9 @@ I also need to create more Methods and break down the logic in Conference 'place
                 this.hasSpot = true
             }
         }
+
+**Evening**
+
+Found the solution for my date operations. I will be using *date-fns* because momentJs is deprecated, it's not choice. Plus I will only use a few functions so no need to import a whole library.
+
+I just finished replacing the old date creation functions with the new ones. Now it's time to start building my placeTalk Method in the Talk Component.
