@@ -1,23 +1,24 @@
 import React, {Component} from 'react';
+import { createDate } from '../dateManipulation/timeOperations';
 import Talk from './Talk';
 import Track from './Track';
-import timeOperation from '../dateManipulation/timeOperations';
+
 
 class Conference extends Component<any,any> {
 
     trackCounter: number;
     morningStartTime: Date;
     afternoonStartTime: Date;
-    tracks: Track[]
-    
+    tracks: Track[];
+
     constructor(tracks: Track[], props: any) {
         super(props);
         this.trackCounter = 0;
         this.tracks = tracks;
 
         // Set Schedule For Conference
-        this.morningStartTime = timeOperation.createDate(9,0,0);
-        this.afternoonStartTime = timeOperation.createDate(13,0,0);
+        this.morningStartTime = createDate(9,0,0);
+        this.afternoonStartTime = createDate(13,0,0);
     }
 
     createNewTrack() {

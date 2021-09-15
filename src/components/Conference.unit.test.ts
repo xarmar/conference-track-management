@@ -1,4 +1,5 @@
-import timeOperation from "../dateManipulation/timeOperations";
+
+import { createDate } from "../dateManipulation/timeOperations";
 import Conference from "./Conference";
 
 describe("It is possible to create a 'Conference' object with the 'new' keyword", () => {
@@ -6,13 +7,13 @@ describe("It is possible to create a 'Conference' object with the 'new' keyword"
         let onlyOneConference = new Conference([], null);
         
         // Expected Values of Dates
-        let morningStartingTime = timeOperation.createDate(9,0,0);
-        let afternoonStartTime = timeOperation.createDate(13,0,0);
+        let morningStartingTime = createDate(9,0,0);
+        let afternoonStartingTime = createDate(13,0,0);
 
         expect(onlyOneConference).toEqual(expect.objectContaining({
             trackCounter: 0,
             morningStartTime: morningStartingTime,
-            afternoonStartTime: afternoonStartTime,
+            afternoonStartTime: afternoonStartingTime,
             tracks:  []
         }));
     });
