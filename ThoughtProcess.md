@@ -300,3 +300,57 @@ I like using Modular pattern (a self calling function containg other functions) 
 The reason I'm not using date-fns directly and importing it directly into every Component is because I want to keep all my functions related to time manipulation in one file.
 
 I keep timeOperarations.ts and timeOperarations.unit.test.ts file in the same folder and separated form the other Components for better organization. At the end of the day, these are just helper functions.
+
+Ok, I just finished writing the unit tests for Talk.ts. 
+
+**Evening Later**
+
+Ok, so I've been thinking about the best way to calculate Talks's start Times and even though my code would work like it is right now: (increment Morning/Afternoon startTimes) and assigning it to Talks, I wouldn't feel good about it
+
+I just thought about a better and more descriptive way. Incrementing morning/afternoon.startTime doesn't make much sense as the morning and afternoon starting times are always the same: 9AM and 1PM respectively. If I was building software for a client this would only confuse the client and future developers working on the project. 
+
+So here's my alternative:
+- Keep morning/afternoon startingTimes.
+- Create a new property: 'finishTalksBy'
+
+It would work like this:
+
+            // Track Example
+            trackNumber: 1,
+            sessions: {
+                morning: {
+                    availableMinutes: 180,
+                    finishTalksBy: Date // This date value will be passed with createDate(12,0,0);
+                    startTime: morningStartTime,
+                    talks: [],
+                },
+                afternoon: {
+                    availableMinutes: 240,
+                    finishTalksBy: Date // This date value will be passed with createDate(17,0,0);
+                    startTime: afternoonStartTime,
+                    talks: [],
+                }
+            }
+
+            // This means I could get a Talk startTime with the folllowing calculation:
+
+            // If talk is placed in Morning slot
+            talk.startTime = track.sessions.morning.finishTalksBy - track.sessions.morning.availableMinutes
+
+            // If talk is placed in Afternoon slot
+            talk.startTime = track.sessions.afternoon.finishTalksBy - track.sessions.afternoon.availableMinutes
+
+            //In practice, if a Track is empty, it would behave like this:
+                //talk is inserted in morning slot
+                talk.startTime = convertToAmPm(track.sessions.morning.finishTalksBy - track.sessions.morning.availableMinutes);
+                
+                // EXAMPLE 1
+                talk.startTime = 12 AM - 180 minutes = 9AM
+
+                // EXAMPLE 2
+                // Track has 55 minutes left in afternoon
+
+                talk.startTime = convertToAmPm(track.sessions.afternoon.finishTalksBy - track.sessions.afternoon.availableMinutes);
+
+                // In pseudo-code this is translated to:
+                talk.startTime = 17PM - 55 minutes = 16:05 PM
