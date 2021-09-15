@@ -214,3 +214,75 @@ Because I have 14 days total to finish the project, I want to leave an extra 4 d
 *Warning*
 
 Just noticed that when using the normal Javascript date(), there is an offset of hours. This can compromise the project as the numbers displayed will be different. Must find solution, either in VanillaJS or by using an external Js Library.
+
+## **15/09/2021 - Day 3**
+
+**Morning**
+
+ So I was just thinking how I would get the 'Networking Event' afternoon hours to display correctly and I came up with the following logic:
+
+        // After all talks have been assigned to tracks
+
+        hourToStartNetworkingEvent = undefined;
+
+        // Loop over tracks and check
+        if(currentTrack.sessions.afternoon.availableMinutes >= 60) {
+            // Place Networking Event at 4pm.
+            hourToStartNetworkingEvent = 4pm
+        }
+        else {
+            //Find out how many minutes to add to 4pm
+            let minutesToAdd = 60 - currentTrack.sessions.afternoon.availableMinutes
+
+            // Add minutes to 4pm
+            hourToStartNetworkingEvent = 4pm + minutesToAdd
+        }
+
+        <!-- EXAMPLE -->
+        currentTrack.sessions.afternoon.availableMinutes = 45;
+        
+        // Else runs (45 < 60)
+        let minutesToAdd = 60 - 45 = 15;
+        hourToStartNetworkingEvent = 4pm + 15 minutes = 4:15PM
+
+I will apply this later, now I need to research how to fix the problem with the date giving an offset in hours. 
+
+I also need to create more Methods and break down the logic in Conference 'placeTalks()' method. Instead of having a big method, I can break it down by doing something like this:
+
+        // Talk.ts file
+        // Create a method for Talk class that mirrors the part of the logic in placeTalks().
+
+        placeTalk(track) {
+            // Check if talk fits inside currentTrack's morning
+            if (this.duration <= track.sessions.morning.availableMinutes) {
+                this.startTime = track.morning.startTime;
+
+                // Increment startTime for next talk that will be placed - still need to find out how to increase minutes
+                track.sessions.morningstartTime.increaseMinutesBy(this.duration);
+
+                // Subtrack from track.sessions.morning.availableMinutes
+                track.sessions.morning.availableMinutes -= this.duration
+
+                // Add talk to track morning's array
+                currentTrack.sessions.morning.talks.push(this);
+
+                // Tell App that talk is placed
+                this.hasSpot = true
+            }
+
+            else if (this.duration <= track.sessions.afternoon.availableMinutes) {
+                this.startTime = track.afternoon.startTime;
+
+                // Increment startTime for next talk that will be placed - still need to find out how to increase minutes
+                track.sessions.afternoonstartTime.increaseMinutesBy(this.duration);
+
+                // Subtrack from track.sessions.afternoon.availableMinutes
+                track.sessions.afternoon.availableMinutes -= this.duration
+
+                // Add talk to track afternoon's array
+                currentTrack.sessions.afternoon.talks.push(this);
+
+                // Tell App that talk is placed
+                this.hasSpot = true
+            }
+        }
