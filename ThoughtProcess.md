@@ -354,3 +354,9 @@ It would work like this:
 
                 // In pseudo-code this is translated to:
                 talk.startTime = 17PM - 55 minutes = 16:05 PM
+
+**Late Night**
+
+Just finished creating the calculateTalkStartTime method and tested it against some Jest tests and it's working. I'm pretty sure it will works against the networking event contraint. In a couple of days I expect to have this tested in a integration test.
+
+Project seems to be going well, Jest helps a lot. I wouldn't have progressed this fast without it. I'm happy I learned TDD a few months ago. My goal is to finish this backend logic in within 3 days, I think I'm on my way to do it. Then I will build the front-end which will be a simple App, not super fancy.
