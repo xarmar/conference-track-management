@@ -292,3 +292,11 @@ I also need to create more Methods and break down the logic in Conference 'place
 Found the solution for my date operations. I will be using *date-fns* because momentJs is deprecated, it's not choice. Plus I will only use a few functions so no need to import a whole library.
 
 I just finished replacing the old date creation functions with the new ones. Now it's time to start building my placeTalk Method in the Talk Component.
+
+**Thoughts**
+
+I like using Modular pattern (a self calling function containg other functions) as I like to aggregate all related functions under one main function. However, because I am using Classes, I was having some trouble with imports, so I just chose to have multiple functions inside a timeOpererations.ts file and export them normally.
+
+The reason I'm not using date-fns directly and importing it directly into every Component is because I want to keep all my functions related to time manipulation in one file.
+
+I keep timeOperarations.ts and timeOperarations.unit.test.ts file in the same folder and separated form the other Components for better organization. At the end of the day, these are just helper functions.
