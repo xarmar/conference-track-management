@@ -1,6 +1,17 @@
-import { createDate } from "../dateManipulation/timeOperations";
+import { convertToAmPm, createDate } from "../dateManipulation/timeOperations";
 import Talk from "./Talk";
 import Track from "./Track";
+
+var morningDate: Date;
+var afternoonDate: Date;
+var timeInAmPm : String;
+
+// Before Each to Keep Code DRY
+beforeEach(() => {
+    morningDate = createDate(9,0,0);
+    afternoonDate = createDate(13,0,0);
+    timeInAmPm = "";
+});
 
 describe("It is possible to create a 'Talk' object with the 'new' keyword", () => {
     test('creates a new Talk object with the expected attributes', () => {
@@ -51,10 +62,6 @@ describe("talkAssignedToTrack Method returns true and false when expected", () =
 
 describe("placeTalk Method places Talks correctly", () => {
     test('placeTalk correctly places a Talk when possible', () => {
-
-        let morningDate = createDate(9,0,0);
-        let afternoonDate = createDate(13,0,0);    
-
         // Create Track
         let trackOneMorningAvailable = new Track(1, morningDate, afternoonDate, null);
         
@@ -75,10 +82,6 @@ describe("placeTalk Method places Talks correctly", () => {
     });
 
     test('placeTalk correctly places a Talk when possible and reject another when appropriate', () => {
-
-        let morningDate = createDate(9,0,0);
-        let afternoonDate = createDate(13,0,0);   
-        
         // Create Track
         let trackTwoAfternoonAvailable = new Track(2, morningDate, afternoonDate, null);
 
@@ -104,5 +107,53 @@ describe("placeTalk Method places Talks correctly", () => {
 
 })
 
+describe("placeTalk correctly increments a Talks morning/afternoon time correctly", () => {
+    test('placeTalk correctly increments a Talks morning time correctly', () => {
+        // Create Track
+        let trackExample = new Track(2, morningDate, afternoonDate, null);
 
+        // Create Talks that will fit in Track's Morning
+        let iLoveJest = new Talk(60, 'I love Jest', null);
+        let iGoTrackTwo = new Talk(45, 'I go track two', null);
+        let letsGo = new Talk(25, 'Lets go', null);
 
+        // Place tracks
+        iLoveJest.placeTalk(trackExample);
+        timeInAmPm = convertToAmPm(trackExample.sessions.morning.startTime);
+        expect(timeInAmPm).toBe("10:00 AM");
+
+        iGoTrackTwo.placeTalk(trackExample);
+        timeInAmPm = convertToAmPm(trackExample.sessions.morning.startTime);
+        expect(timeInAmPm).toBe("10:45 AM");
+
+        letsGo.placeTalk(trackExample);
+        timeInAmPm = convertToAmPm(trackExample.sessions.morning.startTime);
+        expect(timeInAmPm).toBe("11:10 AM")
+    });
+
+    test('placeTalk correctly increments a Talks afternooon time correctly', () => {
+        // Create Track
+        let trackExample = new Track(2, morningDate, afternoonDate, null);
+        
+        // Pretend Track has time constraits
+        trackExample.sessions.morning.availableMinutes = 0;
+
+        // Create Talks that will fit in Track's Morning
+        let iLoveJest = new Talk(60, 'I love Jest', null);
+        let iGoTrackTwo = new Talk(45, 'I go track two', null);
+        let letsGo = new Talk(25, 'Lets go', null);
+
+        // Place tracks
+        iLoveJest.placeTalk(trackExample);
+        timeInAmPm = convertToAmPm(trackExample.sessions.afternoon.startTime);
+        expect(timeInAmPm).toBe("2:00 PM");
+
+        iGoTrackTwo.placeTalk(trackExample);
+        timeInAmPm = convertToAmPm(trackExample.sessions.afternoon.startTime);
+        expect(timeInAmPm).toBe("2:45 PM");
+
+        letsGo.placeTalk(trackExample);
+        timeInAmPm = convertToAmPm(trackExample.sessions.afternoon.startTime);
+        expect(timeInAmPm).toBe("3:10 PM")
+    });
+});
