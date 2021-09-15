@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
-import { addMinutesToDate } from '../dateManipulation/timeOperations';
+import { addMinutesToDate, convertToAmPm, subtrackMinutesFromDate } from '../dateManipulation/timeOperations';
 import Track from './Track';
+import { Session } from '../types/types';
 
 
 class Talk extends Component<any, any> {
-
     duration: number;
     hasSpot: Boolean;
     title: String;
@@ -16,6 +16,7 @@ class Talk extends Component<any, any> {
         this.hasSpot = false;
         this.title = title;
         this.startTime = undefined;
+        
     }
 
     // Checks if a Talk is already assigned to a Track
@@ -32,10 +33,7 @@ class Talk extends Component<any, any> {
         if (this.duration <= track.sessions.morning.availableMinutes) {
             
             // Set startTime of Talk
-            this.startTime = track.sessions.morning.startTime;
-
-            // Increment startTime in Track to be ready for the next Track placement
-            track.sessions.morning.startTime = addMinutesToDate(track.sessions.morning.startTime, this.duration);
+            this.startTime = this.calculateTalkStartTime(track, 'morning');
 
             // Subtrack from track.sessions.morning.availableMinutes
             track.sessions.morning.availableMinutes -= this.duration;
@@ -50,10 +48,7 @@ class Talk extends Component<any, any> {
         else if (this.duration <= track.sessions.afternoon.availableMinutes) {
 
             // Set startTime of Talk
-            this.startTime = track.sessions.afternoon.startTime;
-
-            // Increment startTime in Track to be ready for the next Track placement
-            track.sessions.afternoon.startTime = addMinutesToDate(track.sessions.afternoon.startTime, this.duration);
+            this.startTime = this.calculateTalkStartTime(track, 'afternoon');
 
             // Subtrack from track.sessions.afternoon.availableMinutes
             track.sessions.afternoon.availableMinutes -= this.duration;
@@ -64,6 +59,17 @@ class Talk extends Component<any, any> {
             // Tell App the talk is placed
             this.hasSpot = true
         }
+    }
+
+    calculateTalkStartTime(track: Track, session: Session) {
+        let talkStartTime;
+        if(session === 'morning') {
+            talkStartTime = convertToAmPm(subtrackMinutesFromDate(track.sessions.morning.finishTalksBy, track.sessions.morning.availableMinutes));
+        }
+        else {
+            talkStartTime = convertToAmPm(subtrackMinutesFromDate(track.sessions.afternoon.finishTalksBy, track.sessions.afternoon.availableMinutes));
+        }
+        return talkStartTime
     }
 
     render() {
