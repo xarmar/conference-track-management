@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
+import { addMinutesToDate, convertToAmPm, createDate } from '../dateManipulation/timeOperations';
 import Talk from './Talk';
 
 class Track extends Component <any, any> {
 
     trackNumber: number
-
+    lunchHourStartTime: Date,
+    networkingEventStartTime: any,
     // Each track has a morning and afternoon session
     sessions: {
         morning: {
@@ -20,6 +22,8 @@ class Track extends Component <any, any> {
             talks: Talk[]
         }
     }
+
+    
 
     constructor(trackNumber: number, morningStartTime: Date, afternoonStartTime: Date, finishMorningTalksBy:Date, finishAfternoonTalksBy:Date, props: any) {
         super(props);
@@ -45,6 +49,31 @@ class Track extends Component <any, any> {
                 talks: []
             }
         }
+        // Lunch hours equals the time constrait of finishMorningTalksBy
+        this.lunchHourStartTime = finishMorningTalksBy,
+        // The start time of the networking event will be calculated by a method.
+        this.networkingEventStartTime = undefined
+    }
+
+    findNetworkingEventStartTime() {
+        let hourToStartNetworkingEvent;
+
+        // Networking event must not start before 4pm
+        if(this.sessions.afternoon.availableMinutes >= 60) {
+            // Networking Event will start at 4pm.
+            hourToStartNetworkingEvent = convertToAmPm(createDate(16,0,0));
+        }
+
+        // Else, place networking event between 4:01 pm and 5pm
+        else {
+            // Find out how many minutes to add to 4pm to get start time
+            let minutesToAdd = 60 - this.sessions.afternoon.availableMinutes;
+
+            // Add minutes to 4pm to get networking event start time
+            let hourPlusMinutes = addMinutesToDate(createDate(16,0,0), minutesToAdd);
+            hourToStartNetworkingEvent = convertToAmPm(hourPlusMinutes);
+        }
+        return hourToStartNetworkingEvent
     }
 
     render() {
