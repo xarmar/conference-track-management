@@ -61,11 +61,11 @@ class Conference extends Component<any,any> {
 
         }
     
-    placeNetworkingEvents(arrayOfTracks: Track[]) {
-        arrayOfTracks.forEach(track => {
-
+    // Loops over Tracks and sets the start time for the networking events
+    placeNetworkingEvents() {
+        this.tracks.forEach(track => {
             // calculate networking event startTime of Track
-            let startTime = track.networkingEventStartTime();
+            let startTime = track.findNetworkingEventStartTime();
 
             // Assign the networkingEventStartTime to the track
             track.networkingEventStartTime = startTime;
