@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import { createDate } from '../dateManipulation/timeOperations';
 import Talk from './Talk';
 import Track from './Track';
@@ -9,6 +9,8 @@ class Conference extends Component<any,any> {
     trackCounter: number;
     morningStartTime: Date;
     afternoonStartTime: Date;
+    finishMorningTalksBy: Date;
+    finishAfternoonTalksBy: Date;
     tracks: Track[];
 
     constructor(tracks: Track[], props: any) {
@@ -19,13 +21,17 @@ class Conference extends Component<any,any> {
         // Set Schedule For Conference
         this.morningStartTime = createDate(9,0,0);
         this.afternoonStartTime = createDate(13,0,0);
+        this.finishMorningTalksBy = createDate(12,0,0);
+        this.finishAfternoonTalksBy = createDate(17,0,0);
+
     }
 
+    // Creates A New Track
     createNewTrack() {
         // Increment Counter
         this.trackCounter++;
         // Create new Track
-        const newTrack = new Track(this.trackCounter, this.morningStartTime, this.afternoonStartTime, null);
+        const newTrack = new Track(this.trackCounter, this.morningStartTime, this.afternoonStartTime, this.finishMorningTalksBy, this.finishAfternoonTalksBy, null);
         // Add Track to Conference Array
         this.tracks.push(newTrack);
     }
