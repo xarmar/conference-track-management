@@ -56,6 +56,7 @@ class Track extends Component <any, any> {
         this.networkingEventStartTime = undefined;
     }
 
+    // Returns the hour when a networking event should start
     findNetworkingEventStartTime() {
         let hourToStartNetworkingEvent;
 
