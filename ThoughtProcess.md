@@ -374,3 +374,10 @@ I think now is the time to start working on integration testing. To really start
 I had some time during my lunch break to code which I used to code the Track method findNetworkingEventStartTime(). This method returns the hour the networking event should start at. 
 
 - This runs inside Conferences's Method placeNetworkingEvents() method which loops over a array of Tracks. This way all Tracks get the correct time to start their networking events.
+
+<br>
+
+**Evening Continued**
+
+Ok, at this time I've written all the logic necessary to Build the track list. I will now confirm this by writing a unit test for the buildTrackList() and checking if it works as expected. 
+- I will use the titles and minutes values provided in the PDF document and check if the output is the same.
