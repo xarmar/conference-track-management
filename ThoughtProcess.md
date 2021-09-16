@@ -360,3 +360,9 @@ It would work like this:
 Just finished creating the calculateTalkStartTime method and tested it against some Jest tests and it's working. I'm pretty sure it will works against the networking event contraint. In a couple of days I expect to have this tested in a integration test.
 
 Project seems to be going well, Jest helps a lot. I wouldn't have progressed this fast without it. I'm happy I learned TDD a few months ago. My goal is to finish this backend logic in within 3 days, I think I'm on my way to do it. Then I will build the front-end which will be a simple App, not super fancy.
+
+## **16/09/2021 - Day 4**
+
+I just started by morning by adding tests to the placeTalk method, fixing some Jest tests. I'm happy as things seem to be working and the class methods are passing the tests. 
+
+I think now is the time to start working on integration testing. To really start building the buildTrackList method, which is the foundation for building the list of Tracks with the assigned Talks.
