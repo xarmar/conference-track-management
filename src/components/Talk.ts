@@ -44,7 +44,7 @@ class Talk extends Component<any, any> {
             // Tell App the talk is placed
             this.hasSpot = true
         }
-
+        // Check if talk fits inside track's afternoon
         else if (this.duration <= track.sessions.afternoon.availableMinutes) {
 
             // Set startTime of Talk
