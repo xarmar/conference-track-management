@@ -72,8 +72,8 @@ describe("talkAssignedToTrack Method returns true and false when expected", () =
 })
 
 // placeTalk Method
-describe("placeTalk Method places Talks correctly", () => {
-    test("placeTalk correctly places a Talk when possible", () => {
+describe("placeTalk Method sets the talk's hasSpot property correctly", () => {
+    test("placeTalk correctly sets a placed talk's hasSpot property to true when appropriate", () => {
         // Pretend Track has time constraits
         trackExampleOne.sessions.morning.availableMinutes = 66;
         trackExampleOne.sessions.afternoon.availableMinutes = 0;
@@ -90,7 +90,7 @@ describe("placeTalk Method places Talks correctly", () => {
         expect(iWontFitinTrackOne.hasSpot).toBe(true);
     });
 
-    test("placeTalk correctly places a Talk when possible and reject another when appropriate", () => {
+    test("placeTalk correctly sets a placed talk's hasSpot property to true when appropriate and if a talk doesn't fit, it remains false", () => {
         // Pretend Track has time constraits
         trackExampleTwo.sessions.morning.availableMinutes = 0;
         trackExampleTwo.sessions.afternoon.availableMinutes = 120;
@@ -111,8 +111,8 @@ describe("placeTalk Method places Talks correctly", () => {
     });
 })
 
-describe("placeTalk pushes Talks to the correct array", () => {
-    test("placeTalk pushes to a session's morning and afternoon correcy", () => {
+describe("placeTalk pushes Talks to the correct Track array", () => {
+    test("placeTalk pushes to a session's morning and afternoon correctly", () => {
         // Pretend Track has time constraits
         trackExampleOne.sessions.morning.availableMinutes = 60;
         
@@ -131,8 +131,8 @@ describe("placeTalk pushes Talks to the correct array", () => {
     });
 });
 
-describe("placeTalk Method correctly sets the start time of talk", () => {
-    test("placeTalk correctly sets the start time of a talk with a set of talks", () => {
+describe("placeTalk Method correctly sets the start time of a talk", () => {
+    test("given a set of talks, placeTalk correctly sets the start time for each talk", () => {
 
         // Pretend Track has time constraits
         trackExampleOne.sessions.morning.availableMinutes = 60;
@@ -149,7 +149,7 @@ describe("placeTalk Method correctly sets the start time of talk", () => {
         expect(reactForever.startTime).toBe("11:00 AM");
         expect(helloFriend.startTime).toBe("4:55 PM");
     });
-    test("placeTalk correctly sets the start time of a talk with another set of talks", () => {
+    test("given a different set of talks, placeTalk correctly sets the start time for each talks", () => {
         // Pretend Track has time constraits
         trackExampleTwo.sessions.morning.availableMinutes = 180;
         trackExampleTwo.sessions.afternoon.availableMinutes = 240;
