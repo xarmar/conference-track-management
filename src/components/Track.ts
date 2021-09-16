@@ -5,8 +5,8 @@ import Talk from './Talk';
 class Track extends Component <any, any> {
 
     trackNumber: number
-    lunchHourStartTime: Date,
-    networkingEventStartTime: any,
+    lunchHourStartTime: Date;
+    networkingEventStartTime: any;
     // Each track has a morning and afternoon session
     sessions: {
         morning: {
@@ -30,10 +30,10 @@ class Track extends Component <any, any> {
         this.trackNumber = trackNumber;
 
         /* 
-        "Morning sessions begin at 9am and must finish by 12" - 3 HOURS - 180 minutes
+        "Morning sessions begin at 9am and must finish by 12" - 3 HOURS - 180 available minutes
         "Afternoon sessions begin at 1pm and must finish in time for the networking event. 
         The networking event can start no earlier than 4:00 and no later than 5:00."
-        4 HOURS - 240 minutes 
+        4 HOURS - 240 available minutes 
         */
         this.sessions = {
             morning: {
@@ -49,10 +49,11 @@ class Track extends Component <any, any> {
                 talks: []
             }
         }
+
         // Lunch hours equals the time constrait of finishMorningTalksBy
-        this.lunchHourStartTime = finishMorningTalksBy,
+        this.lunchHourStartTime = finishMorningTalksBy;
         // The start time of the networking event will be calculated by a method.
-        this.networkingEventStartTime = undefined
+        this.networkingEventStartTime = undefined;
     }
 
     findNetworkingEventStartTime() {
