@@ -42,7 +42,8 @@ describe("It is possible to create a 'Track' object with the 'new' keyword", () 
     });
 })
 
-describe("findNetworkingEventStartTime() Method correctly tells when a networking event should start", () => {
+// Method findNetworkingEventStartTime()
+describe("Method findNetworkingEventStartTime() correctly tells when a networking event should start", () => {
     test('A track with over 60 minutes of availableMinutes should start the networking event no sooner than 4:00 PM', () => {
         // Pretend Tracks have time constraits
         trackExampleOne.sessions.afternoon.availableMinutes = 120
@@ -55,7 +56,6 @@ describe("findNetworkingEventStartTime() Method correctly tells when a networkin
 
         expect(trackExampleTwo.findNetworkingEventStartTime()).toBe("4:00 PM");
     });
-
     test('A track with 59 minutes of availableMinutes should start the networking event at 4:01 PM', () => {
         // Pretend Tracks have time constraits
         trackExampleOne.sessions.afternoon.availableMinutes = 59
