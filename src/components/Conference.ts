@@ -48,7 +48,7 @@ class Conference extends Component<any,any> {
                 break
             }
 
-            // Else, keep looping over talks, and placing them inside Tracks, creating news tracks when needed
+            // Else, keep looping over talks, and placing them inside Tracks, creating new tracks when needed
             else {
                 this.placeTalks(arrayOfTalks);
             }
@@ -60,6 +60,17 @@ class Conference extends Component<any,any> {
         // TODO
 
         }
+    
+    placeNetworkingEvents(arrayOfTracks: Track[]) {
+        arrayOfTracks.forEach(track => {
+
+            // calculate networking event startTime of Track
+            let startTime = track.networkingEventStartTime();
+
+            // Assign the networkingEventStartTime to the track
+            track.networkingEventStartTime = startTime;
+        });
+    }
 
     // Loops over Talks and tries to place them inside a Track
     placeTalks(arrayOfTalks: Talk[]) {
