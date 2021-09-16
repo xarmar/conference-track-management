@@ -179,9 +179,47 @@ describe("placeTalk Method correctly sets the start time of a talk", () => {
     });
 })
 
+describe("placeTalk Method correctly subtracts from a track sessions's available minutes", () => {
+    test("given a set of talks, placeTalk subtracks from a session's morning the correct amount of minutes", () => {
 
-        
+        // Pretend Track has time constraits
+        trackExampleOne.sessions.morning.availableMinutes = 180;
+        trackExampleOne.sessions.afternoon.availableMinutes = 60;
 
-        
-        
-        
+        // Create Talks
+        let reactForever = new Talk(60, 'React Forever', null);
+        let helloFriend = new Talk(5, 'I Love Friends', null);
+
+        // Try to place tracks
+        reactForever.placeTalk(trackExampleOne);
+        expect(trackExampleOne.sessions.morning.availableMinutes).toBe(120);
+
+        helloFriend.placeTalk(trackExampleOne);
+        expect(trackExampleOne.sessions.morning.availableMinutes).toBe(115);
+
+    });
+    test("given a different set of talks, placeTalk subtracks from a session's morning and afternoon the correct amount of minutes", () => {
+        // Pretend Track has time constraits
+        trackExampleTwo.sessions.morning.availableMinutes = 65;
+        trackExampleTwo.sessions.afternoon.availableMinutes = 130;
+
+         // Create Talks
+        let randomTalkOne = new Talk(60, 'RandomOne', null);
+        let randomTalkTwo = new Talk(55, 'RandomTwo', null);
+        let randomTalkThree = new Talk(60, 'RandomThree', null);
+        let randomTalkFour = new Talk(15, 'RandomFour', null);
+
+        // Try to place tracks
+        randomTalkOne.placeTalk(trackExampleTwo);
+        expect(trackExampleTwo.sessions.morning.availableMinutes).toBe(5);
+
+        randomTalkTwo.placeTalk(trackExampleTwo);
+        expect(trackExampleTwo.sessions.afternoon.availableMinutes).toBe(75);
+
+        randomTalkThree.placeTalk(trackExampleTwo);
+        expect(trackExampleTwo.sessions.afternoon.availableMinutes).toBe(15);
+
+        randomTalkFour.placeTalk(trackExampleTwo);
+        expect(trackExampleTwo.sessions.afternoon.availableMinutes).toBe(0);
+    });
+})
