@@ -363,6 +363,14 @@ Project seems to be going well, Jest helps a lot. I wouldn't have progressed thi
 
 ## **16/09/2021 - Day 4**
 
+**Morning**
+
 I just started by morning by adding tests to the placeTalk method, fixing some Jest tests. I'm happy as things seem to be working and the class methods are passing the tests. 
 
 I think now is the time to start working on integration testing. To really start building the buildTrackList method, which is the foundation for building the list of Tracks with the assigned Talks.
+
+**Evening** 
+
+I had some time during my lunch break to code which I used to code the Track method findNetworkingEventStartTime(). This method returns the hour the networking event should start at. 
+
+- This runs inside Conferences's Method placeNetworkingEvents() method which loops over a array of Tracks. This way all Tracks get the correct time to start their networking events.
