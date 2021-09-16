@@ -39,21 +39,26 @@ class Conference extends Component<any,any> {
     // Builds the Track List
     buildTrackList(arrayOfTalks: Talk[]) {
         
-        let keepRunningMethod = true;
+        let allTalksHaveASpot = false;
 
         do {
             // If every Talk is assigned to a Track, stop looping, job is done
             if(arrayOfTalks.every(talk => talk.talkAssignedToTrack())) {
-                keepRunningMethod = false;
+                allTalksHaveASpot = true;
                 break
             }
 
+            // Else, keep looping over talks, and placing them inside Tracks, creating news tracks when needed
             else {
                 this.placeTalks(arrayOfTalks);
             }
         }
+        while(!allTalksHaveASpot)
 
-        while(keepRunningMethod)
+        // After all Talks are placed inside a Track, loop over Tracks and assign the networking event the correct starting time
+
+        // TODO
+
         }
 
     // Loops over Talks and tries to place them inside a Track
@@ -93,6 +98,8 @@ class Conference extends Component<any,any> {
             }
         });
     }
+
+
 
     render() {
         return null
