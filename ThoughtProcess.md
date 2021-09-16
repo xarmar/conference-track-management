@@ -381,3 +381,38 @@ I had some time during my lunch break to code which I used to code the Track met
 
 Ok, at this time I've written all the logic necessary to Build the track list. I will now confirm this by writing a unit test for the buildTrackList() and checking if it works as expected. 
 - I will use the titles and minutes values provided in the PDF document and check if the output is the same.
+
+Ok so I was writing the Talks that will be used in buildTrackList() and realized that, the word 'lightning' still needs to be handled. The easiest way in my mind will be to do the following:
+
+        // Define new custom Type
+        Type Lightning = 'lightning';
+
+        //Make sure talks can receive a number or "lightning" for their duration
+        duration: number | Lightning
+
+        // In the constructor, have a 'isLightning' attribute that will hold a "number" or the string "lightning"
+        this.duration = duration
+        this.isLightning = this.duration
+
+        // on placeTalks() Method, when looping over talks, if isNaN(this.isLighting) returns true set a talk's this.duration = 5, just to easily work with dateOperations
+
+        if(isNaN(this.isLightning)) {
+            this.duration = 5;
+        }
+        
+        // Then, on Conference's buildTrackList() Method, after all Talks are assigned to a Track, set the value of this.duration to the original 'lightning' for the talks that return true to isNaN(this.isLightning)
+
+        (...)
+        do {
+            // If every Talk is assigned to a Track, stop looping, job is done
+            if(arrayOfTalks.every(talk => talk.talkAssignedToTrack())) {
+                allTalksHaveASpot = true;
+                // Loop over talks and set duration back to 'lightning' when appropriate
+                arrayOfTalks.forEach( talk => {
+                    if(isNaN(talk.isLightning)) {
+                        talk.duration = "lightning";
+                    }
+                }
+                break
+            }
+        }
