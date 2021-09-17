@@ -432,3 +432,9 @@ Later, in the front end I will build the logic to capture the input "lightning" 
         else {
             return 5
         }
+
+**Morning Update**
+
+So I was having some trouble with my unit test for buildTrackList() method, it was not returning the array length I wanted. After about an hour of looking at my code I realize I had forgotten to replace the old code inside the if statetement with the method placeTalk(). Now the unit test is passing.
+
+However, I only tested for arrayLength, I will now test for other things like startTimes of Talks and networking Event start times.
