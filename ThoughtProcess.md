@@ -527,3 +527,12 @@ Anyway, I'll leave here the tests I was running, just in case you are interested
         });
 
 Since the output in the PDF doesn't follow a linear fashion, I will build my own test. I will create make belief conference with some random Talks and then I will test my buildTrackList method against it. It needs to correctly guess the start of Networking Events and other important things like arrayLength in morning and afternoon sessions.
+
+**Evening Update**
+
+Ok, I just finished running tests against my custom Conference. The talks are placed where they are expected to and the networking event start times are being correctly assigned.
+
+I just finished the major back end logic for the application. I'm very happy I choose to go with TypeScript and Jest as it decreased my development time significantly. 
+
+This weekend I can finally go full-time on this project, so I will now start building the front-end.
+I want something simple that works. If I go full-time on Saturday and Sunday, I estimate to have the project finished by Wednesday. I will look into some React Libraries like React-Spring, which I am curious about, maybe I can implement some features on this project. Looking forward to tomorrow.
