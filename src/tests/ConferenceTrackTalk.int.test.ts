@@ -58,23 +58,23 @@ beforeEach(() => {
     trackExampleThree = new Track(3, morningStartTime, afternoonStartTime, morningEndTalksBy, afternoonEndTalksBy, null);
 
     // Create Talks to use in testing
-    fruit = new Talk(60, 'fruit', null);
-    banana = new Talk(45, 'banana', null);
-    strawberry = new Talk(30, 'strawberry', null);
-    kiwi = new Talk(25, 'kiwi', null);
-    pear = new Talk(40, 'pear', null);
-    orange = new Talk(60, 'orange', null);
-    grapes = new Talk(60, 'grapes', null);
-    avocado = new Talk(60, 'avocado', null);
-    apple = new Talk(45, 'apple', null);
-    mango = new Talk(60, 'mango', null);
-    icecream = new Talk(45, 'icecream', null);
-    chocolate = new Talk(55, 'chocolate', null);
-    pistachio = new Talk(60, 'pistachio', null);
-    vanilla = new Talk(60, 'vanilla', null);
-    cheesecake = new Talk(60, 'cheesecake', null);
-    brownies = new Talk(60, 'brownies', null);
-    cookieCream = new Talk(15, 'cookieCream', null);
+    fruit = new Talk(60, 'fruit', false, null);
+    banana = new Talk(45, 'banana', false, null);
+    strawberry = new Talk(30, 'strawberry', false, null);
+    kiwi = new Talk(25, 'kiwi', false, null);
+    pear = new Talk(40, 'pear', false, null);
+    orange = new Talk(60, 'orange', false, null);
+    grapes = new Talk(60, 'grapes', false, null);
+    avocado = new Talk(60, 'avocado', false, null);
+    apple = new Talk(45, 'apple', false, null);
+    mango = new Talk(60, 'mango', false, null);
+    icecream = new Talk(45, 'icecream', false, null);
+    chocolate = new Talk(55, 'chocolate', false, null);
+    pistachio = new Talk(60, 'pistachio', false, null);
+    vanilla = new Talk(60, 'vanilla', false, null);
+    cheesecake = new Talk(60, 'cheesecake', false, null);
+    brownies = new Talk(60, 'brownies', false, null);
+    cookieCream = new Talk(15, 'cookieCream', false, null);
 
     // Create arrayOfTalks
     arrayOfTalks = [fruit, banana, strawberry, kiwi, pear, orange, grapes, avocado, apple, mango, 
@@ -101,9 +101,9 @@ describe("Track Component can keep track of it's children Talks", () => {
 
     test('Check if Talks were corretly added to Track arrays', () => {
         // Create dummy Talks
-        let loveCoding = new Talk(60, 'Why I love coding', null);
-        let livingInGermany = new Talk(45, 'Living in Germany', null);
-        let afternoonCoffee = new Talk (30, 'Afternoon Coffee', null);
+        let loveCoding = new Talk(60, 'Why I love coding', false, null);
+        let livingInGermany = new Talk(45, 'Living in Germany', false, null);
+        let afternoonCoffee = new Talk (30, 'Afternoon Coffee', false, null);
 
         // Add Talks to Track arrays
         trackExampleOne.sessions.morning.talks.push(loveCoding, livingInGermany);

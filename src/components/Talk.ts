@@ -2,20 +2,20 @@ import {Component} from 'react'
 import {convertToAmPm, subtrackMinutesFromDate} from '../dateManipulation/timeOperations';
 import Track from './Track';
 import { Session } from '../types/types';
-
-
 class Talk extends Component<any, any> {
     duration: number;
     hasSpot: Boolean;
-    title: String;
+    isLightning: Boolean;
     startTime: any;
+    title: String;
 
-    constructor(duration: number, title: String, props: any) {
+    constructor(duration: number, title: String, isLightning: Boolean, props: any) {
         super(props);
         this.duration = duration;
         this.hasSpot = false;
-        this.title = title;
+        this.isLightning = isLightning
         this.startTime = undefined;
+        this.title = title;
     }
 
     // Checks if a Talk is already assigned to a Track
