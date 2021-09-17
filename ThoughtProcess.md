@@ -435,6 +435,95 @@ Later, in the front end I will build the logic to capture the input "lightning" 
 
 **Morning Update**
 
-So I was having some trouble with my unit test for buildTrackList() method, it was not returning the array length I wanted. After about an hour of looking at my code I realize I had forgotten to replace the old code inside the if statetement with the method placeTalk(). Now the unit test is passing.
+So I was having some trouble with my unit test for buildTrackList() method, it was not returning the array length I wanted. After about an hour of looking at my code I realize I had forgotten to replace the old code inside the if statetement with the method placeTalk(). Now the unit test that tests for array length is passing.
 
-However, I only tested for arrayLength, I will now test for other things like startTimes of Talks and networking Event start times.
+However, I still need to test for other things like startTimes of Talks and networking Event start times.
+
+**Evening Update** 
+
+Ok, I was trying to test for exact arrayLengths and TalkObjects inside each Track.
+
+I realized that the algorythm built by the engineer in the PDF document has a different logic on how to place the Talk objects inside the Tracks.
+
+My first thought was that the algorythym could be one of three options:
+
+Example Track 1 | availableMinutes = 5 minutes
+
+Talk X | 10 minutes duration
+
+Talk Y | 5 minutes duration
+
+*Algorythm 1 - This is the algorythm I wrote*
+- Talk X is **not placed** in Track 1
+- A new Track is Created (Track 2)
+- Talk Y **is placed** in Track 2
+
+*Algorythm 2*
+- Talk X **is not placed** in Track 1    
+- Talk Y **is placed** in Track 1
+- A new Track is Created (Track 2) when another talk tries to mount Track 1 with 0 minutes available.
+
+*Algorythm 3*
+- Talk X **is not placed** in Track 1 
+- A new Track is Created (Track 2)  
+- We **immediately place** Talk X inside Track 2.
+- Talk Y **is placed** in Track 2 after Talk X
+
+However, I tried all these algorythms against the following Jest tests (was trying to get the same output as the one in the PDF document). And some tests would still fail. I later confirmed with a spreadsheet, going Talk by Talk and writing down the numbers, that the algorythm written by the programmer doesn't follow a linear fashion like the algorythms I mentioned above. Which is ok, that's why the PDF mentions:
+
+"Note that depending on how you choose to complete this problem, your solution may give a different ordering or combination of talks into tracks. This is acceptable; you don't need to exactly duplicate the sample output given here."
+
+But still, I'm very test driven so I'm sad that I coudln't test my function against the output of the PDF. But I know it's generating an Array of two Tracks as expect and all the other tests are working, so I know I'm safe.
+
+Anyway, I'll leave here the tests I was running, just in case you are interested in taking a look.
+
+        test('buildTrackList() places the talks and Track arrays have the expected lengths', () => {
+        // Add Talks to arrayOfTalks
+        let arrayOfTalks = [writingFastTestsAgainstEnterpriseRails, overdoingitinPython, luafortheMasses, rubyErrorsfromMismatchedGemVersions, 
+            commonRubyErrors, railsforPythonDevelopers, communicatingOverDistance, accountingDrivenDevelopment, woah, sitDownandWrite, 
+            pairProgrammingvsNoise, railsMagic, rubyonRailsWhyWeShouldMoveOn, clojureAteScalaonmyproject, programmingintheBoondocksofSeattle, 
+            rubyVsClojureforBackEndDevelopment, rubyonRailsLegacyAppMaintenance, aWorldWithoutHackerNews, userInterfaceCSSinRailsApps];
+        
+        onlyOneConference.buildTrackList(arrayOfTalks);
+
+        let firstTrack: Track = onlyOneConference.tracks[0];
+        let secondTrack: Track = onlyOneConference.tracks[1];
+
+        expect(firstTrack.sessions.morning.talks).toHaveLength(4);
+        expect(firstTrack.sessions.afternoon.talks).toHaveLength(6);
+        expect(secondTrack.sessions.morning.talks).toHaveLength(4);
+        expect(secondTrack.sessions.afternoon.talks).toHaveLength(6);
+        });
+        
+        test('buildTrackList() places the talks in the expected Track arrays', () => {
+            // Add Talks to arrayOfTalks
+            let arrayOfTalks = [writingFastTestsAgainstEnterpriseRails, overdoingitinPython, luafortheMasses, rubyErrorsfromMismatchedGemVersions, 
+                commonRubyErrors, railsforPythonDevelopers, communicatingOverDistance, accountingDrivenDevelopment, woah, sitDownandWrite, 
+                pairProgrammingvsNoise, railsMagic, rubyonRailsWhyWeShouldMoveOn, clojureAteScalaonmyproject, programmingintheBoondocksofSeattle, 
+                rubyVsClojureforBackEndDevelopment, rubyonRailsLegacyAppMaintenance, aWorldWithoutHackerNews, userInterfaceCSSinRailsApps];
+            
+            onlyOneConference.buildTrackList(arrayOfTalks);
+    
+            let firstTrack: Track = onlyOneConference.tracks[0];
+            let secondTrack: Track = onlyOneConference.tracks[1];
+
+            // firstTrack has the expected morning talks
+            expect(firstTrack.sessions.morning.talks).toEqual(expect.arrayContaining(
+                [writingFastTestsAgainstEnterpriseRails, overdoingitinPython, luafortheMasses, rubyErrorsfromMismatchedGemVersions]
+            ));
+            // firstTrack has the expected afternoon talks
+            expect(firstTrack.sessions.afternoon.talks).toEqual(expect.arrayContaining(
+                [rubyonRailsWhyWeShouldMoveOn, commonRubyErrors, pairProgrammingvsNoise, programmingintheBoondocksofSeattle, rubyVsClojureforBackEndDevelopment, userInterfaceCSSinRailsApps]
+            ));
+
+            // secondTrack has the expected morning talks
+            expect(secondTrack.sessions.morning.talks).toEqual(expect.arrayContaining(
+                [communicatingOverDistance, railsMagic, woah, sitDownandWrite]
+            ));
+            // secondTrack has the expected afternoon talks
+            expect(secondTrack.sessions.afternoon.talks).toEqual(expect.arrayContaining(
+                [accountingDrivenDevelopment, clojureAteScalaonmyproject, aWorldWithoutHackerNews, rubyonRailsLegacyAppMaintenance, railsforPythonDevelopers]
+            ));
+        });
+
+Since the output in the PDF doesn't follow a linear fashion, I will build my own test. I will create make belief conference with some random Talks and then I will test my buildTrackList method against it. It needs to correctly guess the start of Networking Events and other important things like arrayLength in morning and afternoon sessions.
