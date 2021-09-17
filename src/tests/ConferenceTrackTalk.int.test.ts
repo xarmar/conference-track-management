@@ -120,12 +120,12 @@ describe("Track Component can keep track of it's children Talks", () => {
 
 // Method buildTrackList() from Conference.ts
 describe("Method buildTrackList() works as Expected", () => {
-    test('buildTrackList() runs and after, Conference array has 3 tracks', () => {
+    test('After buildTrackList() runs, Conference.tracks array contains 3 tracks', () => {
 
         onlyOneConference.buildTrackList(arrayOfTalks);
         expect(onlyOneConference.tracks).toHaveLength(3);
     });
-    test('buildTrackList() correctly places Talks as expected ', () => {
+    test('buildTrackList() correctly places Talks in Tracks as expected', () => {
 
         onlyOneConference.buildTrackList(arrayOfTalks);
         let trackOne = onlyOneConference.tracks[0];
@@ -156,7 +156,7 @@ describe("Method buildTrackList() works as Expected", () => {
             []
         ));
     });
-    test('buildTrackList() correctly assigns networking startTimes to Tracks', () => {
+    test('buildTrackList() correctly assigns networking Events startTimes to Tracks', () => {
 
         onlyOneConference.buildTrackList(arrayOfTalks);
         let trackOne = onlyOneConference.tracks[0];
