@@ -416,3 +416,19 @@ Ok so I was writing the Talks that will be used in buildTrackList() and realized
                 break
             }
         }
+
+
+## **17/09/2021 - Day 5**
+
+**Morning**
+
+The code I mention above is redundant so I will not go ahead with it. It will instead have a this.isLightning: Boolean in the Talk constructor. 
+
+Later, in the front end I will build the logic to capture the input "lightning" as 5 minutes. Then once I am giving out the output I build the logic to
+
+        // if (this.isLightning) {
+            return "lightning"
+        }
+        else {
+            return 5
+        }
