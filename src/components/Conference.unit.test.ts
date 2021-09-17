@@ -1,25 +1,34 @@
 
 import { createDate } from "../dateManipulation/timeOperations";
 import Conference from "./Conference";
-import Talk from "./Talk";
 import Track from "./Track";
 
-var onlyOneConference: Conference
+// Initialize Date variables
 var expectedMorningStartTime: Date;
 var expectedMorningEndTalksBy: Date;
 var expectedAfternoonStartTime: Date;
 var expectedAfternoonEndTalksBy: Date;
+
+// Initialize Conference variable
+var onlyOneConference: Conference
+
+// Initialize Track variables
 var trackExampleOne : Track;
 var trackExampleTwo : Track;
 var trackExampleThree : Track;
 
 // Before Each to Keep Code DRY
 beforeEach(() => {
+    // Create Conference to use in testing
     onlyOneConference = new Conference([], null);
+
+    // Create 'start' and 'endBy' times for each session
     expectedMorningStartTime = createDate(9,0,0);
     expectedMorningEndTalksBy = createDate(12,0,0);
     expectedAfternoonStartTime = createDate(13,0,0);
     expectedAfternoonEndTalksBy = createDate(17,0,0);
+
+    // Create Tracks to use in testing
     trackExampleOne = new Track(1, expectedMorningStartTime, expectedAfternoonStartTime, expectedMorningEndTalksBy, expectedAfternoonEndTalksBy, null);
     trackExampleTwo = new Track(2, expectedMorningStartTime, expectedAfternoonStartTime, expectedMorningEndTalksBy, expectedAfternoonEndTalksBy, null);
     trackExampleThree = new Track(3, expectedMorningStartTime, expectedAfternoonStartTime, expectedMorningEndTalksBy, expectedAfternoonEndTalksBy, null);

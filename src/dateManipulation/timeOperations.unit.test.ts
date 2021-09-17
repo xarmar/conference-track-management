@@ -1,11 +1,13 @@
 import { addMinutesToDate, convertToAmPm, createDate, subtrackMinutesFromDate } from "./timeOperations";
 
+// Initialize Date variables
 var nineAm: Date;
 var twoPm: Date;
 var elevenPm: Date;
 
 // Before Each to Keep Code DRY
 beforeEach(() => {
+     // Give Date specific hours to test timeOperation.ts functions
     nineAm = createDate(9,0,0);
     twoPm = createDate(14,0,0);
     elevenPm = createDate(23,0,0);

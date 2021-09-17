@@ -5,16 +5,21 @@ import { createDate } from "../dateManipulation/timeOperations";
 
 // This file does integration testing between the three Componentes: Conference, Track and Talk
 
-var onlyOneConference: Conference;
+// Initialize Date variables
 var morningStartTime: Date;
 var morningEndTalksBy: Date;
 var afternoonStartTime: Date;
 var afternoonEndTalksBy: Date;
+
+// Initialize Conference variable
+var onlyOneConference: Conference;
+
+// Initialize Track variables
 var trackExampleOne : Track;
 var trackExampleTwo : Track;
 var trackExampleThree : Track;
 
-// Initiate variables that will hold Talks
+// Initialize Talk variables
 var writingFastTestsAgainstEnterpriseRails: Talk
 var overdoingitinPython: Talk
 var luafortheMasses: Talk
@@ -111,8 +116,8 @@ describe("Track Component can keep track of it's children Talks", () => {
 });
 
 // Method buildTrackList() from Conference.ts
-describe("Method buildTrackList() works as Expected", () => {
-    test('buildTrackList() gives out the same output as the one provided in the PDF document', () => {
+describe("Method buildTrackList() works as Expected, like in the PDF document", () => {
+    test('buildTrackList() gives returns an array of two tracks. like in the PDF document', () => {
         // Add Talks to arrayOfTalks
         let arrayOfTalks = [writingFastTestsAgainstEnterpriseRails, overdoingitinPython, luafortheMasses, rubyErrorsfromMismatchedGemVersions, 
             commonRubyErrors, railsforPythonDevelopers, communicatingOverDistance, accountingDrivenDevelopment, woah, sitDownandWrite, 

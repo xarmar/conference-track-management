@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import { addMinutesToDate, convertToAmPm, subtrackMinutesFromDate } from '../dateManipulation/timeOperations';
+import {Component} from 'react'
+import {convertToAmPm, subtrackMinutesFromDate} from '../dateManipulation/timeOperations';
 import Track from './Track';
 import { Session } from '../types/types';
 
@@ -16,7 +16,6 @@ class Talk extends Component<any, any> {
         this.hasSpot = false;
         this.title = title;
         this.startTime = undefined;
-        
     }
 
     // Checks if a Talk is already assigned to a Track

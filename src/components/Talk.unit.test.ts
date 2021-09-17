@@ -2,23 +2,25 @@ import { convertToAmPm, createDate } from "../dateManipulation/timeOperations";
 import Talk from "./Talk";
 import Track from "./Track";
 
+// Initialize Date variables
 var morningStartTime: Date;
 var morningEndTalksBy: Date;
 var afternoonStartTime: Date;
 var afternoonEndTalksBy: Date;
-var timeInAmPm : String;
+
+// Initialize Track variables
 var trackExampleOne : Track;
 var trackExampleTwo : Track;
 
-
 // Before Each to Keep Code DRY
 beforeEach(() => {
+    // Create 'start' and 'endBy' times for each session
     morningStartTime = createDate(9,0,0);
     morningEndTalksBy = createDate(12,0,0);
     afternoonStartTime = createDate(13,0,0);
     afternoonEndTalksBy = createDate(17,0,0);
-
-    timeInAmPm = "";
+    
+    // Create Tracks to use in testing
     trackExampleOne = new Track(1, morningStartTime, afternoonStartTime, morningEndTalksBy, afternoonEndTalksBy, null);
     trackExampleTwo = new Track(2, morningStartTime, afternoonStartTime, morningEndTalksBy, afternoonEndTalksBy, null);
 });
@@ -37,7 +39,7 @@ describe("It is possible to create a 'Talk' object with the 'new' keyword", () =
     });
 })
 
-//Method talkAssignedToTrack()
+//Method talkAssignedToTrack() from Talk.ts
 describe("Method talkAssignedToTrack() returns true and false when expected", () => {
     test("talkAssignedToTrack() returns false when track.hasPlace = false", () => {
         let reactForever = new Talk(20, 'React Forever', null);
@@ -71,7 +73,7 @@ describe("Method talkAssignedToTrack() returns true and false when expected", ()
     });
 })
 
-// Method PlaceTalk()
+// Method PlaceTalk() from Talk.ts
 describe("Method placeTalk() sets the talk's hasSpot property correctly", () => {
     test("placeTalk() correctly sets a placed talk's hasSpot property to true when appropriate", () => {
         // Pretend Track has time constraits

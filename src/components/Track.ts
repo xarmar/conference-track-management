@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import {Component} from 'react'
 import { addMinutesToDate, convertToAmPm, createDate } from '../dateManipulation/timeOperations';
 import Talk from './Talk';
 
@@ -22,8 +22,6 @@ class Track extends Component <any, any> {
             talks: Talk[]
         }
     }
-
-    
 
     constructor(trackNumber: number, morningStartTime: Date, afternoonStartTime: Date, finishMorningTalksBy:Date, finishAfternoonTalksBy:Date, props: any) {
         super(props);
