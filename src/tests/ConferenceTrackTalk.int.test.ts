@@ -20,25 +20,26 @@ var trackExampleTwo : Track;
 var trackExampleThree : Track;
 
 // Initialize Talk variables
-var writingFastTestsAgainstEnterpriseRails: Talk
-var overdoingitinPython: Talk
-var luafortheMasses: Talk
-var rubyErrorsfromMismatchedGemVersions: Talk
-var commonRubyErrors: Talk
-var railsforPythonDevelopers: Talk
-var communicatingOverDistance: Talk
-var accountingDrivenDevelopment: Talk
-var woah: Talk
-var sitDownandWrite: Talk
-var pairProgrammingvsNoise: Talk
-var railsMagic: Talk
-var rubyonRailsWhyWeShouldMoveOn: Talk
-var clojureAteScalaonmyproject: Talk
-var programmingintheBoondocksofSeattle: Talk
-var rubyVsClojureforBackEndDevelopment: Talk
-var rubyonRailsLegacyAppMaintenance: Talk
-var aWorldWithoutHackerNews: Talk
-var userInterfaceCSSinRailsApps: Talk
+var fruit: Talk;
+var banana: Talk;
+var strawberry: Talk;
+var kiwi: Talk;
+var pear: Talk;
+var orange: Talk;
+var grapes: Talk;
+var avocado: Talk;
+var apple: Talk;
+var mango: Talk;
+var icecream: Talk;
+var chocolate: Talk;
+var pistachio: Talk;
+var vanilla: Talk;
+var cheesecake: Talk;
+var brownies: Talk;
+var cookieCream: Talk;
+
+// Initialize arrayOfTalks
+var arrayOfTalks: Talk[]
 
 // Before Each to Keep Code DRY
 beforeEach(() => {
@@ -57,25 +58,27 @@ beforeEach(() => {
     trackExampleThree = new Track(3, morningStartTime, afternoonStartTime, morningEndTalksBy, afternoonEndTalksBy, null);
 
     // Create Talks to use in testing
-    writingFastTestsAgainstEnterpriseRails = new Talk(60, 'Writing Fast Tests Against Enterprise Rails', null);
-    overdoingitinPython = new Talk(45, 'Overdoing it in Python', null);
-    luafortheMasses = new Talk(30, 'Lua for the Masses', null);
-    rubyErrorsfromMismatchedGemVersions = new Talk(45, 'Ruby Errors from Mismatched Gem Versions', null);
-    commonRubyErrors = new Talk (45, 'Common Ruby Errors', null);
-    railsforPythonDevelopers = new Talk(5, 'Rails for Python Developers', null); // don't forget to add this.isLightning: Boolean to the constructor of Talks
-    communicatingOverDistance = new Talk (60, 'Communicating Over Distance', null);
-    accountingDrivenDevelopment = new Talk(45, 'Accounting-Driven Development', null);
-    woah = new Talk(30, 'Woah', null);
-    sitDownandWrite = new Talk(30, 'Sit Down and Write', null);
-    pairProgrammingvsNoise = new Talk (45, 'Pair Programming vs Noise', null);
-    railsMagic = new Talk (60, 'Rails Magic', null);
-    rubyonRailsWhyWeShouldMoveOn = new Talk (60, 'Ruby on Rails: Why We Should Move On', null);
-    clojureAteScalaonmyproject = new Talk(45, 'Clojure Ate Scala (on my project)', null);
-    programmingintheBoondocksofSeattle = new Talk(30, 'Programming in the Boondocks of Seattle', null);
-    rubyVsClojureforBackEndDevelopment = new Talk(30, 'Ruby vs. Clojure for Back-End Development', null );
-    rubyonRailsLegacyAppMaintenance = new Talk (60,'Ruby on Rails Legacy App Maintenance', null);
-    aWorldWithoutHackerNews = new Talk (30, 'A World Without HackerNews', null);
-    userInterfaceCSSinRailsApps = new Talk(30, 'User Interface CSS in Rails Apps', null);
+    fruit = new Talk(60, 'fruit', null);
+    banana = new Talk(45, 'banana', null);
+    strawberry = new Talk(30, 'strawberry', null);
+    kiwi = new Talk(25, 'kiwi', null);
+    pear = new Talk(40, 'pear', null);
+    orange = new Talk(60, 'orange', null);
+    grapes = new Talk(60, 'grapes', null);
+    avocado = new Talk(60, 'avocado', null);
+    apple = new Talk(45, 'apple', null);
+    mango = new Talk(60, 'mango', null);
+    icecream = new Talk(45, 'icecream', null);
+    chocolate = new Talk(55, 'chocolate', null);
+    pistachio = new Talk(60, 'pistachio', null);
+    vanilla = new Talk(60, 'vanilla', null);
+    cheesecake = new Talk(60, 'cheesecake', null);
+    brownies = new Talk(60, 'brownies', null);
+    cookieCream = new Talk(15, 'cookieCream', null);
+
+    // Create arrayOfTalks
+    arrayOfTalks = [fruit, banana, strawberry, kiwi, pear, orange, grapes, avocado, apple, mango, 
+        icecream, chocolate, pistachio, vanilla, cheesecake, brownies, cookieCream];
 });
 
 describe("Conference Component can keep track of it's children Tracks", () => {
@@ -116,15 +119,42 @@ describe("Track Component can keep track of it's children Talks", () => {
 });
 
 // Method buildTrackList() from Conference.ts
-describe("Method buildTrackList() works as Expected, like in the PDF document", () => {
-    test('buildTrackList() gives returns an array of two tracks. like in the PDF document', () => {
-        // Add Talks to arrayOfTalks
-        let arrayOfTalks = [writingFastTestsAgainstEnterpriseRails, overdoingitinPython, luafortheMasses, rubyErrorsfromMismatchedGemVersions, 
-            commonRubyErrors, railsforPythonDevelopers, communicatingOverDistance, accountingDrivenDevelopment, woah, sitDownandWrite, 
-            pairProgrammingvsNoise, railsMagic, rubyonRailsWhyWeShouldMoveOn, clojureAteScalaonmyproject, programmingintheBoondocksofSeattle, 
-            rubyVsClojureforBackEndDevelopment, rubyonRailsLegacyAppMaintenance, aWorldWithoutHackerNews, userInterfaceCSSinRailsApps];
+describe("Method buildTrackList() works as Expected", () => {
+    test('buildTrackList() runs and after, Conference array has 3 tracks', () => {
 
         onlyOneConference.buildTrackList(arrayOfTalks);
-        expect(onlyOneConference.tracks).toHaveLength(2);
+        expect(onlyOneConference.tracks).toHaveLength(3);
+    });
+    test('buildTrackList() correctly places Talks as expected ', () => {
+
+        onlyOneConference.buildTrackList(arrayOfTalks);
+        let trackOne = onlyOneConference.tracks[0];
+        let trackTwo = onlyOneConference.tracks[1];
+        let trackThree = onlyOneConference.tracks[2];
+        
+        // trackOne morning and afternoon have the expected talks
+        expect(trackOne.sessions.morning.talks).toEqual(expect.arrayContaining(
+            [fruit, banana, strawberry, kiwi, cookieCream]
+        ));
+        expect(trackOne.sessions.afternoon.talks).toEqual(expect.arrayContaining(
+            [pear, orange, grapes, avocado]
+        ));
+        
+        // trackTwo morning and afternoon have the expected talks
+        expect(trackTwo.sessions.morning.talks).toEqual(expect.arrayContaining(
+            [mango, icecream, chocolate]
+        ));
+        expect(trackTwo.sessions.afternoon.talks).toEqual(expect.arrayContaining(
+            [pistachio, vanilla, cheesecake, brownies]
+        ));
+
+        // trackThree morning and afternoon have the expected talks
+        expect(trackThree.sessions.morning.talks).toEqual(expect.arrayContaining(
+            [apple]
+        ));
+        expect(trackThree.sessions.afternoon.talks).toEqual(expect.arrayContaining(
+            []
+        ));
     });
 });
+
