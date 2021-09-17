@@ -156,5 +156,21 @@ describe("Method buildTrackList() works as Expected", () => {
             []
         ));
     });
+    test('buildTrackList() correctly assigns networking startTimes to Tracks', () => {
+
+        onlyOneConference.buildTrackList(arrayOfTalks);
+        let trackOne = onlyOneConference.tracks[0];
+        let trackTwo = onlyOneConference.tracks[1];
+        let trackThree = onlyOneConference.tracks[2];
+        
+        // track one has the expected networking event start time
+        expect(trackOne.networkingEventStartTime).toBe("4:40 PM");
+
+        // track two has the expected networking event start time
+        expect(trackTwo.networkingEventStartTime).toBe("5:00 PM");
+
+        // track three has the expected networking event start time
+        expect(trackThree.networkingEventStartTime).toBe("4:00 PM");
+    });
 });
 
