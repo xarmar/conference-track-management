@@ -38,7 +38,10 @@ class Conference extends Component<any,any> {
 
     // Builds the Track List
     buildTrackList(arrayOfTalks: Talk[]) {
-        
+
+        // Create an initial Track
+        this.createNewTrack();
+
         let allTalksHaveASpot = false;
 
         do {
@@ -55,10 +58,10 @@ class Conference extends Component<any,any> {
         }
         while(!allTalksHaveASpot)
 
-        // After all Talks are placed inside a Track, loop over Tracks and assign the networking event the correct starting time
+        // After all Talks are placed inside a Track, loop over Tracks and assign the networking events the correct starting time
+        this.placeNetworkingEvents();
 
-        // TODO
-
+        return this.tracks
         }
     
     // Loops over Tracks and sets the start time for the networking events
@@ -79,27 +82,7 @@ class Conference extends Component<any,any> {
             if (!talk.hasSpot) {
                 // Loop over existing tracks looking for a spot
                 this.tracks.forEach(currentTrack => {
-                    // Check if talk fits inside currentTrack's morning
-                    if (talk.duration < currentTrack.sessions.morning.availableMinutes) {
-                        talk.startTime = currentTrack.sessions.morning.startTime;
-                        // Increment startTime for next talk that will be placed
-                        currentTrack.sessions.morning.startTime.setMinutes(talk.duration);
-                        // Add talk to currentTrack morning talk's array
-                        currentTrack.sessions.morning.talks.push(talk);
-                        // Tell App that talk is placed
-                        talk.hasSpot = true
-                    }
-
-                    // Check if talk fits inside currentTrack's afternoon
-                    else if (talk.duration < currentTrack.sessions.afternoon.availableMinutes) {
-                        talk.startTime = currentTrack.sessions.afternoon.startTime;
-                        // Increment startTime for next talk that will be placed
-                        currentTrack.sessions.afternoon.startTime.setMinutes(talk.duration);
-                        // Add talk to currentTrack afternoon talk's array
-                        currentTrack.sessions.afternoon.talks.push(talk);
-                        // Tell App that talk is placed
-                        talk.hasSpot = true
-                    }
+                    talk.placeTalk(currentTrack);
                 });
             }
 
