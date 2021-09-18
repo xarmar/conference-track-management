@@ -1,5 +1,6 @@
 import {Component} from 'react';
 import { createDate } from '../dateManipulation/timeOperations';
+import ListOfTracks from './listGenerators/ListOfTracks';
 import Talk from './Talk';
 import Track from './Track';
 
@@ -93,10 +94,18 @@ class Conference extends Component<any,any> {
         });
     }
 
-
-
     render() {
-        return null
+
+        const conference = this.props.conference
+
+        const arrayOfTracks: Track[] = conference.tracks;
+    
+        // Return list of divs that contain Track Components
+        return (
+            <div id='tracks-container'>
+                <ListOfTracks arrayOfTracks={arrayOfTracks} />
+            </div>
+        )
     }
 }
 
