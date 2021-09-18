@@ -536,3 +536,50 @@ I just finished the major back end logic for the application. I'm very happy I c
 
 This weekend I can finally go full-time on this project, so I will now start building the front-end.
 I want something simple that works. If I go full-time on Saturday and Sunday, I estimate to have the project finished by Wednesday. I will look into some React Libraries like React-Spring, which I am curious about, maybe I can implement some features on this project. Looking forward to tomorrow.
+
+## **18/09/2021 - Day 6**
+
+**Morning**
+
+I just finished coding the basic logic for rendering track lists to the DOM and it's working. It's obviously very basic, no styling, but I'm happy, the logic is working and that it's rendering as expected.
+
+It's the first time I'm using Typescript in a React App, so I did get some warnings like:
+
+- "TypeScript error Parameter 'props' implicitly has an 'any' type"
+- "Component cannot be used as a JSX component. Its return type 'Element[][]"
+
+Both were pretty easy to solve just by googling and adding an Interface for props and fragments <> to the return statement.
+
+I'm happy how things are progressing, I will keep working on this app today.
+
+### **Building the front-end gameplan**
+- *Frameworks and Libraries*
+
+    - Yesterday I did take a look at **Material UI** and I really liked the plug & play aspect of it. There's no need to re-invent the wheel and worry about styling when I have something ready to use like Material UI. I will use it for the first time and take it as an opportunity to learn a new Framework.
+    - I might use **React Spring** for some cool-looking effects. Again, I've never used it, but I will take it as an opportunity to learn a new Library.
+
+<br>
+
+- *User Interface*
+
+    - I will be using basic inputs to capture the Talk title and Talk duration. I will add a checkbox that will tell my back-end if the Talk 'isLightning' or not - when checked, the minutes input will clear and be disabled.
+    - I will also add some ADD and REMOVE buttons to add and remove inputs, so that the user can add more Talks or remove ones that they don't want to submit.
+    - I will add a submit button, something like: 'Plan Conference' that, onClick, will submit the info to buildTrackList() and will mount the Component "Conference" in the DOM.
+    - This Conference Component, obviously shows the Tracks with the start times for Talks, Lunch and Networking Events.
+    - When the Conference Component is mounted, the Component that has the inputs and submits will be unMounted.
+    - Then, under the tracks, which will probably be displayed as "cards" in a grid system, there will be two buttons:
+        - One button will let the user go back to plannig a new conference with talks (unmounts Conference Component and mounts Inputs/Submit Component again).
+        - Another button will be "About The Developer", whick will show a Modal Pop-up with my contact information on the screen.
+
+        <br>
+
+-  *Features*
+    - Assuming I have time, I will create new branches and work on features I might want to add like:
+        - **TextArea** - user can just paste a text with the format "Talk title, 40 minutes" on each line and the application will output the Tracks as before. This will be an alternative to the standard Input fields.
+        - **Dark Mode** - pretty straight forward, just a toggle on/off between Light Mode and Dark Mode
+
+Maybe later I will come up with other cool features, but that's all for now.
+
+
+
+
