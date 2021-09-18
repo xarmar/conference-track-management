@@ -7,9 +7,9 @@ class Talk extends Component<any, any> {
     hasSpot: Boolean;
     isLightning: Boolean;
     startTime: any;
-    title: String;
+    title: string;
 
-    constructor(duration: number, title: String, isLightning: Boolean, props: any) {
+    constructor(duration: number, title: string, isLightning: Boolean, props: any) {
         super(props);
         this.duration = duration;
         this.hasSpot = false;
@@ -72,7 +72,14 @@ class Talk extends Component<any, any> {
     }
 
     render() {
-        return null
+        const talk: Talk = this.props.talk
+        
+        let durationOutput;
+
+        // If talk is Lightning, show 'lightning' to the user instead of minutes
+        talk.isLightning ? durationOutput = "lightning" : durationOutput = talk.duration
+
+        return <div> <p> {talk.startTime} - {talk.title} - {durationOutput}</p></div>
     }
 
 }
