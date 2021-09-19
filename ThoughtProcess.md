@@ -581,5 +581,9 @@ I'm happy how things are progressing, I will keep working on this app today.
 Maybe later I will come up with other cool features, but that's all for now.
 
 
+## **19/09/2021 - Day 8**
 
+Yesterday I didn't log anything here. It was one of those days where I seemed to hit a wall with my coding. I was having to adjust to using Material UI for the first time and it was not going well. However, I've addapeted and today I've basically solved all the logic based things, like Mounting, unMounting Components in the UI. That is all set up. 
+
+The work I have left now is mostly design. I still have a few features I want to implement, but I'm aiming to deliver this project Wednesday or Thursday, depending how long I have during the week.
 
