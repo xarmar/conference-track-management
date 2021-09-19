@@ -98,13 +98,13 @@ class Track extends Component <any, any> {
     const afternoonTalks: Talk[] = track.sessions.afternoon.talks;
 
         return (
-            <Grid container direction="row" item alignItems="center" justifyContent="center" xs={12} m={1} p={2} id="cada-form" sx={{ boxShadow: 10 }}>
+            <Grid container direction="row" item justifyContent="center" xs={12} m={1} p={2} id="cada-form" sx={{ boxShadow: 10 }}>
                 <Grid item xs={12}>
-                    <Grid container item xs={12} m={1} justifyContent="center">
-                        <Typography variant="h5">Track {trackNumber}</Typography>
+                    <Grid container item xs={12} m={1} justifyContent="center" mb={2}>
+                        <Typography variant="h5" color="primary">Track {trackNumber}</Typography>
                     </Grid>
-                        <Grid item xs={12} m={1}>
-                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="left">
+                <Grid item xs={12} m={1}>
+                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center">
                         <Grid item>
                             <WbSunnyIcon />
                         </Grid>
@@ -116,16 +116,16 @@ class Track extends Component <any, any> {
                         <ListOfTalks session="morning" arrayOfTalks={morningTalks}/>
                     </Grid>
                 </Grid>
-                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center" columnSpacing={1}>
-                        <Grid item>
-                            <FoodBankIcon />
-                        </Grid>
-                        <Grid item>
-                            <Typography>{convertToAmPm(lunchStartTime)} - Lunch</Typography>
-                        </Grid>
+                <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center" columnSpacing={1} mt={4} mb={4}>
+                    <Grid item>
+                        <FoodBankIcon />
                     </Grid>
-                        <Grid item xs={12} m={1}>
-                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="left">
+                    <Grid item>
+                        <Typography>{convertToAmPm(lunchStartTime)} | Lunch</Typography>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} m={1}>
+                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center">
                         <Grid item>
                             <WatchLaterIcon/>
                         </Grid>
@@ -133,12 +133,12 @@ class Track extends Component <any, any> {
                             <Typography> Afternoon</Typography>
                         </Grid>
                     </Grid>
-                        <Grid item xs={12} m={1}>
+                    <Grid item xs={12} m={1}>
                         <ListOfTalks session="afternoon" arrayOfTalks={afternoonTalks}/>
                     </Grid>
                 </Grid>
                 <Grid item xs={12} m={2}>
-                    <Typography>{networkingStartTime} - Networking Event</Typography>
+                    <Typography>{networkingStartTime} | Networking Event</Typography>
                 </Grid>
             </Grid>
         </Grid>

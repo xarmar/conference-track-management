@@ -99,7 +99,7 @@ class Conference extends Component<any,any> {
     }
 
     render() {
-
+        
         const conference = this.props.conference
 
         const arrayOfTracks: Track[] = conference.tracks;
@@ -107,10 +107,7 @@ class Conference extends Component<any,any> {
         // Return list of divs that contain Track Components
         return (
             <Grid container item xs={12} direction="row" alignItems="center">
-                <Grid item>
-                    <ListOfTracks arrayOfTracks={arrayOfTracks} />
-                </Grid>
-                <Grid container item direction="row" justifyContent="center" mt={4} xs={12} spacing={2}>
+                <Grid container item direction="row" justifyContent="center" mt={1} xs={12}>
                         <Grid item m={2}>
                             <Button 
                             variant="contained" 
@@ -130,6 +127,9 @@ class Conference extends Component<any,any> {
                             <Typography>Back To The Planner</Typography>
                             </Button>
                         </Grid>
+                </Grid>
+                <Grid container item direction="row" justifyContent="center" xs={12} >
+                    <ListOfTracks arrayOfTracks={arrayOfTracks} />
                 </Grid>
             </Grid>
         )

@@ -2,6 +2,7 @@ import {Component} from 'react'
 import {convertToAmPm, subtrackMinutesFromDate} from '../dateManipulation/timeOperations';
 import Track from './Track';
 import { Session } from '../types/types';
+import { Grid } from '@mui/material';
 class Talk extends Component<any, any> {
     duration: number;
     hasSpot: Boolean;
@@ -75,11 +76,16 @@ class Talk extends Component<any, any> {
         const talk: Talk = this.props.talk
         
         let durationOutput;
+        let sufix;
 
         // If talk is Lightning, show 'lightning' to the user instead of minutes
         talk.isLightning ? durationOutput = "lightning" : durationOutput = talk.duration
+        talk.isLightning ? sufix = "" : sufix = "m"
 
-        return <div> <p> {talk.startTime} - {talk.title} - {durationOutput}</p></div>
+
+        return (
+            <Grid item ><p> {talk.startTime} | {talk.title} - {durationOutput}{sufix}</p></Grid>
+        )
     }
 
 }
