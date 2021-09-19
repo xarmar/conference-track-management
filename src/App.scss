@@ -1,12 +1,22 @@
+
+$white: #ffffff;
+$mint: #E6EFE9;
+$primary: #007bff;
+$accent: #333333;
+$lightAccent: #00000070;
+
+:root {
+  background-color: $mint;
+}
+
+
 #header-div {
-  background-color: grey;
+  background-color: $primary;
+  color: $accent;
   margin: 25px auto;
-  padding: 30px;
+  padding: 20px;
 }    
 
-#main-content-container-grid {
-  background-color: lightblue;
-}
 
 // Give input groups border and margin
 .input-group {
@@ -18,8 +28,16 @@
   }
 }
 
-// #inputs-container-grid {
-//   display: grid !important;
-//   grid-template-columns: 1fr 1fr 1fr !important;
-//   grid-template-rows: auto !important;
-// }
+.css-1hskriy {
+  width: auto !important;
+}
+
+#verde-forms {
+  background-color: $mint;
+}
+
+#cada-form {
+  background-color: $mint;
+  box-shadow: red;
+}
+
