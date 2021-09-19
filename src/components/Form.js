@@ -15,7 +15,6 @@ import Slider from '@mui/material/Slider';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import CheckBox from '@mui/material/Checkbox'
 import Talk from './Talk'
-import { shadows } from '@mui/system';
 
 
 const Form = (props) => {
@@ -149,7 +148,7 @@ const Form = (props) => {
 
     // FORM SUMISSION ----------------------------------------------------
     
-    // Uses the data to build a Track List - TODO TODO TODO
+    // Uses the data to build a Track List
     const handleSubmitRequest = () => {
         let invalid = false;
         let userInputArray = [...inputFields]
@@ -195,7 +194,7 @@ const Form = (props) => {
     // Renders Form UI to the DOM
     const renderForm = inputFields.map((inputFields, index) => {
         return (
-            <Grid container direction="row" item key={index} alignItems="center" justifyContent="center" xs={2} m={1} p={2} id="cada-form" sx={{ boxShadow: 10 }}>
+            <Grid container direction="row" item key={index} alignItems="center" justifyContent="center" xs={3} m={1} p={2} id="cada-form" sx={{ boxShadow: 10 }}>
                 <Grid item xs={12}>
                     <TextField name="talkTitle" 
                     label="Talk Title" 
