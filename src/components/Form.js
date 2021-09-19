@@ -145,30 +145,24 @@ const Form = () => {
                 </Grid>
                 </Box>
                 </Grid>
-                <Grid container item direction="column" xs={12}>
-                    <Grid item xs={4} m={1} mb={0}>
-                            <Tooltip title="Set as lightning talk" placement="top">
-                                <IconButton 
-                                onClick={event => handleLightningTalkClick(index,event)}
-                                >
-                                    <FlashOnIcon/>
-                                </IconButton>  
-                            </Tooltip>
-                        </Grid>
-                    <Grid item xs={4} m={1} mb={0}>
-                            <Tooltip title="Add another talk" placement="top">
-                                <IconButton onClick={event => handleAddInput(index)}>
-                                    <AddCircleOutlineIcon/>
-                                </IconButton>  
-                            </Tooltip>
-                        </Grid>
-                    <Grid item xs={4} m={1} mb={0}>
-                        <Tooltip title="Remove this talk" placement="top">
-                                <IconButton onClick={event => handleRemoveInput(index)}>
-                                    <RemoveCircleOutlineIcon/> 
-                                </IconButton>  
-                            </Tooltip>  
-                    </Grid>
+                <Grid container item direction="row" justifyContent="center" align-items="center" spacing={2} xs={12} mt={1}>
+                    <Tooltip title="Set as lightning talk" placement="top">
+                        <IconButton 
+                        onClick={event => handleLightningTalkClick(index,event)}
+                        >
+                            <FlashOnIcon/>
+                        </IconButton>  
+                    </Tooltip>
+                    <Tooltip title="Add another talk" placement="top">
+                        <IconButton onClick={event => handleAddInput(index)}>
+                            <AddCircleOutlineIcon/>
+                        </IconButton>  
+                    </Tooltip>
+                    <Tooltip title="Remove this talk" placement="top">
+                        <IconButton onClick={event => handleRemoveInput(index)}>
+                            <RemoveCircleOutlineIcon/> 
+                        </IconButton>  
+                    </Tooltip> 
                 </Grid>
             </Grid>
         )
