@@ -1,7 +1,12 @@
+import { Grid, Typography } from '@mui/material';
 import {Component} from 'react'
 import { addMinutesToDate, convertToAmPm, createDate } from '../dateManipulation/timeOperations';
 import ListOfTalks from './listGenerators/ListOfTalks';
 import Talk from './Talk';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import FoodBankIcon from '@mui/icons-material/FoodBank';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
 
 class Track extends Component <any, any> {
 
@@ -93,33 +98,50 @@ class Track extends Component <any, any> {
     const afternoonTalks: Talk[] = track.sessions.afternoon.talks;
 
         return (
-            <div>
-                <div className="track-title-container">
-                    <h1> Track #${trackNumber}</h1>
-                </div>
-                <div className="track-morning-container">
-                    <div className="track-morning-icon-container">
-                        <p> Icon For Morning Goes Here </p>
-                    </div>
-                    <div className="track-morning-talks-container">
+            <Grid container direction="row" item alignItems="center" justifyContent="center" xs={12} m={1} p={2} id="cada-form" sx={{ boxShadow: 10 }}>
+                <Grid item xs={12}>
+                    <Grid container item xs={12} m={1} justifyContent="center">
+                        <Typography variant="h5">Track {trackNumber}</Typography>
+                    </Grid>
+                        <Grid item xs={12} m={1}>
+                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="left">
+                        <Grid item>
+                            <WbSunnyIcon />
+                        </Grid>
+                        <Grid item>
+                            <Typography> Morning</Typography>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12} m={1}>
                         <ListOfTalks session="morning" arrayOfTalks={morningTalks}/>
-                    </div>
-                </div>
-                <div className="track-lunch-time-container">
-                    <p>{convertToAmPm(lunchStartTime)} - Lunch</p>
-                </div>
-                <div className="track-afternoon-container">
-                    <div className="track-afternoon-icon-container">
-                        <p> Icon For Morning Goes Here </p>
-                    </div>
-                    <div className="track-afternoon-talks-container">
+                    </Grid>
+                </Grid>
+                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center" columnSpacing={1}>
+                        <Grid item>
+                            <FoodBankIcon />
+                        </Grid>
+                        <Grid item>
+                            <Typography>{convertToAmPm(lunchStartTime)} - Lunch</Typography>
+                        </Grid>
+                    </Grid>
+                        <Grid item xs={12} m={1}>
+                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="left">
+                        <Grid item>
+                            <WatchLaterIcon/>
+                        </Grid>
+                        <Grid item>
+                            <Typography> Afternoon</Typography>
+                        </Grid>
+                    </Grid>
+                        <Grid item xs={12} m={1}>
                         <ListOfTalks session="afternoon" arrayOfTalks={afternoonTalks}/>
-                    </div>
-                </div>
-                <div className="track-networking-event-time-container">
-                    <p>{networkingStartTime} - Networking Event</p>
-                </div>
-            </div>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} m={2}>
+                    <Typography>{networkingStartTime} - Networking Event</Typography>
+                </Grid>
+            </Grid>
+        </Grid>
         )
     }
 }
