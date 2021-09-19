@@ -15,6 +15,7 @@ import Slider from '@mui/material/Slider';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import CheckBox from '@mui/material/Checkbox'
 import Talk from './Talk'
+import { shadows } from '@mui/system';
 
 
 const Form = (props) => {
@@ -194,7 +195,7 @@ const Form = (props) => {
     // Renders Form UI to the DOM
     const renderForm = inputFields.map((inputFields, index) => {
         return (
-            <Grid container direction="row" item key={index} alignItems="center" justifyContent="center" xs={2} m={1} p={2} id="cada-form">
+            <Grid container direction="row" item key={index} alignItems="center" justifyContent="center" xs={2} m={1} p={2} id="cada-form" sx={{ boxShadow: 10 }}>
                 <Grid item xs={12}>
                     <TextField name="talkTitle" 
                     label="Talk Title" 
@@ -232,7 +233,7 @@ const Form = (props) => {
                 </Grid>
                 </Box>
                 </Grid>
-                <Grid container item direction="row" justifyContent="center" align-items="center" spacing={2} xs={12} mt={1} ms={4}>
+                <Grid container item direction="row" justifyContent="center" align-items="center" xs={12} mt={1} ms={4}>
                     <Tooltip title={setLightningTalkHelperText(index)} placement="top">
                         <CheckBox onClick={event => handleLightningTalkClick(index,event)} checked={handleCheckbox(index)} icon={<FlashOffIcon />} checkedIcon={<FlashOnIcon />} />
                     </Tooltip>
@@ -252,8 +253,8 @@ const Form = (props) => {
         });
     
     return (
-        <Grid container item xs={12} alignItems="center" id="preto-tudo">
-            <Grid container item direction="row" justifyContent="center" align-items="center" xs={12} id="verde-forms">
+        <Grid container item xs={12} alignItems="center">
+            <Grid container item direction="row" justifyContent="center" align-items="center" xs={12}>
                 {renderForm}
             </Grid>
             <Grid container item justifyContent="center" alignItems="center" mt={4} xs={12}>
