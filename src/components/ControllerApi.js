@@ -4,6 +4,7 @@ import AppHeader from './AppHeader';
 import { Container } from '@mui/material';
 import Form from './Form';
 import Conference from './Conference';
+import TextFieldGenerator from './TextFieldGenerator';
 
 class ControllerApi extends Component {
 
@@ -14,6 +15,7 @@ class ControllerApi extends Component {
         this.state = {
             showForm: true,
             showConference: false,
+            showTextFieldOption: true,
             conference: ""
         }
 
@@ -21,12 +23,20 @@ class ControllerApi extends Component {
     this.unmountFormComponent = this.unmountFormComponent.bind(this);
     this.renderConferenceComponent = this.renderConferenceComponent.bind(this);
     this.unMountConferenceMountForm = this.unMountConferenceMountForm.bind(this);
-
+    this.unmountTextFieldOptionComponent = this.unmountTextFieldOptionComponent(this);
     }
 
+    // Unmounts the Form Component
     unmountFormComponent() {
         this.setState({
             showForm: false
+        });
+    }
+
+    // Unmounts the TextFieldOption Component
+    unmountTextFieldOptionComponent() {
+        this.setState({
+            showTextFieldOption: false
         });
     }
 
@@ -55,9 +65,10 @@ class ControllerApi extends Component {
                 <Grid container direction="row">
                     <AppHeader /> 
                 </Grid>
-                <Grid id="main-content-container-grid" container >
+                <Grid id="main-content-container-grid" container direction="row" >
                     {this.state.showForm && <Form unmountFormComponent={this.unmountFormComponent} renderConferenceComponent={this.renderConferenceComponent} />}
                     {this.state.showConference && <Conference conference={this.state.conference} unMountConferenceMountForm={this.unMountConferenceMountForm} /> }
+                    {this.state.showTextFieldOption && <TextFieldGenerator unmountTextFieldOptionComponent={this.unmountTextFieldOptionComponent} />}
                 </Grid>
             </Container>
         )
