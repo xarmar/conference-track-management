@@ -14,6 +14,7 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import CheckBox from '@mui/material/Checkbox'
+import Talk from './Talk'
 
 
 const Form = () => {
@@ -87,7 +88,7 @@ const Form = () => {
         setinputFields(values);
     };
 
-    // CHECKBOX (lightning) --------------------------------------------
+    // CHECKBOX (LIGHTNING) --------------------------------------------
 
     // Handles User Clicks To Toggle 'isLightning' ON and OFF
     const handleLightningTalkClick = (index, event) => {
@@ -124,7 +125,7 @@ const Form = () => {
         return "Turn ON lightning talk"
     }
 
-    // ADD / REMOVE TALK BUTTONS ---------------------------------------
+    // ADD / REMOVE TALK BUTTONS ----------------------------------------
 
     // Adds a new group of inputs on click
     const handleAddInput = (index) => {
@@ -136,16 +137,19 @@ const Form = () => {
 
     // Removes a group of inputs on click
     const handleRemoveInput = (index) => {
-        const values = [... inputFields];
+        const values = [...inputFields];
         values.splice(index, 1);
         setinputFields(values);
     }
 
+    // FORM SUMISSION ----------------------------------------------------
+    
     // Uses the data to build a Track List - TODO TODO TODO
     const handleSubmitRequest = () => {
         let invalid = false;
         let userInputArray = [...inputFields]
 
+        // Handle form validation
         for (let i = 0; i < userInputArray.length; i++) {
             // Look for empty strings and warn user
             if(userInputArray[i].talkTitle === "") {
@@ -162,9 +166,20 @@ const Form = () => {
                 invalid = true;
             }
         }
+        
         if (invalid) {
             return
         }
+        
+        // Prepare arrayOfTalks that will be send to buildTrackList Method
+        let arrayOfTalks = [];
+
+        userInputArray.forEach(userInput => {
+            let talk = new Talk(userInput.talkDuration, userInput.talkTitle, userInput.isLightning, null);
+            arrayOfTalks.push(talk);
+        });
+
+        // TODO TODO TODO
     }
 
 
