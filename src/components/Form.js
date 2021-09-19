@@ -138,7 +138,11 @@ const Form = (props) => {
     // Removes a group of inputs on click
     const handleRemoveInput = (index) => {
         const values = [...inputFields];
-        values.splice(index, 1);
+
+        // Prevent user from deleating the only talk on the screen
+        if(values.length > 1) {
+            values.splice(index, 1);
+        }
         setinputFields(values);
     }
 
