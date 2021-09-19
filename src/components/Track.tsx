@@ -5,7 +5,6 @@ import ListOfTalks from './listGenerators/ListOfTalks';
 import Talk from './Talk';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 
 class Track extends Component <any, any> {
@@ -104,33 +103,42 @@ class Track extends Component <any, any> {
                         <Typography variant="h5" color="primary">Track {trackNumber}</Typography>
                     </Grid>
                 <Grid item xs={12} m={1}>
-                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center">
+                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center" columnSpacing={2} mt={1} mb={1}>
                         <Grid item>
                             <WbSunnyIcon />
                         </Grid>
                         <Grid item>
                             <Typography> Morning</Typography>
                         </Grid>
+                        <Grid item>
+                            <WbSunnyIcon />
+                        </Grid>
                     </Grid>
                     <Grid item xs={12} m={1}>
                         <ListOfTalks session="morning" arrayOfTalks={morningTalks}/>
                     </Grid>
                 </Grid>
-                <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center" columnSpacing={1} mt={4} mb={4}>
+                <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center" columnSpacing={2} mt={4} mb={4} className="lunch">
                     <Grid item>
                         <FoodBankIcon />
                     </Grid>
                     <Grid item>
                         <Typography>{convertToAmPm(lunchStartTime)} | Lunch</Typography>
                     </Grid>
+                    <Grid item>
+                        <FoodBankIcon />
+                    </Grid>
                 </Grid>
                 <Grid item xs={12} m={1}>
-                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center">
+                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center" mt={1} mb={1} columnSpacing={2}>
                         <Grid item>
                             <WatchLaterIcon/>
                         </Grid>
                         <Grid item>
                             <Typography> Afternoon</Typography>
+                        </Grid>
+                        <Grid item>
+                            <WatchLaterIcon/>
                         </Grid>
                     </Grid>
                     <Grid item xs={12} m={1}>
