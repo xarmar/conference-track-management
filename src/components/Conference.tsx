@@ -3,7 +3,11 @@ import { createDate } from '../dateManipulation/timeOperations';
 import ListOfTracks from './listGenerators/ListOfTracks';
 import Talk from './Talk';
 import Track from './Track';
-
+import { Grid } from '@mui/material';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import { Button } from '@mui/material';
+import { Typography } from '@mui/material';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 class Conference extends Component<any,any> {
 
@@ -102,10 +106,32 @@ class Conference extends Component<any,any> {
     
         // Return list of divs that contain Track Components
         return (
-            <div id='tracks-container'>
-                <ListOfTracks arrayOfTracks={arrayOfTracks} />
-                <button onClick={this.props.unMountConferenceMountForm}>Example</button>
-            </div>
+            <Grid container item xs={12} direction="row" alignItems="center">
+                <Grid item>
+                    <ListOfTracks arrayOfTracks={arrayOfTracks} />
+                </Grid>
+                <Grid container item direction="row" justifyContent="center" mt={4} xs={12} spacing={2}>
+                        <Grid item m={2}>
+                            <Button 
+                            variant="contained" 
+                            color="success" 
+                            type="submit" 
+                            startIcon={<PersonSearchIcon/>}>
+                            <Typography>About The Author</Typography>
+                            </Button>
+                        </Grid>
+                        <Grid item m={2} alignItems="center">
+                            <Button 
+                            variant="contained" 
+                            color="primary" 
+                            type="submit" 
+                            startIcon={<RestartAltIcon/>}
+                            onClick={this.props.unMountConferenceMountForm}>
+                            <Typography>Back To The Planner</Typography>
+                            </Button>
+                        </Grid>
+                </Grid>
+            </Grid>
         )
     }
 }
