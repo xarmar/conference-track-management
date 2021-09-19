@@ -1,0 +1,25 @@
+#header-div {
+  background-color: grey;
+  margin: 25px auto;
+  padding: 30px;
+}    
+
+#main-content-container-grid {
+  background-color: lightblue;
+}
+
+// Give input groups border and margin
+.input-group {
+  background-color: whitesmoke;
+  padding: 10px;
+  .input-slider {
+    margin-top: 20px;
+    border-bottom: 1px solid black;
+  }
+}
+
+// #inputs-container-grid {
+//   display: grid !important;
+//   grid-template-columns: 1fr 1fr 1fr !important;
+//   grid-template-rows: auto !important;
+// }
