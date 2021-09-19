@@ -10,23 +10,25 @@ import { Button, IconButton, Tooltip, Typography } from '@mui/material';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import { InputAdornment } from '@mui/material';
 import { containsNumber } from '../helperFunctions/helperFunctions';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import MuiInput from '@mui/material/Input';
 import ScheduleIcon from '@mui/icons-material/Schedule';
+import CheckBox from '@mui/material/Checkbox'
 
 
 const Form = () => {
 
     // Initiate State for Form Inputs
     const [inputFields, setinputFields] = useState([
-        {talkTitle: "", talkDuration: "", isLightning: false, talkHelperText: "", talkError: false}
+        {talkTitle: "", talkHelperText: "", talkError: false, talkDuration: "", isLightning: true}
     ]);
+
+    // TALK TITLE ------------------------------------------------------
 
     // Handle User Input on Title TextField
     const handleTitleChange = (index, event) => {
         
+        // Get state values
         const values = [...inputFields];
         let inputValue = event.target.value;
         let targetInput = event.target.name;
@@ -36,38 +38,98 @@ const Form = () => {
         if(targetInput === "talkTitle") {
             if(containsANumber) {
                 values[index]['talkError'] = true;
-                values[index]['talkHelperText'] = 'Numbers are not allowed!';       
+                values[index]['talkHelperText'] = 'Numbers not allowed!';       
             }
             else {
                 values[index]['talkError'] = false;
                 values[index]['talkHelperText'] = ''; 
             }
         }
-
+        
+        // Set new state values
         values[index][targetInput] = inputValue;
         setinputFields(values);
     }
 
-    // Handle User Input On Slider TextField
-    const handleDurationChange = (index, event) => {
-        const values = [...inputFields];
-        let inputValue = event.target.value
-        values[index][event.target.name] = inputValue
+    // SLIDER -----------------------------------------------------------
+
+    // Sets the Slider Value in the DOM
+    const sliderValue = (index) => {
+        
+        // Get state values
+        let values = [...inputFields];
+
+        // If it's a number, return that number to the DOM
+        if (typeof values[index]['talkDuration'] === 'number') {
+            return inputFields[index]['talkDuration']
+        }
+        else {
+            return 0
+        }
+    }
+
+    // Handles slider change (when user drags the slider)
+    const handleSliderChange = (index, event) => {
+        
+        // Get state values
+        let values = [...inputFields];
+        values[index][event.target.name] = event.target.value;
+
+        // If the user drags slider > 5 minutes, set isLightning to false
+        if(event.target.value > 5) {
+            values[index]['isLightning'] = false;
+        }
+
+        // If the user drags slider to 5 minutes, set isLightning to true
+        else if (event.target.value === 5) {
+            values[index]['isLightning'] = true;
+        }
+        setinputFields(values);
+    };
+
+    // CHECKBOX (lightning) --------------------------------------------
+
+    // Handles User Clicks To Toggle 'isLightning' ON and OFF
+    const handleLightningTalkClick = (index, event) => {
+        
+        // Get state values
+        let values = [...inputFields];
+
+        // Only allow toggle off it's over 5 minutes
+        if(values[index]['talkDuration'] > 5) {
+            values[index]['isLightning'] = !values[index]['isLightning'];
+        }
+
+        // If isLightning & duration > 5, set talk duration to 5 minutes
+        if(values[index]['isLightning']) {
+            values[index]['talkDuration'] = 5;
+        }
         setinputFields(values);
     }
 
-    // Handle User Clicks To Goggle Lightning Talk on/off
-    const handleLightningTalkClick = (index, event) => {
-        let values = [...inputFields];
-        values[index]['isLightning'] = !values[index]['isLightning'];
-        setinputFields(values);
-        console.log(values[index]['isLightning']);
+    // Change checkbox 'checked' state based on isLightning boolean value
+    const handleCheckbox = (index) => {
+        if(inputFields[index]['isLightning']) {
+            return true
+        }
+        return false;
     }
+
+    // Changes the onHover helperText on Checkbox
+    const setLightningTalkHelperText = (index) => {
+        let values = [...inputFields];
+        if (values[index]['isLightning']) {
+            return "Turn OFF lightning talk"
+        }
+        return "Turn ON lightning talk"
+    }
+
+    // ADD / REMOVE TALK BUTTONS ---------------------------------------
 
     // Adds a new group of inputs on click
     const handleAddInput = (index) => {
         const values = [...inputFields];
-        let newinput = {talkTitle: "", talkDuration: "", isLightning: false, talkHelperText: "", talkError: false};
+        let newinput = {talkTitle: "", talkDuration: "", isLightning: true, talkHelperText: "", talkError: false};
         values.splice(index + 1, 0, newinput);
         setinputFields(values);
     }
@@ -79,35 +141,37 @@ const Form = () => {
         setinputFields(values);
     }
 
-    // SLIDER -----------------------------------------------------------------
-    const Input = styled(MuiInput)`
-    width: 10%;
-`;
+    // Uses the data to build a Track List - TODO TODO TODO
+    const handleSubmitRequest = () => {
+        let invalid = false;
+        let userInputArray = [...inputFields]
 
-    // Sets the Slider Value in the JSX - WORKING DONT TOUCH
-    const sliderValue = (index) => {
-        let values = [...inputFields];
-        if (typeof values[index]['talkDuration'] === 'number') {
-            return inputFields[index]['talkDuration']
+        for (let i = 0; i < userInputArray.length; i++) {
+            // Look for empty strings and warn user
+            if(userInputArray[i].talkTitle === "") {
+                userInputArray[i]['talkHelperText'] = "No empty titles!";
+                userInputArray[i]['talkError'] = true;
+                setinputFields(userInputArray);
+                invalid = true;
+            }
+            // Look for numbers in title and warn user
+            else if(containsNumber(userInputArray[i].talkTitle)) {
+                userInputArray[i]['talkHelperText'] = "No numbers, please!";
+                userInputArray[i]['talkError'] = true;
+                setinputFields(userInputArray);
+                invalid = true;
+            }
         }
-        else {
-            return 0
+        if (invalid) {
+            return
         }
     }
-
-    // Handles slider change (when user drags the slider) - WORKING DONT TOUCH
-    const handleSliderChange = (index, event) => {
-    let values = [...inputFields];
-    values[index][event.target.name] = event.target.value;
-    setinputFields(values);
-    };
-
 
 
     // Renders Form UI to the DOM
     const renderForm = inputFields.map((inputFields, index) => {
         return (
-            <Grid container direction="row" item key={index} alignItems="center" justifyContent="center" xs={3} m={1} p={2} id="cada-form">
+            <Grid container direction="row" item key={index} alignItems="center" justifyContent="center" xs={2} m={1} p={2} id="cada-form">
                 <Grid item xs={12}>
                     <TextField name="talkTitle" 
                     label="Talk Title" 
@@ -125,7 +189,7 @@ const Form = () => {
                             ),
                         }}/>  
                 <Box sx={{ width: 250 }} className="input-slider">
-                <Grid container spacing={2} alignItems="center" justifyContent="center">
+                <Grid container spacing={2} alignItems="center" justifyContent="center" mt={2}>
                     <Grid item>
                         <ScheduleIcon />
                     </Grid>
@@ -145,13 +209,9 @@ const Form = () => {
                 </Grid>
                 </Box>
                 </Grid>
-                <Grid container item direction="row" justifyContent="center" align-items="center" spacing={2} xs={12} mt={1}>
-                    <Tooltip title="Set as lightning talk" placement="top">
-                        <IconButton 
-                        onClick={event => handleLightningTalkClick(index,event)}
-                        >
-                            <FlashOnIcon/>
-                        </IconButton>  
+                <Grid container item direction="row" justifyContent="center" align-items="center" spacing={2} xs={12} mt={1} ms={4}>
+                    <Tooltip title={setLightningTalkHelperText(index)} placement="top">
+                        <CheckBox onClick={event => handleLightningTalkClick(index,event)} checked={handleCheckbox(index)} icon={<FlashOffIcon />} checkedIcon={<FlashOnIcon />} />
                     </Tooltip>
                     <Tooltip title="Add another talk" placement="top">
                         <IconButton onClick={event => handleAddInput(index)}>
@@ -170,15 +230,16 @@ const Form = () => {
     
     return (
         <Grid container item xs={12} alignItems="center" id="preto-tudo">
-            <Grid container item direction="row" justifyContent="center" xs={12} id="verde-forms">
+            <Grid container item direction="row" justifyContent="center" align-items="center" xs={12} id="verde-forms">
                 {renderForm}
             </Grid>
-            <Grid item alignSelf="center" alignItems="center" mx={2} mt={4} xs={12}>
+            <Grid container item justifyContent="center" alignItems="center" mt={4} xs={12}>
                 <Button 
                 variant="contained" 
                 color="primary" 
                 type="submit" 
-                startIcon={<DateRangeIcon/>}>
+                startIcon={<DateRangeIcon/>}
+                onClick={handleSubmitRequest}>
                 <Typography>Schedule Conference</Typography>
                 </Button>
             </Grid>
