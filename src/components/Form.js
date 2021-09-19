@@ -81,7 +81,7 @@ const Form = () => {
 
     // SLIDER -----------------------------------------------------------------
     const Input = styled(MuiInput)`
-    width: 42px;
+    width: 10%;
 `;
 
     // Sets the Slider Value in the JSX - WORKING DONT TOUCH
@@ -107,24 +107,24 @@ const Form = () => {
     // Renders Form UI to the DOM
     const renderForm = inputFields.map((inputFields, index) => {
         return (
-        <Grid key={index} container item alignItems="center" justifyContent="center" direction="row" md={6} mt={2} className="input-group">
-            <Grid item>
-                <TextField name="talkTitle" 
-                label="Talk Title" 
-                value={inputFields.talkTitle} 
-                variant="filled"
-                error={inputFields.talkError}
-                helperText={inputFields.talkHelperText} 
-                size="small"
-                onChange={event => handleTitleChange(index, event)}
-                InputProps={{
-                    endAdornment: (
-                        <InputAdornment position="end">
-                            <TitleIcon />
-                        </InputAdornment>
-                        ),
-                    }}/>  
-            <Box sx={{ width: 250 }} className="input-slider">
+            <Grid container direction="row" item key={index} alignItems="center" justifyContent="center" xs={3} m={1} p={2} id="cada-form">
+                <Grid item xs={12}>
+                    <TextField name="talkTitle" 
+                    label="Talk Title" 
+                    value={inputFields.talkTitle} 
+                    variant="filled"
+                    error={inputFields.talkError}
+                    helperText={inputFields.talkHelperText} 
+                    size="small"
+                    onChange={event => handleTitleChange(index, event)}
+                    InputProps={{
+                        endAdornment: (
+                            <InputAdornment position="end">
+                                <TitleIcon />
+                            </InputAdornment>
+                            ),
+                        }}/>  
+                <Box sx={{ width: 250 }} className="input-slider">
                 <Grid container spacing={2} alignItems="center" justifyContent="center">
                     <Grid item>
                         <ScheduleIcon />
@@ -143,41 +143,43 @@ const Form = () => {
                         />
                     </Grid>
                 </Grid>
-            </Box>
-            </Grid>
-            <Grid item m={1} mb={0}>
-                    <Tooltip title="Set as lightning talk" placement="top">
-                        <IconButton 
-                        onClick={event => handleLightningTalkClick(index,event)}
-                        >
-                            <FlashOnIcon/>
-                        </IconButton>  
-                    </Tooltip>
+                </Box>
                 </Grid>
-            <Grid item m={1} mb={0}>
-                    <Tooltip title="Add another talk" placement="top">
-                        <IconButton onClick={event => handleAddInput(index)}>
-                            <AddCircleOutlineIcon/>
-                        </IconButton>  
-                    </Tooltip>
+                <Grid container item direction="column" xs={12}>
+                    <Grid item xs={4} m={1} mb={0}>
+                            <Tooltip title="Set as lightning talk" placement="top">
+                                <IconButton 
+                                onClick={event => handleLightningTalkClick(index,event)}
+                                >
+                                    <FlashOnIcon/>
+                                </IconButton>  
+                            </Tooltip>
+                        </Grid>
+                    <Grid item xs={4} m={1} mb={0}>
+                            <Tooltip title="Add another talk" placement="top">
+                                <IconButton onClick={event => handleAddInput(index)}>
+                                    <AddCircleOutlineIcon/>
+                                </IconButton>  
+                            </Tooltip>
+                        </Grid>
+                    <Grid item xs={4} m={1} mb={0}>
+                        <Tooltip title="Remove this talk" placement="top">
+                                <IconButton onClick={event => handleRemoveInput(index)}>
+                                    <RemoveCircleOutlineIcon/> 
+                                </IconButton>  
+                            </Tooltip>  
+                    </Grid>
                 </Grid>
-            <Grid item m={1} mb={0}>
-                <Tooltip title="Remove this talk" placement="top">
-                        <IconButton onClick={event => handleRemoveInput(index)}>
-                            <RemoveCircleOutlineIcon/> 
-                        </IconButton>  
-                    </Tooltip>  
             </Grid>
-        </Grid>
         )
         });
     
     return (
-        <Grid item m={3} md={6}>
-            <Grid item alignItems="center">
+        <Grid container item xs={12} alignItems="center" id="preto-tudo">
+            <Grid container item direction="row" justifyContent="center" xs={12} id="verde-forms">
                 {renderForm}
             </Grid>
-            <Grid item justifyItems="center" alignItems="center" item mx={2} mt={4}>
+            <Grid item alignSelf="center" alignItems="center" mx={2} mt={4} xs={12}>
                 <Button 
                 variant="contained" 
                 color="primary" 
