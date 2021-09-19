@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid'
 import { Button, IconButton, Tooltip, Typography } from '@mui/material';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-import { containsNumber, isLightningOrNumber } from '../helperFunctions/helperFunctions';
+import { containsNumber, hasWhiteSpace, isLightningOrNumber } from '../helperFunctions/helperFunctions';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import Talk from './Talk'
 
@@ -41,22 +41,32 @@ const TextFieldGenerator = (props) => {
             arrayToValidate.push({title: title, duration: duration})
         });
 
-        if(arrayToValidate.some(input => input.title === undefined || "") || arrayToValidate.some(input => input.duration === undefined | "")) {
-            setWarningMessage('Invalid Input: Make sure Titles have no numbers, and after the comma(,) input only a number');
+        console.log(arrayToValidate);
+
+       
+        // Rejects whitespace and undefined values - WORKING
+        if( arrayToValidate.some(input => input.title === undefined) ||
+            arrayToValidate.some(input => input.duration === undefined) ||
+            arrayToValidate.some(input => !input.title.trim()) ||
+            arrayToValidate.some(input => !input.duration.trim())) {
+            // setWarningMessage('Invalid Input: Make sure Titles have no numbers, and after the comma(,) input only a number');
+            setWarningMessage('detected undefined or empty')
             setError(true);
             return
         }
 
-        // If a title contains numbers in Title, reject input
-        if(arrayToValidate.some(input => containsNumber(input.title))) {
-            setWarningMessage('Invalid Input: Make sure Titles have no numbers, and after the comma(,) input only a number');
+        // If a title contains numbers in Title, reject input - WORKING
+        else if(arrayToValidate.some(input => containsNumber(input.title))) {
+            // setWarningMessage('Invalid Input: Make sure Titles have no numbers, and after the comma(,) input only a number');
+            setWarningMessage('detected number in title')
             setError(true);
             return
         }
 
-        // Reject any duration inputs that are not lightning or numbers between 5 and 60
+        // Reject any duration inputs that are not lightning or numbers between 5 and 60 - TODO TODO TODO
         else if(!arrayToValidate.every(input => isLightningOrNumber(input.duration))) {
-            setWarningMessage('Invalid Input: Make sure Titles have no numbers, and after the comma(,) input only a number');
+            // setWarningMessage('Invalid Input: Make sure Titles have no numbers, and after the comma(,) input only a number');
+            setWarningMessage('some input is not between 5 and 60 or not lightning')
             setError(true);
             return
         }
