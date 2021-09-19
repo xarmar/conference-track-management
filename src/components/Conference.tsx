@@ -104,6 +104,7 @@ class Conference extends Component<any,any> {
         return (
             <div id='tracks-container'>
                 <ListOfTracks arrayOfTracks={arrayOfTracks} />
+                <button onClick={this.props.unMountConferenceMountForm}>Example</button>
             </div>
         )
     }

@@ -17,7 +17,7 @@ import CheckBox from '@mui/material/Checkbox'
 import Talk from './Talk'
 
 
-const Form = () => {
+const Form = (props) => {
 
     // Initiate State for Form Inputs
     const [inputFields, setinputFields] = useState([
@@ -179,7 +179,11 @@ const Form = () => {
             arrayOfTalks.push(talk);
         });
 
-        // TODO TODO TODO
+        // Unmount Form
+        props.unmountFormComponent();
+
+        // // Render Conference Component to DOM
+        props.renderConferenceComponent(arrayOfTalks);
     }
 
 
