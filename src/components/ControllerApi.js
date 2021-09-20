@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import { Component } from 'react';
 import { Container } from '@mui/material';
 import SliderBuilder from './SliderBuilder';
 import Conference from './Conference';

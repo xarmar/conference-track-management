@@ -4,7 +4,6 @@ import ListOfTracks from './listGenerators/ListOfTracks';
 import Talk from './Talk';
 import Track from './Track';
 import { Grid } from '@mui/material';
-import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import { Button } from '@mui/material';
 import { Typography } from '@mui/material';
 import RestartAlt from '@mui/icons-material/RestartAlt';

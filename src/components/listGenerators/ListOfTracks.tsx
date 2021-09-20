@@ -1,5 +1,4 @@
 import Track from '../Track';
-import * as React from 'react'
 import { Grid } from '@mui/material';
 
 interface listOfTracksProps {
