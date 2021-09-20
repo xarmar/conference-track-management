@@ -26,7 +26,7 @@ const TextFieldGenerator = (props) => {
     // FORM SUMISSION ----------------------------------------------------
     
     // Uses the data to build a Track List
-    const handleSubmitRequest = (event) => {
+    const handleSubmitRequest = () => {
         
         // Get user input by line
         let userInputArray = textAreaInput.split('\n');
@@ -35,69 +35,61 @@ const TextFieldGenerator = (props) => {
 
         // Extact Talk title and duration
         userInputArray.forEach(lineOfText => {
+            // Use comma to separate between Title and Duration 
             let titleTime = lineOfText.split(',');
             let title = titleTime[0];
             let duration = titleTime[1];
             arrayToValidate.push({title: title, duration: duration})
         });
 
-        console.log(arrayToValidate);
-
-       
         // Rejects whitespace and undefined values - WORKING
         if( arrayToValidate.some(input => input.title === undefined) ||
             arrayToValidate.some(input => input.duration === undefined) ||
             arrayToValidate.some(input => !input.title.trim()) ||
             arrayToValidate.some(input => !input.duration.trim())) {
-            // setWarningMessage('Invalid Input: Make sure Titles have no numbers, and after the comma(,) input only a number');
-            setWarningMessage('detected undefined or empty')
+            setWarningMessage('Invalid Input! Correct Synthax: {Title With No Numbers } , {the word "lightning"} OR {a number between 5 and 60}');
             setError(true);
             return
         }
 
         // If a title contains numbers in Title, reject input - WORKING
         else if(arrayToValidate.some(input => containsNumber(input.title))) {
-            // setWarningMessage('Invalid Input: Make sure Titles have no numbers, and after the comma(,) input only a number');
-            setWarningMessage('detected number in title')
+            setWarningMessage('Invalid Input! Correct Synthax: {Title With No Numbers } , {the word "lightning"} OR {a number between 5 and 60}');
             setError(true);
             return
         }
 
-        // Reject any duration inputs that are not lightning or numbers between 5 and 60 - TODO TODO TODO
+        // Reject any duration inputs that are not lightning or numbers between 5 and 60
         else if(!arrayToValidate.every(input => isLightningOrNumber(input.duration))) {
-            // setWarningMessage('Invalid Input: Make sure Titles have no numbers, and after the comma(,) input only a number');
-            setWarningMessage('some input is not between 5 and 60 or not lightning')
+            setWarningMessage('Invalid Input! Correct Synthax: {Title With No Numbers } , {the word "lightning"} OR {a number between 5 and 60}');
             setError(true);
             return
         }
 
         else {
-        //Prepare arrayOfTalks that will be send to buildTrackList Method
-        let arrayOfTalks = [];
+            //Prepare arrayOfTalks that will be sent to buildTrackList Method
+            let arrayOfTalks = [];
 
-        arrayToValidate.forEach(input => {
+            arrayToValidate.forEach(input => {
 
-            // If is lightning, duration is 5 minutes, 'isLightning' is true and vice-versa
-            if( input.duration === 'lightning' || 
-                input.duration === 'Lightning' ||
-                input.duration ==='LIGHTNING' || 
-                parseInt(input.duration) === 5) {
-                let newTalk = new Talk(5, input.title, true, null);
-                arrayOfTalks.push(newTalk);
-            }
-            // If is not lightning, just use the talk duration
-            else {
-                let newTalk = new Talk(input.duration, input.title, false, null);
-                arrayOfTalks.push(newTalk);
-            }
-        });
+                // If it is lightning => duration is 5 minutes and vice versa
+                if(input.duration.trim().toLocaleLowerCase() === 'lightning' || parseInt(input.duration) === 5) {
+                    let newTalk = new Talk(5, input.title, true, null);
+                    arrayOfTalks.push(newTalk);
+                }
+                // If is not lightning, just use the talk duration
+                else {
+                    let newTalk = new Talk(parseInt(input.duration), input.title, false, null);
+                    arrayOfTalks.push(newTalk);
+                }
+            });
 
-        // Unmount TextFieldOptionComponent
-        props.unmountTextFieldOptionComponent();
+            //Unmount TextFieldOptionComponent
+            props.unmountTextFieldOptionComponent();
 
-        // Render Conference Component to DOM
-        props.renderConferenceComponent(arrayOfTalks);
-    }
+            // Render Conference Component to the DOM
+            props.renderConferenceComponent(arrayOfTalks);
+        }
     }
     
     return (
