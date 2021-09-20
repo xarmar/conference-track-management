@@ -5,7 +5,18 @@ import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import TuneIcon from '@mui/icons-material/Tune';
 import { Box } from '@mui/system';
 
-const MainMenu = () => {
+const MainMenu = (props) => {
+
+    const handleTextFieldOptionSelected = () => {
+        props.renderTextFieldBuilderComponent();
+        props.unmontMainMenuComponent();
+    }
+
+    const handleSliderOptionSelected = () => {
+        props.renderSliderBuilderComponent();
+        props.unmontMainMenuComponent();
+    }
+
     return(
         <Box
         display="flex"
@@ -23,7 +34,8 @@ const MainMenu = () => {
                             variant="contained" 
                             color="primary" 
                             type="submit" 
-                            startIcon={<TuneIcon/>}>
+                            startIcon={<TuneIcon/>}
+                            onClick={handleSliderOptionSelected}>
                             <Typography>Insert Talks with Slider</Typography>
                             </Button>
                     </Grid>
@@ -32,7 +44,8 @@ const MainMenu = () => {
                             variant="contained" 
                             color="success" 
                             type="submit" 
-                            startIcon={<TextSnippetIcon/>}>
+                            startIcon={<TextSnippetIcon/>}
+                            onClick={handleTextFieldOptionSelected}>
                             <Typography>Insert Talks with TextArea</Typography>
                             </Button>
                         </Grid>
