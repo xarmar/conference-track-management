@@ -12,29 +12,29 @@ export const containsNumber = (string: string) => {
     return containsNumber
 };
 
-export const isLightningOrNumber = (string: string) => {
-    
-    // If user types lightning return true
-    if(string === "lightning" || "Lightning" || "LIGHTNING") {
-        return true
+
+export const isLightningOrNumber = (input: string) => {
+
+    let inputWithNoWhiteSpace = input.trim(); 
+
+    // Check if it is lightning
+    if(inputWithNoWhiteSpace.toLocaleLowerCase() === "lightning") {
+            return true
     }
-    
-    // else test for a valid number between 5 and 60
-    let number = parseInt(string);
-    
-    // Reject non-numbers
-    if(isNaN(number)) {
+
+    // Check it it only contains digits
+    let isNumber = /^\d+$/.test(inputWithNoWhiteSpace);
+    if(!isNumber) {
         return false
     }
 
-    else { 
-        if(number < 5 || number > 60) {
-            return false
-        }
-        // Accept numbers between 5 and 60
-        else {
+    // If it only contains numbers, convert string to number and check for value range 
+    else {
+        let number = parseInt(inputWithNoWhiteSpace);
+        if (number >= 5 && number <= 60) {
             return true
         }
+        return false
     }
-};
+}
 
