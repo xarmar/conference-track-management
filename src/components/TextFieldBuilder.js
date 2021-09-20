@@ -86,7 +86,7 @@ const TextFieldGenerator = (props) => {
             });
 
             //Unmount TextFieldOptionComponent
-            props.unmountTextFieldOptionComponent();
+            props.unmountTextFieldBuilderComponent();
 
             // Render Conference Component to the DOM
             props.renderConferenceComponent(arrayOfTalks);
