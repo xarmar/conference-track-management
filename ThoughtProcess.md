@@ -587,3 +587,33 @@ Yesterday I didn't log anything here. It was one of those days where I seemed to
 
 The work I have left now is mostly design. I still have a few features I want to implement, but I'm aiming to deliver this project Wednesday or Thursday, depending how long I have during the week.
 
+I was able to build most of the logic for having the alternative textArea input and capturing a list of Talks form the textArea. Only a small part of the onSubmit validation logic is left. This textArea is an alternative to the 'pretty UI' that I built to add Tracks, giving the user two options on how to build their Track List.
+
+## **20/09/2021 - Day 9**
+
+Today I started by writing the Markdown file 'HowToBuildThisApp.md' which explains logically the steps to follow to build an application like this.
+
+Today I have to:
+- Build a Menu Component where the user can choose to use the textArea or the 'pretty UI'.
+- When displaying Track List, user has two options:
+    1. To go back to menu Component.
+    2. To go again with the same UI.
+- I have to do write the ComponentWillUnmount( ) method for each Component that has listeners to clean up any DOM elements that were created.
+
+Tomorrow I'm aiming to:
+- Install 'prettier' as a dev dependecy and use it to make my code look better (better formatted).
+- Spend some time in QA, using my application.
+- Create a new release branch and merge develop into it. Use git tag to tag the release.
+- Merge release/version into main.
+- Zip local repository and send it to *itemis AG*.
+
+I've decided I want to deliver this project on Wednesday evening. Just like when working with clients, it's always better to deliver our work before the agreed date. My project is working so I'll deliver.
+
+Howover, I will continue to build features like dark mode, and React Spring animations after I deliver the project simply because I find it interesting and would like to implement those features in my App.
+
+
+
+
+
+
+
