@@ -1,10 +1,10 @@
 import React, { Component, useState } from 'react';
 import { Container } from '@mui/material';
-import Form from './SliderBuilder';
+import SliderBuilder from './SliderBuilder';
 import Conference from './Conference';
-import TextFieldGenerator from './TextFieldBuilder';
 import MainMenu from './MainMenu';
 import { Box } from '@mui/system';
+import TextFieldBuilder from './TextFieldBuilder';
 
 class ControllerApi extends Component {
 
@@ -100,19 +100,22 @@ class ControllerApi extends Component {
                 <Box id="main-content-container-grid" container direction="row" className="margin-auto" >
                     {this.state.showMainMenu && <MainMenu 
                     renderTextFieldBuilderComponent={this.renderTextFieldBuilderComponent}
-                    renderSliderBuilderComponent={this.renderSliderBuilderComponent} />}
+                    renderSliderBuilderComponent={this.renderSliderBuilderComponent}
+                    unmontMainMenuComponent={this.unmontMainMenuComponent} />}
 
-                    {this.state.showSliderBuilder && <Form 
+                    {this.state.showSliderBuilder && <SliderBuilder 
                     unmountSliderBuilderComponent={this.unmountSliderBuilderComponent} 
-                    renderConferenceComponent={this.renderConferenceComponent} />}
+                    renderConferenceComponent={this.renderConferenceComponent}
+                    renderMainMenuComponent={this.renderMainMenuComponent} />}
 
                     {this.state.showConference && <Conference 
                     conference={this.state.conference} 
-                    unMountConferenceMountForm={this.unMountConferenceMountForm} 
+                    unMountConferenceComponent={this.unMountConferenceComponent} 
                     renderMainMenuComponent={this.renderMainMenuComponent} />}
 
-                    {this.state.showTextFieldOption && <TextFieldGenerator 
-                    unmountTextFieldOptionComponent={this.unmountTextFieldOptionComponent} 
+                    {this.state.showTextFieldBuilder && <TextFieldBuilder 
+                    unmountTextFieldBuilderComponent={this.unmountTextFieldBuilderComponent}
+                    renderMainMenuComponent={this.renderMainMenuComponent}
                     renderConferenceComponent={this.renderConferenceComponent} />}
                 </Box>
             </Container>

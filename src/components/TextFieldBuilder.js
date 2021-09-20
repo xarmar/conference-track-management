@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid'
-import { Button, IconButton, Tooltip, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-import { containsNumber, hasWhiteSpace, isLightningOrNumber } from '../helperFunctions/helperFunctions';
-import ScheduleIcon from '@mui/icons-material/Schedule';
+import { containsNumber, isLightningOrNumber } from '../helperFunctions/helperFunctions';
 import Talk from './Talk'
 import { Box } from '@mui/system';
 import RestartAlt from '@mui/icons-material/RestartAlt';
 
-const TextFieldGenerator = (props) => {
+const TextFieldBuilder = (props) => {
 
     // Initiate State for Form Inputs
     const [textAreaInput, setTextAreaInput] = useState("");
     const [warningMessage, setWarningMessage] = useState("");
     const [error, setError] = useState(false);
 
+
+    const handleMainMenuClick = () => {
+        props.unmountTextFieldBuilderComponent();
+        props.renderMainMenuComponent();
+    }
 
     // TALK TITLE ------------------------------------------------------
 
@@ -131,7 +135,7 @@ const TextFieldGenerator = (props) => {
                         color="secondary" 
                         type="submit" 
                         startIcon={<RestartAlt/>}
-                        onClick={handleScheduleConference}>
+                        onClick={handleMainMenuClick}>
                         <Typography>Back to Main Menu</Typography>
                         </Button>
                     </Grid>
@@ -141,4 +145,4 @@ const TextFieldGenerator = (props) => {
     )
 }
 
-export default TextFieldGenerator
+export default TextFieldBuilder

@@ -18,12 +18,17 @@ import Talk from './Talk'
 import RestartAlt from '@mui/icons-material/RestartAlt';
 
 
-const Form = (props) => {
+const SliderBuilder = (props) => {
 
     // Initiate State for Form Inputs
     const [inputFields, setinputFields] = useState([
         {talkTitle: "", talkHelperText: "", talkError: false, talkDuration: "", isLightning: true}
     ]);
+
+    const handleMainMenuClick = () => {
+        props.renderMainMenuComponent();
+        props.unmountSliderBuilderComponent();
+    }
 
     // TALK TITLE ------------------------------------------------------
 
@@ -279,7 +284,7 @@ const Form = (props) => {
                         color="secondary" 
                         type="submit" 
                         startIcon={<RestartAlt/>}
-                        onClick={handleScheduleConference}>
+                        onClick={handleMainMenuClick}>
                         <Typography>Back to Main Menu</Typography>
                         </Button>
                     </Grid>
@@ -289,4 +294,4 @@ const Form = (props) => {
     )
 }
 
-export default Form
+export default SliderBuilder

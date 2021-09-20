@@ -7,7 +7,7 @@ import { Grid } from '@mui/material';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 import { Button } from '@mui/material';
 import { Typography } from '@mui/material';
-import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import RestartAlt from '@mui/icons-material/RestartAlt';
 
 class Conference extends Component<any,any> {
 
@@ -99,6 +99,11 @@ class Conference extends Component<any,any> {
     }
 
     render() {
+
+        const handleMainMenuClick = () => {
+            this.props.renderMainMenuComponent();
+            this.props.unMountConferenceComponent();
+        }
         
         const conference = this.props.conference
 
@@ -108,25 +113,16 @@ class Conference extends Component<any,any> {
         return (
             <Grid container item xs={12} direction="row" alignItems="center">
                 <Grid container item direction="row" justifyContent="center" mt={1} xs={12}>
-                        <Grid item m={3}>
-                            <Button 
-                            variant="contained" 
-                            color="success" 
-                            type="submit" 
-                            startIcon={<PersonSearchIcon/>}>
-                            <Typography>About The Author</Typography>
-                            </Button>
-                        </Grid>
-                        <Grid item m={3} alignItems="center">
-                            <Button 
-                            variant="contained" 
-                            color="primary" 
-                            type="submit" 
-                            startIcon={<RestartAltIcon/>}
-                            onClick={this.props.unMountConferenceMountForm}>
-                            <Typography>Back To The Planner</Typography>
-                            </Button>
-                        </Grid>
+                <Grid item m={3}>
+                        <Button 
+                        variant="contained" 
+                        color="secondary" 
+                        type="submit" 
+                        startIcon={<RestartAlt/>}
+                        onClick={handleMainMenuClick}>
+                        <Typography>Back to Main Menu</Typography>
+                        </Button>
+                    </Grid>
                 </Grid>
                 <Grid container item direction="row" justifyContent="center" xs={12} mt={4} >
                     <ListOfTracks arrayOfTracks={arrayOfTracks} />
