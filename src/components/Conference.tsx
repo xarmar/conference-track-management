@@ -108,7 +108,7 @@ class Conference extends Component<any,any> {
         return (
             <Grid container item xs={12} direction="row" alignItems="center">
                 <Grid container item direction="row" justifyContent="center" mt={1} xs={12}>
-                        <Grid item m={2}>
+                        <Grid item m={3}>
                             <Button 
                             variant="contained" 
                             color="success" 
@@ -117,7 +117,7 @@ class Conference extends Component<any,any> {
                             <Typography>About The Author</Typography>
                             </Button>
                         </Grid>
-                        <Grid item m={2} alignItems="center">
+                        <Grid item m={3} alignItems="center">
                             <Button 
                             variant="contained" 
                             color="primary" 
@@ -128,7 +128,7 @@ class Conference extends Component<any,any> {
                             </Button>
                         </Grid>
                 </Grid>
-                <Grid container item direction="row" justifyContent="center" xs={12} >
+                <Grid container item direction="row" justifyContent="center" xs={12} mt={4} >
                     <ListOfTracks arrayOfTracks={arrayOfTracks} />
                 </Grid>
             </Grid>
