@@ -6,7 +6,8 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import { containsNumber, hasWhiteSpace, isLightningOrNumber } from '../helperFunctions/helperFunctions';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import Talk from './Talk'
-
+import { Box } from '@mui/system';
+import RestartAlt from '@mui/icons-material/RestartAlt';
 
 const TextFieldGenerator = (props) => {
 
@@ -26,7 +27,7 @@ const TextFieldGenerator = (props) => {
     // FORM SUMISSION ----------------------------------------------------
     
     // Uses the data to build a Track List
-    const handleSubmitRequest = () => {
+    const handleScheduleConference = () => {
         
         // Get user input by line
         let userInputArray = textAreaInput.split('\n');
@@ -93,36 +94,50 @@ const TextFieldGenerator = (props) => {
     }
     
     return (
-        <Grid container item xs={12} alignItems="center">
-            <Grid container item direction="row" justifyContent="center" align-items="center" xs={12}>
-                <Grid container direction="row" item alignItems="center" justifyContent="center" xs={12} m={1} p={2} id="cada-form" sx={{ boxShadow: 10 }}>
-                    <Grid item xs={12}>
-                        <TextField name="textField" 
-                        label="Please enter your talks list with the following structure: {Talk Title Without Numbers} , {lightning} or {number}" 
-                        value={textAreaInput}
-                        error={error}
-                        helperText={warningMessage} 
-                        variant="filled"
-                        multiline="true"
-                        minRows="8"
-                        maxRows="30"
-                        fullWidth="true"
-                        size="small"
-                        onChange={event => handleTextArea(event)}/>
+        <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="100vh">
+            <Grid container xs={12} alignItems="center">
+                <Grid container item direction="row" justifyContent="center" align-items="center" xs={12}>
+                    <TextField name="textField" 
+                    label="Please enter your talks here: {Talk.title} , {Talk.duration}" 
+                    value={textAreaInput}
+                    error={error}
+                    helperText={warningMessage} 
+                    variant="filled"
+                    multiline="true"
+                    minRows="8"
+                    maxRows="30"
+                    fullWidth="true"
+                    size="small"
+                    onChange={event => handleTextArea(event)}/>
+                </Grid> 
+                <Grid container item justifyContent="center" alignItems="center" mt={4} xs={12}>
+                    <Grid item m={3}>
+                        <Button 
+                        variant="contained" 
+                        color="primary" 
+                        type="submit" 
+                        startIcon={<DateRangeIcon/>}
+                        onClick={handleScheduleConference}>
+                        <Typography>Schedule Conference</Typography>
+                        </Button>
+                    </Grid>
+                    <Grid item m={3}>
+                        <Button 
+                        variant="contained" 
+                        color="secondary" 
+                        type="submit" 
+                        startIcon={<RestartAlt/>}
+                        onClick={handleScheduleConference}>
+                        <Typography>Back to Main Menu</Typography>
+                        </Button>
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid container item justifyContent="center" alignItems="center" mt={4} xs={12}>
-                <Button 
-                variant="contained" 
-                color="primary" 
-                type="submit" 
-                startIcon={<DateRangeIcon/>}
-                onClick={handleSubmitRequest}>
-                <Typography>Schedule Conference</Typography>
-                </Button>
-            </Grid>
-        </Grid>
+        </Box>
     )
 }
 

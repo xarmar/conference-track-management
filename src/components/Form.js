@@ -15,6 +15,7 @@ import Slider from '@mui/material/Slider';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import CheckBox from '@mui/material/Checkbox'
 import Talk from './Talk'
+import RestartAlt from '@mui/icons-material/RestartAlt';
 
 
 const Form = (props) => {
@@ -149,7 +150,7 @@ const Form = (props) => {
     // FORM SUMISSION ----------------------------------------------------
     
     // Uses the data to build a Track List
-    const handleSubmitRequest = () => {
+    const handleScheduleConference = () => {
         let invalid = false;
         let userInputArray = [...inputFields]
 
@@ -175,7 +176,7 @@ const Form = (props) => {
             return
         }
         
-        // Prepare arrayOfTalks that will be send to buildTrackList Method
+        // Prepare arrayOfTalks that will be sent to buildTrackList Method
         let arrayOfTalks = [];
 
         userInputArray.forEach(userInput => {
@@ -186,7 +187,7 @@ const Form = (props) => {
         // Unmount Form
         props.unmountFormComponent();
 
-        // // Render Conference Component to DOM
+        // // Render Conference Component to the DOM
         props.renderConferenceComponent(arrayOfTalks);
     }
 
@@ -194,7 +195,7 @@ const Form = (props) => {
     // Renders Form UI to the DOM
     const renderForm = inputFields.map((inputFields, index) => {
         return (
-            <Grid container direction="row" item key={index} alignItems="center" justifyContent="center" xs={3} m={1} p={2} id="cada-form" sx={{ boxShadow: 10 }}>
+            <Grid container direction="row" item key={index} alignItems="center" justifyContent="center" xs={7} sm={5} md={3} lg={2} m={1} p={2} id="cada-form" sx={{ boxShadow: 10 }}>
                 <Grid item xs={12}>
                     <TextField name="talkTitle" 
                     label="Talk Title" 
@@ -252,21 +253,39 @@ const Form = (props) => {
         });
     
     return (
-        <Grid container item xs={12} alignItems="center">
-            <Grid container item direction="row" justifyContent="center" align-items="center" xs={12}>
-                {renderForm}
+        <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="100vh">
+            <Grid container xs={12} alignItems="center">
+                <Grid container item direction="row" justifyContent="center" align-items="center" xs={12}>
+                    {renderForm}
+                </Grid>
+                <Grid container item justifyContent="center" alignItems="center" mt={4} xs={12}>
+                    <Grid item m={3}>
+                        <Button 
+                        variant="contained" 
+                        color="primary" 
+                        type="submit" 
+                        startIcon={<DateRangeIcon/>}
+                        onClick={handleScheduleConference}>
+                        <Typography>Schedule Conference</Typography>
+                        </Button>
+                    </Grid>
+                    <Grid item m={3}>
+                        <Button 
+                        variant="contained" 
+                        color="secondary" 
+                        type="submit" 
+                        startIcon={<RestartAlt/>}
+                        onClick={handleScheduleConference}>
+                        <Typography>Back to Main Menu</Typography>
+                        </Button>
+                    </Grid>
+                </Grid>
             </Grid>
-            <Grid container item justifyContent="center" alignItems="center" mt={4} xs={12}>
-                <Button 
-                variant="contained" 
-                color="primary" 
-                type="submit" 
-                startIcon={<DateRangeIcon/>}
-                onClick={handleSubmitRequest}>
-                <Typography>Schedule Conference</Typography>
-                </Button>
-            </Grid>
-        </Grid>
+    </Box>
     )
 }
 
