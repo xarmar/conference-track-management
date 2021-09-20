@@ -185,7 +185,7 @@ const Form = (props) => {
         });
 
         // Unmount Form
-        props.unmountFormComponent();
+        props.unmountSliderBuilderComponent();
 
         // // Render Conference Component to the DOM
         props.renderConferenceComponent(arrayOfTalks);
