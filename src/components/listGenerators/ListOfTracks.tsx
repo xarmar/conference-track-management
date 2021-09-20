@@ -1,5 +1,6 @@
 import Track from '../Track';
 import * as React from 'react'
+import { Grid } from '@mui/material';
 
 interface listOfTracksProps {
     arrayOfTracks: Track[];
@@ -16,9 +17,9 @@ const ListOfTracks = (props: listOfTracksProps) => {
 
     // Map arrayOfTracks to return an new array of divs that contain Track Components
     const trackList = arrayOfTracks.map((track) => (
-        <div key={track.trackNumber} className="track-container">
-            <Track track={track}/>
-        </div>
+            <Grid key={track.trackNumber} container item direction="row" justifyContent="center" align-items="center" xs={6}>
+                <Track track={track}/>
+            </Grid>
     ));
     
     return <>{
