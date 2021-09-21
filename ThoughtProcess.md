@@ -135,7 +135,7 @@ I don't have as much time as I'd like during the week, but that is no excuse.
 
 Yesterday I was able to create the basic class Components for 'Conference', 'Track' and 'Talk'. These classes are still missing their methods and I will address that at a later date. Right now my focus is on getting all the current unit tests to pass.
 
-I won't touch the front-end until a later. All the logic needs to be flawless first, otherwise I will be wasting time on UI and the back end logic will fail.
+I won't touch the front-end until a later date. All the logic needs to be flawless first, otherwise I will be wasting time on UI and the back end logic will fail.
 
 **Conference**
 
@@ -211,7 +211,7 @@ Now I need to start using Jest to validade my code. I hope things keep going lik
 
 Because I have 14 days total to finish the project, I want to leave an extra 4 days just in case something goes wrong or if I want to get fancy and start a new branch to work on some new features.
 
-*Warning*
+**Warning**
 
 Just noticed that when using the normal Javascript date(), there is an offset of hours. This can compromise the project as the numbers displayed will be different. Must find solution, either in VanillaJS or by using an external Js Library.
 
@@ -289,7 +289,7 @@ I also need to create more Methods and break down the logic in Conference 'place
 
 **Evening**
 
-Found the solution for my date operations. I will be using *date-fns* because momentJs is deprecated, it's not choice. Plus I will only use a few functions so no need to import a whole library.
+Found the solution for my date operations. I will be using **date-fns** because momentJs is deprecated, it's not choice. Plus I will only use a few functions so no need to import a whole library.
 
 I just finished replacing the old date creation functions with the new ones. Now it's time to start building my placeTalk Method in the Talk Component.
 
@@ -303,7 +303,7 @@ I keep timeOperarations.ts and timeOperarations.unit.test.ts file in the same fo
 
 Ok, I just finished writing the unit tests for Talk.ts. 
 
-**Evening Later**
+**Evening**
 
 Ok, so I've been thinking about the best way to calculate Talks's start Times and even though my code would work like it is right now: (increment Morning/Afternoon startTimes) and assigning it to Talks, I wouldn't feel good about it
 
@@ -435,7 +435,7 @@ Later, in the front end I will build the logic to capture the input "lightning" 
 
 **Morning Update**
 
-So I was having some trouble with my unit test for buildTrackList() method, it was not returning the array length I wanted. After about an hour of looking at my code I realize I had forgotten to replace the old code inside the if statetement with the method placeTalk(). Now the unit test that tests for array length is passing.
+So I was having some trouble with my unit test for buildTrackList() method, it was not returning the array length I wanted. After about an hour of looking at my code I realize I had forgotten to replace the old code inside the if statetement with the method placeTalk(). Now the unit test that test for array length is passing.
 
 However, I still need to test for other things like startTimes of Talks and networking Event start times.
 
@@ -526,7 +526,7 @@ Anyway, I'll leave here the tests I was running, just in case you are interested
             ));
         });
 
-Since the output in the PDF doesn't follow a linear fashion, I will build my own test. I will create make belief conference with some random Talks and then I will test my buildTrackList method against it. It needs to correctly guess the start of Networking Events and other important things like arrayLength in morning and afternoon sessions.
+Since the output in the PDF doesn't follow a linear fashion, I will build my own test. I will create a make belief conference with some random Talks and then I will test my buildTrackList method against it. It needs to correctly guess the start of Networking Events and other important things like arrayLength in morning and afternoon sessions.
 
 **Evening Update**
 
@@ -591,7 +591,7 @@ I was able to build most of the logic for having the alternative textArea input 
 
 ## **20/09/2021 - Day 9**
 
-Today I started by writing the Markdown file 'HowToBuildThisApp.md' which explains logically the steps to follow to build an application like this.
+Today I started by writing the Markdown file [HowToBuildThisApp.md](./HowToBuildThisApp) which explains logically the steps to follow to build an application like this.
 
 Today I have to:
 - Build a Menu Component where the user can choose to use the textArea or the 'pretty UI'.
@@ -619,6 +619,10 @@ Yesterday I was able to build the Menu and buttons that allow the user to naviga
 Today I was able to finish the required validation for the text field option of inserting Talks. I already spent some time doing QA and the App is working correctly and as expected.
 
 I did some cleanup to my code and today, in the evening, I expect to start getting things ready for deployment to production. I expect to deliver this tomorrow morning, by email.
+
+**Evening**
+
+Just formatted all code with prettier. I will now start preparing everything t
 
 
 

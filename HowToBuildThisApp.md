@@ -1,6 +1,6 @@
 # How to Build This App (Conference Track Managementr)
 
-**To build this App all on your own you can follow the following steps:**
+**Build this App on your own by follow the following steps:**
 
 <br>
 
