@@ -103,14 +103,14 @@ class Track extends Component <any, any> {
                         <Typography variant="h5" color="primary">Track {trackNumber}</Typography>
                     </Grid>
                 <Grid item xs={12} m={1}>
-                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center" columnSpacing={2} mt={1} mb={1}>
+                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center" columnSpacing={2} mt={3} mb={3}>
                         <Grid item>
                             <WbSunnyIcon />
                         </Grid>
                         <Grid item>
-                            <Typography> Morning</Typography>
+                            <Typography variant="subtitle1">Morning</Typography>
                         </Grid>
-                        <Grid item>
+                        <Grid item> 
                             <WbSunnyIcon />
                         </Grid>
                     </Grid>
@@ -123,19 +123,19 @@ class Track extends Component <any, any> {
                         <FoodBankIcon />
                     </Grid>
                     <Grid item>
-                        <Typography>{convertToAmPm(lunchStartTime)} | Lunch</Typography>
+                        <Typography variant="subtitle1">{convertToAmPm(lunchStartTime)} | Lunch</Typography>
                     </Grid>
                     <Grid item>
                         <FoodBankIcon />
                     </Grid>
                 </Grid>
                 <Grid item xs={12} m={1}>
-                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center" mt={1} mb={1} columnSpacing={2}>
-                        <Grid item>
+                    <Grid container item direction="row" xs={12} justifyItems="center" justifyContent="center" mt={3} mb={3} columnSpacing={2}>
+                        <Grid item >
                             <WatchLaterIcon/>
                         </Grid>
                         <Grid item>
-                            <Typography> Afternoon</Typography>
+                            <Typography variant="subtitle1">Afternoon</Typography>
                         </Grid>
                         <Grid item>
                             <WatchLaterIcon/>
@@ -145,8 +145,8 @@ class Track extends Component <any, any> {
                         <ListOfTalks session="afternoon" arrayOfTalks={afternoonTalks}/>
                     </Grid>
                 </Grid>
-                <Grid item xs={12} m={2}>
-                    <Typography>{networkingStartTime} | Networking Event</Typography>
+                <Grid item xs={12} ml={2}>
+                    <Typography m={1} variant="body2"><strong>{networkingStartTime}</strong> | Networking Event</Typography>
                 </Grid>
             </Grid>
         </Grid>

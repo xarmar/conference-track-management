@@ -2,7 +2,7 @@ import {Component} from 'react'
 import {convertToAmPm, subtrackMinutesFromDate} from '../dateManipulation/timeOperations';
 import Track from './Track';
 import { Session } from '../types/types';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 class Talk extends Component<any, any> {
     duration: number;
     hasSpot: Boolean;
@@ -86,7 +86,7 @@ class Talk extends Component<any, any> {
 
 
         return (
-            <Grid item ><p> {talk.startTime} | {talk.title} - {durationOutput}{sufix}</p></Grid>
+            <Grid item ><Typography m={1} variant="body2"> <strong>{talk.startTime}</strong> | {talk.title} - {durationOutput}{sufix}</Typography></Grid>
         )
     }
 
