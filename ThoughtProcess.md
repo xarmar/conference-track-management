@@ -622,7 +622,7 @@ I did some cleanup to my code and today, in the evening, I expect to start getti
 
 **Evening**
 
-Just formatted all code with prettier. I will now start preparing everything t
+Just formatted all code with prettier. I will now start preparing everything and getting things ready for production.
 
 
 
