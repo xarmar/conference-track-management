@@ -58,22 +58,24 @@ const TextFieldBuilder = (props) => {
             let duration = titleTime[1];
 
             arrayToValidate.push({title: title, duration: duration, moreThanOneCommaInALine: moreThanOneCommaInALine})
+            console.log(arrayToValidate);
         });
 
         // VALIDATE USER INPUT
-        // Rejects submit request if any of the lines has more than one comma
-        if (arrayToValidate.some(input => input.moreThanOneCommaInALine)) {
-            setWarningMessage("Invalid! You have more than one comma in a line. Correct Synthax: '{Title} , {Duration}'");
-            setError(true);
-            return
-        }
 
         // Rejects whitespace and undefined values - WORKING
         if( arrayToValidate.some(input => input.title === undefined) ||
             arrayToValidate.some(input => input.duration === undefined) ||
             arrayToValidate.some(input => !input.title.trim()) ||
             arrayToValidate.some(input => !input.duration.trim())) {
-            setWarningMessage('Invalid! Correct Synthax: {Title With No Numbers } , {the word "lightning"} OR {a number between 5 and 60}');
+            setWarningMessage('Invalid! Make sure you are leaving no whitespace or empty lines.');
+            setError(true);
+            return
+        }
+
+        // Rejects if any of the lines has more than one comma
+        else if (arrayToValidate.some(input => input.moreThanOneCommaInALine)) {
+            setWarningMessage("Invalid! You have more than one comma in a line. Correct Synthax: '{Title} , {Duration}'");
             setError(true);
             return
         }
