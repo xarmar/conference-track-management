@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid'
 import { Button, Typography } from '@mui/material';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-import { containsNumber, isLightningOrNumber } from '../helperFunctions/helperFunctions';
+import { containsNumber, isLightningOrNumber, removeEmptyLines } from '../helperFunctions/helperFunctions';
 import Talk from './Talk'
 import { Box } from '@mui/system';
 import RestartAlt from '@mui/icons-material/RestartAlt';
@@ -16,6 +16,7 @@ const TextFieldBuilder = (props) => {
     // Initiate State for Form Inputs
     const [textAreaInput, setTextAreaInput] = useState("");
     const [warningMessage, setWarningMessage] = useState("");
+    const [toggleAlternativeHelperText, settoggleAlternativeHelperText] = useState(false);
     const [error, setError] = useState(false);
 
 
@@ -41,10 +42,14 @@ const TextFieldBuilder = (props) => {
         // Get user input by line
         let userInputArray = textAreaInput.split('\n');
 
+        // Filter user input, ignore white space lines
+        let filteredArrayThatIgnoresEmptyLines = removeEmptyLines(userInputArray);
+
+        // Initiate Array That will go through validation steps
         let arrayToValidate = [];
 
         // Extact Talk title and duration
-        userInputArray.forEach(lineOfText => {
+        filteredArrayThatIgnoresEmptyLines.forEach(lineOfText => {
 
             let moreThanOneCommaInALine = false;
 
@@ -56,6 +61,7 @@ const TextFieldBuilder = (props) => {
                 moreThanOneCommaInALine = true;
             }
 
+            // Get title (to left to the comma) and duration (to the right of the comma)
             let title = titleTime[0];
             let duration = titleTime[1];
 
@@ -69,7 +75,7 @@ const TextFieldBuilder = (props) => {
             arrayToValidate.some(input => input.duration === undefined) ||
             arrayToValidate.some(input => !input.title.trim()) ||
             arrayToValidate.some(input => !input.duration.trim())) {
-            setWarningMessage('Invalid! Make sure you are leaving no whitespace or empty lines.');
+            setWarningMessage('Invalid! Make sure you are using a comma between the title and the duration.');
             setError(true);
             return
         }
@@ -90,8 +96,18 @@ const TextFieldBuilder = (props) => {
 
         // Reject any duration inputs that are not lightning or numbers between 5 and 60
         else if(!arrayToValidate.every(input => isLightningOrNumber(input.duration))) {
-            setWarningMessage('Invalid! Correct Synthax: {Title With No Numbers } , {the word "lightning"} OR {a number between 5 and 60}');
-            setError(true);
+            if(!toggleAlternativeHelperText) {
+                setWarningMessage('Invalid! Numbers after the comma should be between 5 and 60 and only the word "lightning" can be used.');
+                setError(true);
+                settoggleAlternativeHelperText(true);
+            }
+
+            // When copy-pasting from a pdf comment, warn user that hidden characters are often placed at the end of each line (you can't see them), 
+            else{
+                setWarningMessage('If you copy-pasted your talks here, check the end of each line for hidden spaces and delete them.');
+                setError(true);
+                settoggleAlternativeHelperText(false);
+            }
             return
         }
 
