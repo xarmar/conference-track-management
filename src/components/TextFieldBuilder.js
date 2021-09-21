@@ -131,11 +131,20 @@ const TextFieldBuilder = (props) => {
                 }
             });
 
-            //Unmount TextFieldOptionComponent
-            props.unmountTextFieldBuilderComponent();
+            // Prevent submits with no talks
+            if(arrayOfTalks.length === 0) {
+                setWarningMessage("Please insert some talks!");
+                setError(true);
+            }
 
-            // Render Conference Component to the DOM
-            props.renderConferenceComponent(arrayOfTalks);
+            else {
+                //Unmount TextFieldOptionComponent
+                props.unmountTextFieldBuilderComponent();
+
+                // Render Conference Component to the DOM
+                props.renderConferenceComponent(arrayOfTalks);
+            }
+
         }
     }
     
