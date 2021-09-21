@@ -1,43 +1,33 @@
 
-$white: #ffffff;
 $mint: #E6EFE9;
-$primary: #007bff;
-$accent: #333333;
 $lightAccent: #00000070;
+$primary: #1976D2;
 
 :root {
   background-color: $mint;
 }
 
-
-#header-div {
-  background-color: $primary;
-  color: $accent;
-  margin: 25px auto;
-  padding: 20px;
-}    
-
+.linkedin-link {
+  color: $primary;
+  font-weight: 600;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
 
 // Give input groups border and margin
 .input-group {
   background-color: whitesmoke;
   padding: 10px;
   .input-slider {
+    border-bottom: 1px solid $lightAccent;
     margin-top: 20px;
-    border-bottom: 1px solid black;
   }
 }
 
+// Stop slider from overflowing talk container
 .css-1hskriy {
   width: auto !important;
 }
-
-#verde-forms {
-  background-color: $mint;
-}
-
-#cada-form {
-  background-color: $mint;
-  box-shadow: red;
-}
-

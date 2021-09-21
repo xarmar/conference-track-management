@@ -25,7 +25,7 @@ const MainMenu = (props) => {
         >
             <Grid container direction="column" alignItems="center" justifyItems="center" justifyContent="center" justifySelf="center" mt={1} xs={12}>
                     <Grid item m={2} p={2} >
-                        <Typography variant="overline" align="center">App created by xarmar</Typography>
+                        <Typography variant="overline" align="center">App created by <a className="linkedin-link" rel="noreferrer" href="https://www.linkedin.com/in/xavierpmarques/" target="_blank">Xavier Marques</a></Typography>
                         <Typography variant="h6" align="center">‌CONFERENCE‌‌ TRACK‌‌ MANAGEMENT‌ ‌APP</Typography>
                         <Typography variant="caption" display="block" align="right">Plan Your Conference Today!</Typography>
                     </Grid>
