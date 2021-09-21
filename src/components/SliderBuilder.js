@@ -202,7 +202,7 @@ const SliderBuilder = (props) => {
     // Renders Form UI to the DOM
     const renderForm = inputFields.map((inputFields, index) => {
         return (
-            <Grid container direction="row" item key={index} alignItems="center" justifyContent="center" xs={7} sm={5} md={3} lg={2} m={1} p={2} id="cada-form" sx={{ boxShadow: 10 }}>
+            <Grid container item direction="row" key={index} alignItems="center" justifyContent="center" xs={7} sm={5} md={3} lg={2} m={1} p={2} id="cada-form" sx={{ boxShadow: 10 }}>
                 <Grid item xs={12}>
                     <TextField name="talkTitle" 
                     label="Talk Title" 
@@ -265,7 +265,7 @@ const SliderBuilder = (props) => {
         justifyContent="center"
         alignItems="center"
         minHeight="100vh">
-            <Grid container xs={12} alignItems="center">
+            <Grid container alignItems="center">
                 <Grid container item direction="row" justifyContent="center" align-items="center" xs={12}>
                     {renderForm}
                 </Grid>

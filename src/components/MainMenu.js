@@ -23,7 +23,7 @@ const MainMenu = (props) => {
         alignItems="center"
         minHeight="100vh"
         >
-            <Grid container direction="column" alignItems="center" justifyItems="center" justifyContent="center" justifySelf="center" mt={1} xs={12}>
+            <Grid container direction="column" alignItems="center" justifyItems="center" justifyContent="center" justifySelf="center" mt={1}>
                     <Grid item m={2} p={2} >
                         <Typography variant="overline" align="center">App created by <a className="linkedin-link" rel="noreferrer" href="https://www.linkedin.com/in/xavierpmarques/" target="_blank">Xavier Marques</a></Typography>
                         <Typography variant="h6" align="center">‌CONFERENCE‌‌ TRACK‌‌ MANAGEMENT‌ ‌APP</Typography>

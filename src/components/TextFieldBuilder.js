@@ -10,6 +10,9 @@ import RestartAlt from '@mui/icons-material/RestartAlt';
 
 const TextFieldBuilder = (props) => {
 
+    // Used to pass boolean value to TextField's fullWith and multiline properties
+    const isTrue = true;
+
     // Initiate State for Form Inputs
     const [textAreaInput, setTextAreaInput] = useState("");
     const [warningMessage, setWarningMessage] = useState("");
@@ -127,7 +130,7 @@ const TextFieldBuilder = (props) => {
         justifyContent="center"
         alignItems="center"
         minHeight="100vh">
-            <Grid container xs={12} alignItems="center">
+            <Grid container alignItems="center">
                 <Grid container item direction="row" justifyContent="center" align-items="center" xs={12} sx={{ boxShadow: 10 }} >
                     <TextField name="textField" 
                     label="Please enter your talks here: {Talk.title} , {Talk.duration}" 
@@ -135,10 +138,10 @@ const TextFieldBuilder = (props) => {
                     error={error}
                     helperText={warningMessage} 
                     variant="filled"
-                    multiline="true"
+                    multiline={isTrue}
                     minRows="8"
                     maxRows="30"
-                    fullWidth="true"
+                    fullWidth={isTrue}
                     size="small"
                     onChange={event => handleTextArea(event)}/>
                 </Grid> 
