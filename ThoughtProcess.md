@@ -598,7 +598,6 @@ Today I have to:
 - When displaying Track List, user has two options:
     1. To go back to menu Component.
     2. To go again with the same UI.
-- I have to do write the ComponentWillUnmount( ) method for each Component that has listeners to clean up any DOM elements that were created.
 
 Tomorrow I'm aiming to:
 - Install 'prettier' as a dev dependecy and use it to make my code look better (better formatted).
@@ -609,8 +608,17 @@ Tomorrow I'm aiming to:
 
 I've decided I want to deliver this project on Wednesday evening. Just like when working with clients, it's always better to deliver our work before the agreed date. My project is working so I'll deliver.
 
-Howover, I will continue to build features like dark mode, and React Spring animations after I deliver the project simply because I find it interesting and would like to implement those features in my App.
+However, I will continue to build features like dark mode, and React Spring animations after I deliver the project simply because I find it interesting and would like to implement those features in my App.
 
+## **21/09/2021 - Day 10**
+
+**Morning**
+
+Yesterday I was able to build the Menu and buttons that allow the user to navigate the single page application.
+
+Today I was able to finish the required validation for the text field option of inserting Talks. I already spent some time doing QA and the App is working correctly and as expected.
+
+I did some cleanup to my code and today, in the evening, I expect to start getting things ready for deployment to production. I expect to deliver this tomorrow morning, by email.
 
 
 
