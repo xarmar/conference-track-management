@@ -1,13 +1,11 @@
-import './App.scss';
-import Container from '@mui/material/Container';
-import ControllerApi from './components/ControllerApi';
-
+import "./App.scss";
+import Container from "@mui/material/Container";
+import ControllerApi from "./components/ControllerApi";
 
 function App() {
-
   return (
     <Container>
-      <ControllerApi/>
+      <ControllerApi />
     </Container>
   );
 }

@@ -1,4 +1,3 @@
-
 import { createDate } from "../dateManipulation/timeOperations";
 import Conference from "./Conference";
 import Track from "./Track";
@@ -10,70 +9,94 @@ var expectedAfternoonStartTime: Date;
 var expectedAfternoonEndTalksBy: Date;
 
 // Initialize Conference variable
-var onlyOneConference: Conference
+var onlyOneConference: Conference;
 
 // Initialize Track variables
-var trackExampleOne : Track;
-var trackExampleTwo : Track;
-var trackExampleThree : Track;
+var trackExampleOne: Track;
+var trackExampleTwo: Track;
+var trackExampleThree: Track;
 
 // Before Each to Keep Code DRY
 beforeEach(() => {
-    // Create Conference to use in testing
-    onlyOneConference = new Conference([], null);
+  // Create Conference to use in testing
+  onlyOneConference = new Conference([], null);
 
-    // Create 'start' and 'endBy' times for each session
-    expectedMorningStartTime = createDate(9,0,0);
-    expectedMorningEndTalksBy = createDate(12,0,0);
-    expectedAfternoonStartTime = createDate(13,0,0);
-    expectedAfternoonEndTalksBy = createDate(17,0,0);
+  // Create 'start' and 'endBy' times for each session
+  expectedMorningStartTime = createDate(9, 0, 0);
+  expectedMorningEndTalksBy = createDate(12, 0, 0);
+  expectedAfternoonStartTime = createDate(13, 0, 0);
+  expectedAfternoonEndTalksBy = createDate(17, 0, 0);
 
-    // Create Tracks to use in testing
-    trackExampleOne = new Track(1, expectedMorningStartTime, expectedAfternoonStartTime, expectedMorningEndTalksBy, expectedAfternoonEndTalksBy, null);
-    trackExampleTwo = new Track(2, expectedMorningStartTime, expectedAfternoonStartTime, expectedMorningEndTalksBy, expectedAfternoonEndTalksBy, null);
-    trackExampleThree = new Track(3, expectedMorningStartTime, expectedAfternoonStartTime, expectedMorningEndTalksBy, expectedAfternoonEndTalksBy, null);
-
+  // Create Tracks to use in testing
+  trackExampleOne = new Track(
+    1,
+    expectedMorningStartTime,
+    expectedAfternoonStartTime,
+    expectedMorningEndTalksBy,
+    expectedAfternoonEndTalksBy,
+    null
+  );
+  trackExampleTwo = new Track(
+    2,
+    expectedMorningStartTime,
+    expectedAfternoonStartTime,
+    expectedMorningEndTalksBy,
+    expectedAfternoonEndTalksBy,
+    null
+  );
+  trackExampleThree = new Track(
+    3,
+    expectedMorningStartTime,
+    expectedAfternoonStartTime,
+    expectedMorningEndTalksBy,
+    expectedAfternoonEndTalksBy,
+    null
+  );
 });
 
 // Test Class Object Creation
 // Sometimes this fails due to the milliseconds difference between object creation and mock dates creation
 describe("It is possible to create a 'Conference' object with the 'new' keyword", () => {
-    test('creates a new Conference object with the expected attributes', () => {
-        expect(onlyOneConference).toEqual(expect.objectContaining({
-            trackCounter: 0,
-            morningStartTime: expectedMorningStartTime,
-            afternoonStartTime: expectedAfternoonStartTime,
-            finishMorningTalksBy: expectedMorningEndTalksBy,
-            finishAfternoonTalksBy: expectedAfternoonEndTalksBy,
-            tracks: []
-        }));
-    });
+  test("creates a new Conference object with the expected attributes", () => {
+    expect(onlyOneConference).toEqual(
+      expect.objectContaining({
+        trackCounter: 0,
+        morningStartTime: expectedMorningStartTime,
+        afternoonStartTime: expectedAfternoonStartTime,
+        finishMorningTalksBy: expectedMorningEndTalksBy,
+        finishAfternoonTalksBy: expectedAfternoonEndTalksBy,
+        tracks: [],
+      })
+    );
+  });
 });
 
 // Method createNewTrack() from Conference.ts
 describe("Method createNewTrack() works as Expected", () => {
-    test('createNewTrack() creates a new Track object and adds it to the array', () => {
-        expect(onlyOneConference.createNewTrack()).toEqual(expect(onlyOneConference.tracks.length).toBe(1));
-    });
+  test("createNewTrack() creates a new Track object and adds it to the array", () => {
+    expect(onlyOneConference.createNewTrack()).toEqual(
+      expect(onlyOneConference.tracks.length).toBe(1)
+    );
+  });
 });
 
 // Method placeNetworkingEvents() from Conference.ts
 describe("Method placeNetworkingEvents() works as Expected", () => {
-    test('placeNetworkingEvents() correctly determines the startTime of Networking events', () => {
-        // Pretend TrackS have time constraits
-        trackExampleOne.sessions.afternoon.availableMinutes = 60;
-        trackExampleTwo.sessions.afternoon.availableMinutes = 40;
-        trackExampleThree.sessions.afternoon.availableMinutes = 0;
+  test("placeNetworkingEvents() correctly determines the startTime of Networking events", () => {
+    // Pretend TrackS have time constraits
+    trackExampleOne.sessions.afternoon.availableMinutes = 60;
+    trackExampleTwo.sessions.afternoon.availableMinutes = 40;
+    trackExampleThree.sessions.afternoon.availableMinutes = 0;
 
-        // Add Tracks To Conference
-        let arrayOfTracks = [trackExampleOne, trackExampleTwo, trackExampleThree];
-        onlyOneConference.tracks = arrayOfTracks
+    // Add Tracks To Conference
+    let arrayOfTracks = [trackExampleOne, trackExampleTwo, trackExampleThree];
+    onlyOneConference.tracks = arrayOfTracks;
 
-        // Place Networking Events start times in Tracks
-        onlyOneConference.placeNetworkingEvents();
+    // Place Networking Events start times in Tracks
+    onlyOneConference.placeNetworkingEvents();
 
-        expect(trackExampleOne.networkingEventStartTime).toBe('4:00 PM');
-        expect(trackExampleTwo.networkingEventStartTime).toBe('4:20 PM');
-        expect(trackExampleThree.networkingEventStartTime).toBe('5:00 PM');
-    });
+    expect(trackExampleOne.networkingEventStartTime).toBe("4:00 PM");
+    expect(trackExampleTwo.networkingEventStartTime).toBe("4:20 PM");
+    expect(trackExampleThree.networkingEventStartTime).toBe("5:00 PM");
+  });
 });

@@ -1,1 +1,1 @@
-export type Session = 'morning' | 'afternoon';
+export type Session = "morning" | "afternoon";
