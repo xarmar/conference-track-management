@@ -26,13 +26,15 @@ const TextFieldBuilder = (props) => {
     // Handle User Input on Title TextField
     const handleTextArea = (event) => {
         setTextAreaInput(event.target.value);
+        setWarningMessage("");
+        setError(false);
     }
 
     // FORM SUMISSION ----------------------------------------------------
     
     // Uses the data to build a Track List
     const handleScheduleConference = () => {
-        
+
         // Get user input by line
         let userInputArray = textAreaInput.split('\n');
 
@@ -40,33 +42,52 @@ const TextFieldBuilder = (props) => {
 
         // Extact Talk title and duration
         userInputArray.forEach(lineOfText => {
+
+            let moreThanOneCommaInALine = false;
+
             // Use comma to separate between Title and Duration 
             let titleTime = lineOfText.split(',');
+            console.log(titleTime);
+
+            // If user entered more than one comma in a line, register that
+            if(titleTime.length > 2) {
+                moreThanOneCommaInALine = true;
+            }
+
             let title = titleTime[0];
             let duration = titleTime[1];
-            arrayToValidate.push({title: title, duration: duration})
+
+            arrayToValidate.push({title: title, duration: duration, moreThanOneCommaInALine: moreThanOneCommaInALine})
         });
+
+        // VALIDATE USER INPUT
+        // Rejects submit request if any of the lines has more than one comma
+        if (arrayToValidate.some(input => input.moreThanOneCommaInALine)) {
+            setWarningMessage("Invalid! You have more than one comma in a line. Correct Synthax: '{Title} , {Duration}'");
+            setError(true);
+            return
+        }
 
         // Rejects whitespace and undefined values - WORKING
         if( arrayToValidate.some(input => input.title === undefined) ||
             arrayToValidate.some(input => input.duration === undefined) ||
             arrayToValidate.some(input => !input.title.trim()) ||
             arrayToValidate.some(input => !input.duration.trim())) {
-            setWarningMessage('Invalid Input! Correct Synthax: {Title With No Numbers } , {the word "lightning"} OR {a number between 5 and 60}');
+            setWarningMessage('Invalid! Correct Synthax: {Title With No Numbers } , {the word "lightning"} OR {a number between 5 and 60}');
             setError(true);
             return
         }
 
         // If a title contains numbers in Title, reject input - WORKING
         else if(arrayToValidate.some(input => containsNumber(input.title))) {
-            setWarningMessage('Invalid Input! Correct Synthax: {Title With No Numbers } , {the word "lightning"} OR {a number between 5 and 60}');
+            setWarningMessage('Invalid! Correct Synthax: {Title With No Numbers } , {the word "lightning"} OR {a number between 5 and 60}');
             setError(true);
             return
         }
 
         // Reject any duration inputs that are not lightning or numbers between 5 and 60
         else if(!arrayToValidate.every(input => isLightningOrNumber(input.duration))) {
-            setWarningMessage('Invalid Input! Correct Synthax: {Title With No Numbers } , {the word "lightning"} OR {a number between 5 and 60}');
+            setWarningMessage('Invalid! Correct Synthax: {Title With No Numbers } , {the word "lightning"} OR {a number between 5 and 60}');
             setError(true);
             return
         }
@@ -104,7 +125,7 @@ const TextFieldBuilder = (props) => {
         alignItems="center"
         minHeight="100vh">
             <Grid container xs={12} alignItems="center">
-                <Grid container item direction="row" justifyContent="center" align-items="center" xs={12}>
+                <Grid container item direction="row" justifyContent="center" align-items="center" xs={12} sx={{ boxShadow: 10 }} >
                     <TextField name="textField" 
                     label="Please enter your talks here: {Talk.title} , {Talk.duration}" 
                     value={textAreaInput}
