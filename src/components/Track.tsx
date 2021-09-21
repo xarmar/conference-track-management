@@ -97,7 +97,7 @@ class Track extends Component <any, any> {
     const afternoonTalks: Talk[] = track.sessions.afternoon.talks;
 
         return (
-            <Grid container direction="row" item justifyContent="center" xs={12} m={1} p={2} sx={{ boxShadow: 10 }}>
+            <Grid container direction="row" item justifyContent="center" m={1} p={2} sx={{ boxShadow: 10 }}>
                 <Grid item xs={12}>
                     <Grid container item xs={12} m={1} justifyContent="center" mb={2}>
                         <Typography variant="h5" color="primary">Track {trackNumber}</Typography>
