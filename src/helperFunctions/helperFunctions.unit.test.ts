@@ -1,7 +1,7 @@
-import { isLightningOrNumber } from "./helperFunctions";
+import { isLightningOrNumber, removeEmptyLines } from "./helperFunctions";
 
 describe("isLightningOrNumber works as expected", () => {
-    test("isLightning returns true when input is lightning", () => {
+    test("isLightningOrNumber returns true when input is lightning", () => {
 
         let lightning: string = "lightning";
         let lightningRandom: string = "LiGhtNing";
@@ -11,7 +11,7 @@ describe("isLightningOrNumber works as expected", () => {
         expect(isLightningOrNumber(lightningRandom)).toBe(true);
         expect(isLightningOrNumber(lightningCaps)).toBe(true);
     });
-    test("isLightning returns false when a input has more than just numbers", () => {
+    test("isLightningOrNumber returns false when a input has more than just numbers", () => {
 
         let lightningWithNumbers: string = "lightning12";
         let abcFour: string = "abc4";
@@ -19,7 +19,7 @@ describe("isLightningOrNumber works as expected", () => {
         expect(isLightningOrNumber(lightningWithNumbers)).toBe(false);
         expect(isLightningOrNumber(abcFour)).toBe(false);
     });
-    test("isLightning returns false if a number is under 5 or over 60", () => {
+    test("isLightningOrNumber returns false if a number is under 5 or over 60", () => {
 
         let underFive: string = "4";
         let overSixty: string = "61";
@@ -27,7 +27,7 @@ describe("isLightningOrNumber works as expected", () => {
         expect(isLightningOrNumber(underFive)).toBe(false);
         expect(isLightningOrNumber(overSixty)).toBe(false);
     });
-    test("isLightning returns true when a number is between 5 and 60", () => {
+    test("isLightningOrNumber returns true when a number is between 5 and 60", () => {
 
         let five: string = "5";
         let forty: string = "40";
@@ -39,3 +39,29 @@ describe("isLightningOrNumber works as expected", () => {
 
     });
 })
+
+describe("removeEmptyLines works as expected", () => {
+    test("removeEmptyLines returns an array of lines that have content only", () => {
+
+        let lineWithContent = "I have content, 60";
+        let iHaveContentToo = " , 60";
+        let same = ",";
+        let iDontHaveContent = "                    ";
+        let iAmTabWhiteSpace = "                ";
+
+        let arrayOfLines = [lineWithContent, iHaveContentToo, same, iDontHaveContent, iAmTabWhiteSpace]
+
+        // removeEmptyLines has an array wth content only
+        expect(removeEmptyLines(arrayOfLines)).toStrictEqual(expect.arrayContaining(
+            [
+                lineWithContent, iHaveContentToo, same
+            ]
+        ));
+        // removeEmptyLines doesn't add empty lines to othe array
+        expect(removeEmptyLines(arrayOfLines)).toEqual(expect.not.arrayContaining(
+            [
+                iDontHaveContent, iAmTabWhiteSpace
+            ]
+        ));
+    });
+});

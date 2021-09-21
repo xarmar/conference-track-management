@@ -18,7 +18,7 @@ export const isLightningOrNumber = (input: string) => {
     let inputWithNoWhiteSpace = input.trim(); 
 
     // Check if it is lightning
-    if(inputWithNoWhiteSpace.toLocaleLowerCase() === "lightning") {
+    if(inputWithNoWhiteSpace.toLowerCase() === "lightning") {
             return true
     }
 
@@ -38,3 +38,15 @@ export const isLightningOrNumber = (input: string) => {
     }
 }
 
+export const removeEmptyLines = (arrayOfLines: string[]) => {
+
+    let filteredArray: string[] = [];
+
+    arrayOfLines.forEach(line => {
+        if(line.trim()) {
+            filteredArray.push(line);
+        }
+    });
+
+    return filteredArray
+}
