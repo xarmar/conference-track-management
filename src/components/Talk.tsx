@@ -9,14 +9,16 @@ class Talk extends Component<any, any> {
     isLightning: Boolean;
     startTime: any;
     title: string;
+    id: number;
 
-    constructor(duration: number, title: string, isLightning: Boolean, props: any) {
+    constructor(duration: number, title: string, isLightning: Boolean, id: number, props: any) {
         super(props);
         this.duration = duration;
         this.hasSpot = false;
         this.isLightning = isLightning
         this.startTime = undefined;
         this.title = title;
+        this.id = id;
     }
 
     // Checks if a Talk is already assigned to a Track

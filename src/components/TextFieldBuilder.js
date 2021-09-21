@@ -58,7 +58,6 @@ const TextFieldBuilder = (props) => {
             let duration = titleTime[1];
 
             arrayToValidate.push({title: title, duration: duration, moreThanOneCommaInALine: moreThanOneCommaInALine})
-            console.log(arrayToValidate);
         });
 
         // VALIDATE USER INPUT
@@ -82,7 +81,7 @@ const TextFieldBuilder = (props) => {
 
         // If a title contains numbers in Title, reject input - WORKING
         else if(arrayToValidate.some(input => containsNumber(input.title))) {
-            setWarningMessage('Invalid! Correct Synthax: {Title With No Numbers } , {the word "lightning"} OR {a number between 5 and 60}');
+            setWarningMessage('Invalid! There are numbers in your title.');
             setError(true);
             return
         }
@@ -97,17 +96,19 @@ const TextFieldBuilder = (props) => {
         else {
             //Prepare arrayOfTalks that will be sent to buildTrackList Method
             let arrayOfTalks = [];
+            let talkCounter = 0;
 
             arrayToValidate.forEach(input => {
+                talkCounter++;
 
                 // If it is lightning => duration is 5 minutes and vice versa
                 if(input.duration.trim().toLocaleLowerCase() === 'lightning' || parseInt(input.duration) === 5) {
-                    let newTalk = new Talk(5, input.title, true, null);
+                    let newTalk = new Talk(5, input.title, true, talkCounter, null);
                     arrayOfTalks.push(newTalk);
                 }
                 // If is not lightning, just use the talk duration
                 else {
-                    let newTalk = new Talk(parseInt(input.duration), input.title, false, null);
+                    let newTalk = new Talk(parseInt(input.duration), input.title, false, talkCounter, null);
                     arrayOfTalks.push(newTalk);
                 }
             });

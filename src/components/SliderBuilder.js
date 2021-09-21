@@ -183,9 +183,11 @@ const SliderBuilder = (props) => {
         
         // Prepare arrayOfTalks that will be sent to buildTrackList Method
         let arrayOfTalks = [];
+        let talkCounter = 0;
 
         userInputArray.forEach(userInput => {
-            let talk = new Talk(userInput.talkDuration, userInput.talkTitle, userInput.isLightning, null);
+            talkCounter++;
+            let talk = new Talk(userInput.talkDuration, userInput.talkTitle, userInput.isLightning, talkCounter, null);
             arrayOfTalks.push(talk);
         });
 

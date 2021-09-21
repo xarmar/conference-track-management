@@ -28,13 +28,14 @@ beforeEach(() => {
 // Talk Objection Creation
 describe("It is possible to create a 'Talk' object with the 'new' keyword", () => {
     test("creates a new Talk object with the expected attributes", () => {
-        let reactForever = new Talk(20, 'React Forever', false, null);
+        let reactForever = new Talk(20, 'React Forever', false, 1, null);
         expect(reactForever).toEqual(expect.objectContaining({
             duration: 20,
             isLightning: false,
             hasSpot: false,
             title: 'React Forever',
             startTime: undefined,
+            id: 1,
             props: null
         }));
     });
@@ -43,24 +44,24 @@ describe("It is possible to create a 'Talk' object with the 'new' keyword", () =
 //Method talkAssignedToTrack() from Talk.ts
 describe("Method talkAssignedToTrack() returns true and false when expected", () => {
     test("talkAssignedToTrack() returns false when track.hasPlace = false", () => {
-        let reactForever = new Talk(20, 'React Forever', false, null);
+        let reactForever = new Talk(20, 'React Forever', false, 1, null);
         expect(reactForever.talkAssignedToTrack()).toBe(false);
     });
 
     test("talkAssignedToTrack() returns true when track.hasPlace = true", () => {
-        let awesomeTypeScript = new Talk(20, 'Awesome Typescript', false, null);
+        let awesomeTypeScript = new Talk(20, 'Awesome Typescript', false, 1, null);
         awesomeTypeScript.hasSpot = true;
         expect(awesomeTypeScript.talkAssignedToTrack()).toBe(true);
     });
 
     test("talkAssignedToTrack() works with arrays", () => {
-        let loveCoding = new Talk(20, 'Love Coding', false, null);
+        let loveCoding = new Talk(20, 'Love Coding', false, 1, null);
         loveCoding.hasSpot = true;
-        let thisProject = new Talk(20, 'This Project', false, null);
+        let thisProject = new Talk(20, 'This Project', false, 2, null);
         thisProject.hasSpot = true;
-        let dogsAreAwesome = new Talk(20, 'Why dogs are awesome', false, null);
+        let dogsAreAwesome = new Talk(20, 'Why dogs are awesome', false, 3, null);
         dogsAreAwesome.hasSpot = true;
-        let thisTalkWillReturnFalse = new Talk(20, 'I will return false', false, null);
+        let thisTalkWillReturnFalse = new Talk(20, 'I will return false', false, 4, null);
 
         // Create Dummy Arrays
         let awesomeArrayThatWillPass = [loveCoding, thisProject, dogsAreAwesome];
@@ -82,8 +83,8 @@ describe("Method placeTalk() sets the talk's hasSpot property correctly", () => 
         trackExampleOne.sessions.afternoon.availableMinutes = 0;
 
         // Create Talks
-        let reactForever = new Talk(60, 'React Forever', false, null);
-        let iWontFitinTrackOne = new Talk(5, 'Fast Talk', false, null);
+        let reactForever = new Talk(60, 'React Forever', false, 1, null);
+        let iWontFitinTrackOne = new Talk(5, 'Fast Talk', false, 2, null);
 
         // Try to place tracks
         reactForever.placeTalk(trackExampleOne);
@@ -99,9 +100,9 @@ describe("Method placeTalk() sets the talk's hasSpot property correctly", () => 
         trackExampleTwo.sessions.afternoon.availableMinutes = 120;
 
         // Create Talks
-        let iLoveJest = new Talk(60, 'I love Jest', false, null);
-        let iGoTrackTwo = new Talk(60, 'I go track two', false, null);
-        let iWontFitInTrackTwo = new Talk(5, 'I wont fit', false, null);
+        let iLoveJest = new Talk(60, 'I love Jest', false, 1, null);
+        let iGoTrackTwo = new Talk(60, 'I go track two', false, 2, null);
+        let iWontFitInTrackTwo = new Talk(5, 'I wont fit', false, 3, null);
 
         // Try to place tracks
         iLoveJest.placeTalk(trackExampleTwo);
@@ -120,9 +121,9 @@ describe("Method placeTalk() pushes Talks to the correct Track array", () => {
         trackExampleOne.sessions.morning.availableMinutes = 60;
         
         // Create Talks
-        let iLoveJest = new Talk(60, 'I love Jest', false, null);
-        let iGoTrackTwo = new Talk(45, 'I go track two', false, null);
-        let letsGo = new Talk(25, 'Lets go', false, null);
+        let iLoveJest = new Talk(60, 'I love Jest', false, 1, null);
+        let iGoTrackTwo = new Talk(45, 'I go track two', false, 2, null);
+        let letsGo = new Talk(25, 'Lets go', false, 3, null);
 
         // Place tracks
         iLoveJest.placeTalk(trackExampleOne);
@@ -142,8 +143,8 @@ describe("Method placeTalk() correctly sets the start time of a talk", () => {
         trackExampleOne.sessions.afternoon.availableMinutes = 5;
 
         // Create Talks
-        let reactForever = new Talk(60, 'React Forever', false, null);
-        let helloFriend = new Talk(5, 'I Love Friends', false, null);
+        let reactForever = new Talk(60, 'React Forever', false, 1, null);
+        let helloFriend = new Talk(5, 'I Love Friends', false, 2, null);
 
         // Try to place tracks
         reactForever.placeTalk(trackExampleOne);
@@ -158,12 +159,12 @@ describe("Method placeTalk() correctly sets the start time of a talk", () => {
         trackExampleTwo.sessions.afternoon.availableMinutes = 240;
 
         // Create Talks
-        let randomTalkOne = new Talk(60, 'RandomOne', false, null);
-        let randomTalkTwo = new Talk(55, 'RandomTwo', false, null);
-        let randomTalkThree = new Talk(60, 'RandomThree', false, null);
-        let randomTalkFour = new Talk(40, 'RandomFour', false, null);
-        let randomTalkFive = new Talk(20, 'RandomFive', false, null);
-        let randomTalkSix = new Talk(15, 'RandomSix', false, null);
+        let randomTalkOne = new Talk(60, 'RandomOne', false, 1, null);
+        let randomTalkTwo = new Talk(55, 'RandomTwo', false, 2, null);
+        let randomTalkThree = new Talk(60, 'RandomThree', false, 3, null);
+        let randomTalkFour = new Talk(40, 'RandomFour', false, 4, null);
+        let randomTalkFive = new Talk(20, 'RandomFive', false, 5, null);
+        let randomTalkSix = new Talk(15, 'RandomSix', false, 6, null);
 
         // Try to place tracks
         randomTalkOne.placeTalk(trackExampleTwo);
@@ -190,8 +191,8 @@ describe("Method placeTalk() correctly subtracts from a track sessions's availab
         trackExampleOne.sessions.afternoon.availableMinutes = 60;
 
         // Create Talks
-        let reactForever = new Talk(60, 'React Forever', false, null);
-        let helloFriend = new Talk(5, 'I Love Friends', false, null);
+        let reactForever = new Talk(60, 'React Forever', false, 1, null);
+        let helloFriend = new Talk(5, 'I Love Friends', false, 2, null);
 
         // Try to place tracks
         reactForever.placeTalk(trackExampleOne);
@@ -207,10 +208,10 @@ describe("Method placeTalk() correctly subtracts from a track sessions's availab
         trackExampleTwo.sessions.afternoon.availableMinutes = 130;
 
          // Create Talks
-        let randomTalkOne = new Talk(60, 'RandomOne', false, null);
-        let randomTalkTwo = new Talk(55, 'RandomTwo', false, null);
-        let randomTalkThree = new Talk(60, 'RandomThree', false, null);
-        let randomTalkFour = new Talk(15, 'RandomFour', false, null);
+        let randomTalkOne = new Talk(60, 'RandomOne', false, 1, null);
+        let randomTalkTwo = new Talk(55, 'RandomTwo', false, 2, null);
+        let randomTalkThree = new Talk(60, 'RandomThree', false, 3, null);
+        let randomTalkFour = new Talk(15, 'RandomFour', false, 4, null);
 
         // Try to place tracks
         randomTalkOne.placeTalk(trackExampleTwo);

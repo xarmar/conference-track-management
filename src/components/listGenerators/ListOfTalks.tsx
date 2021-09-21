@@ -19,7 +19,7 @@ const ListOfTalks = (props: listOfTalksProps) => {
 
     // Map arrayOfTracks to return an new array of divs that contain Talk Components
     const talksList = arrayOfTalks.map((talk) => (
-        <div key={talk.title} className={className}>
+        <div key={talk.id} className={className}>
             <Talk talk={talk}/>
         </div>
     ));
