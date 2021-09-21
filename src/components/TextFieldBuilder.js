@@ -50,7 +50,6 @@ const TextFieldBuilder = (props) => {
 
             // Use comma to separate between Title and Duration 
             let titleTime = lineOfText.split(',');
-            console.log(titleTime);
 
             // If user entered more than one comma in a line, register that
             if(titleTime.length > 2) {
