@@ -2,6 +2,7 @@ import { addMinutesToDate, convertToAmPm, createDate, subtrackMinutesFromDate } 
 
 // Initialize Date variables
 var nineAm: Date;
+var twelvePm: Date;
 var twoPm: Date;
 var elevenPm: Date;
 
@@ -11,12 +12,14 @@ beforeEach(() => {
     nineAm = createDate(9,0,0);
     twoPm = createDate(14,0,0);
     elevenPm = createDate(23,0,0);
+    twelvePm = createDate(12,0,0);
 });
 
 
 describe("createDate() creates a Date as expected", () => {
     test("Date has the correct time", () => {
         expect(convertToAmPm(nineAm)).toBe("9:00 AM");
+        expect(convertToAmPm(twelvePm)).toBe("12:00 PM");
         expect(convertToAmPm(twoPm)).toBe("2:00 PM");
         expect(convertToAmPm(elevenPm)).toBe("11:00 PM");
     });
