@@ -11,7 +11,7 @@ class ControllerApi extends Component {
     constructor(props) {
         super();
 
-        // Keeps state of what should be mounted unmounted
+        // Keeps state of what should be mounted and unmounted
         this.state = {
             conference: "",
             showConference: false,
@@ -86,7 +86,7 @@ class ControllerApi extends Component {
             showConference: true,
         })
     }
-    // Takes the user back to the initial page
+    // Unmounts Conference Component
     unMountConferenceComponent() {
         this.setState({
             showConference: false,
