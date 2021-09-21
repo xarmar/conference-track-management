@@ -148,7 +148,7 @@ const TextFieldBuilder = (props) => {
             <Grid container alignItems="center">
                 <Grid container item direction="row" justifyContent="center" align-items="center" xs={12} sx={{ boxShadow: 10 }} >
                     <TextField name="textField" 
-                    label="Please enter your talks here: {Talk.title} , {Talk.duration}" 
+                    label="Please enter your talks here: {Talk.title : string}  , {Talk.duration : number || lightning}" 
                     value={textAreaInput}
                     error={error}
                     helperText={warningMessage} 
