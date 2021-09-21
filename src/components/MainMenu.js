@@ -21,9 +21,10 @@ const MainMenu = (props) => {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        minHeight="100vh">
+        minHeight="100vh"
+        >
             <Grid container direction="column" alignItems="center" justifyItems="center" justifyContent="center" justifySelf="center" mt={1} xs={12}>
-                    <Grid item m={2} >
+                    <Grid item m={2} p={2} >
                         <Typography variant="overline" align="center">App created by xarmar</Typography>
                         <Typography variant="h6" align="center">‌CONFERENCE‌‌ TRACK‌‌ MANAGEMENT‌ ‌APP</Typography>
                         <Typography variant="caption" display="block" align="right">Plan Your Conference Today!</Typography>
