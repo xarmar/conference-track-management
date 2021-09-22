@@ -14,7 +14,7 @@ So here's my breakdown of the instructions:
 
 
 **"The conference has multiple tracks each of which has a morning and afternoon session."**
-- As the user inputs the talks, my app needs to determine if they fit in the existing track/day. If not, another 'track/day' needs to be created.
+- As the user inputs the talks, my app needs to determine if they fit into the existing track/day. If not, another 'track/day' needs to be created.
 
         if (talks fit in existing track) {
             // add talk to track
@@ -124,7 +124,7 @@ I don't want to overcomplicate things. **I will start with the logic first.** Af
 
 - Inputs are given in PDF, along with the expected outputs. Take advantage of this by using use Jest and having a **test driven development mentality**.
 
-- Developing the front-end is secondary. It will be something simple. A single-page React application which will help me get more confortable with functional components and challenge myself to use Hooks.
+- Developing the front-end is secondary. It will be something simple. A single-page React application which will help me get more comfortable with functional components and challenge myself to use Hooks.
 
 - I will be using **Gitflow as my git approach**.
 
@@ -191,12 +191,12 @@ Tracks also need to somehow keep track of the start hour of each talk. This is t
             }
         }
 
-After writing the code above I realized that the 'Talks' Component will have to have a 'hasSpot' and 'startTime' attribute and the 'Track' Component will have to have a attribute that keeps track of morning and afternoon start times.
+After writing the code above, I realized that the 'Talks' Component will have to have a 'hasSpot' and 'startTime' attribute and the 'Track' Component will have to have an attribute that keeps track of morning and afternoon start times.
 
 
 **Afternoon Update**
 
-Ok so I've just added the missing attributes to my Classes. I might need to add some more after, but I'm happy that I catched this early on by thinking and going over the project this morning.
+Ok, so I've just added the missing attributes to my Classes. I might need to add some more after, but I'm happy that I caught this early on by thinking and going over the project this morning.
 
 - So now I checked that the Components are being created as expected when we used the Object Constructor method, that's good.
 - Right now I need to keep working on my integration testing, before I even start adding methods to my Components. I need to make sure everything is working as expected.
@@ -207,13 +207,13 @@ Ok so I've just added the missing attributes to my Classes. I might need to add 
 
 Ok, so I've just uploaded the main logic for the App. I added the methods: buildTrackList, placeTalks and createNewTrack to the 'parent' Class Conference. 
 
-Now I need to start using Jest to validade my code. I hope things keep going like this as I am aiming to finish the project in 10 days. I estimated 6 days (12 hours total) for building the logic and 4 days (8 hours total) for building the front-end.
+Now I need to start using Jest to validate my code. I hope things keep going like this as I am aiming to finish the project in 10 days. I estimated 6 days (12 hours total) for building the logic and 4 days (8 hours total) for building the front-end.
 
 Because I have 14 days total to finish the project, I want to leave an extra 4 days just in case something goes wrong or if I want to get fancy and start a new branch to work on some new features.
 
 **Warning**
 
-Just noticed that when using the normal Javascript date(), there is an offset of hours. This can compromise the project as the numbers displayed will be different. Must find solution, either in VanillaJS or by using an external Js Library.
+Just noticed that when using the normal Javascript date(), there is an offset of hours. This can compromise the project as the numbers displayed will be different. Must find a solution, either in VanillaJS or by using an external Js Library.
 
 ## **15/09/2021 - Day 3**
 
@@ -289,17 +289,17 @@ I also need to create more Methods and break down the logic in Conference 'place
 
 **Evening**
 
-Found the solution for my date operations. I will be using **date-fns** because momentJs is deprecated, it's not choice. Plus I will only use a few functions so no need to import a whole library.
+Found the solution for my date operations. I will be using **date-fns** because momentJs is deprecated, it's not a choice. Plus, I will only use a few functions so no need to import a whole library.
 
 I just finished replacing the old date creation functions with the new ones. Now it's time to start building my placeTalk Method in the Talk Component.
 
 **Thoughts**
 
-I like using Modular pattern (a self calling function containg other functions) as I like to aggregate all related functions under one main function. However, because I am using Classes, I was having some trouble with imports, so I just chose to have multiple functions inside a timeOpererations.ts file and export them normally.
+I like using Modular pattern (a self calling function containing other functions) as I like to aggregate all related functions under one main function. However, because I am using Classes, I was having some trouble with imports, so I just chose to have multiple functions inside a timeOpererations.ts file and export them normally.
 
 The reason I'm not using date-fns directly and importing it directly into every Component is because I want to keep all my functions related to time manipulation in one file.
 
-I keep timeOperarations.ts and timeOperarations.unit.test.ts file in the same folder and separated form the other Components for better organization. At the end of the day, these are just helper functions.
+I keep timeOperarations.ts and timeOperarations.unit.test.ts file in the same folder and separated from the other Components for better organization. At the end of the day, these are just helper functions.
 
 Ok, I just finished writing the unit tests for Talk.ts. 
 
@@ -357,9 +357,9 @@ It would work like this:
 
 **Late Night**
 
-Just finished creating the calculateTalkStartTime method and tested it against some Jest tests and it's working. I'm pretty sure it will works against the networking event contraint. In a couple of days I expect to have this tested in a integration test.
+Just finished creating the calculateTalkStartTime method and tested it against some Jest tests and it's working. I'm pretty sure it will work against the networking event contraint. In a couple of days I expect to have this tested in an integration test.
 
-Project seems to be going well, Jest helps a lot. I wouldn't have progressed this fast without it. I'm happy I learned TDD a few months ago. My goal is to finish this backend logic in within 3 days, I think I'm on my way to do it. Then I will build the front-end which will be a simple App, not super fancy.
+The project seems to be going well, Jest helps a lot. I wouldn't have progressed this fast without it. I'm happy I learned TDD a few months ago. My goal is to finish this backend logic in within 3 days, I think I'm on my way to do it. Then I will build the front-end which will be a simple App, not super fancy.
 
 ## **16/09/2021 - Day 4**
 
@@ -373,7 +373,7 @@ I think now is the time to start working on integration testing. To really start
 
 I had some time during my lunch break to code which I used to code the Track method findNetworkingEventStartTime(). This method returns the hour the networking event should start at. 
 
-- This runs inside Conferences's Method placeNetworkingEvents() method which loops over a array of Tracks. This way all Tracks get the correct time to start their networking events.
+- This runs inside Conferences's Method placeNetworkingEvents() method which loops over an array of Tracks. This way all Tracks get the correct time to start their networking events.
 
 <br>
 
@@ -382,7 +382,7 @@ I had some time during my lunch break to code which I used to code the Track met
 Ok, at this time I've written all the logic necessary to Build the track list. I will now confirm this by writing a unit test for the buildTrackList() and checking if it works as expected. 
 - I will use the titles and minutes values provided in the PDF document and check if the output is the same.
 
-Ok so I was writing the Talks that will be used in buildTrackList() and realized that, the word 'lightning' still needs to be handled. The easiest way in my mind will be to do the following:
+Ok, so I was writing the Talks that will be used in buildTrackList() and realized that, the word 'lightning' still needs to be handled. The easiest way in my mind will be to do the following:
 
         // Define new custom Type
         Type Lightning = 'lightning';
@@ -424,7 +424,7 @@ Ok so I was writing the Talks that will be used in buildTrackList() and realized
 
 The code I mention above is redundant so I will not go ahead with it. It will instead have a this.isLightning: Boolean in the Talk constructor. 
 
-Later, in the front end I will build the logic to capture the input "lightning" as 5 minutes. Then once I am giving out the output I build the logic to
+Later, in the front end I will build the logic to capture the input "lightning" as 5 minutes. Then, once I am giving out the output I build the logic to:
 
         // if (this.isLightning) {
             return "lightning"
@@ -435,7 +435,7 @@ Later, in the front end I will build the logic to capture the input "lightning" 
 
 **Morning Update**
 
-So I was having some trouble with my unit test for buildTrackList() method, it was not returning the array length I wanted. After about an hour of looking at my code I realize I had forgotten to replace the old code inside the if statetement with the method placeTalk(). Now the unit test that test for array length is passing.
+So I was having some trouble with my unit test for buildTrackList() method, it was not returning the array length I wanted. After about an hour of looking at my code I realize I had forgotten to replace the old code inside the if statement with the method placeTalk(). Now the unit test that test for array length is passing.
 
 However, I still need to test for other things like startTimes of Talks and networking Event start times.
 
@@ -443,9 +443,9 @@ However, I still need to test for other things like startTimes of Talks and netw
 
 Ok, I was trying to test for exact arrayLengths and TalkObjects inside each Track.
 
-I realized that the algorythm built by the engineer in the PDF document has a different logic on how to place the Talk objects inside the Tracks.
+I realized that the algorithm built by the engineer in the PDF document has a different logic on how to place the Talk objects inside the Tracks.
 
-My first thought was that the algorythym could be one of three options:
+My first thought was that the algorithm could be one of three options:
 
 Example Track 1 | availableMinutes = 5 minutes
 
@@ -453,27 +453,27 @@ Talk X | 10 minutes duration
 
 Talk Y | 5 minutes duration
 
-*Algorythm 1 - This is the algorythm I wrote*
+*Algorithm 1 - This is the algorithm I wrote*
 - Talk X is **not placed** in Track 1
 - A new Track is Created (Track 2)
 - Talk Y **is placed** in Track 2
 
-*Algorythm 2*
+*Algorithm 2*
 - Talk X **is not placed** in Track 1    
 - Talk Y **is placed** in Track 1
 - A new Track is Created (Track 2) when another talk tries to mount Track 1 with 0 minutes available.
 
-*Algorythm 3*
+*Algorithm 3*
 - Talk X **is not placed** in Track 1 
 - A new Track is Created (Track 2)  
 - We **immediately place** Talk X inside Track 2.
 - Talk Y **is placed** in Track 2 after Talk X
 
-However, I tried all these algorythms against the following Jest tests (was trying to get the same output as the one in the PDF document). And some tests would still fail. I later confirmed with a spreadsheet, going Talk by Talk and writing down the numbers, that the algorythm written by the programmer doesn't follow a linear fashion like the algorythms I mentioned above. Which is ok, that's why the PDF mentions:
+However, I tried all these algorithms against the following Jest tests (was trying to get the same output as the one in the PDF document). And some tests would still fail. I later confirmed with a spreadsheet, going Talk by Talk and writing down the numbers, that the algorithm written by the programmer doesn't follow a linear fashion like the algorithms I mentioned above. Which is ok, that's why the PDF mentions:
 
 "Note that depending on how you choose to complete this problem, your solution may give a different ordering or combination of talks into tracks. This is acceptable; you don't need to exactly duplicate the sample output given here."
 
-But still, I'm very test driven so I'm sad that I coudln't test my function against the output of the PDF. But I know it's generating an Array of two Tracks as expect and all the other tests are working, so I know I'm safe.
+But still, I'm very test driven so I'm sad that I couldn't test my function against the output of the PDF. But I know it's generating an Array of two Tracks as expect and all the other tests are working, so I know I'm safe.
 
 Anyway, I'll leave here the tests I was running, just in case you are interested in taking a look.
 
@@ -568,8 +568,8 @@ I'm happy how things are progressing, I will keep working on this app today.
     - This Conference Component, obviously shows the Tracks with the start times for Talks, Lunch and Networking Events.
     - When the Conference Component is mounted, the Component that has the inputs and submits will be unMounted.
     - Then, under the tracks, which will probably be displayed as "cards" in a grid system, there will be two buttons:
-        - One button will let the user go back to plannig a new conference with talks (unmounts Conference Component and mounts Inputs/Submit Component again).
-        - Another button will be "About The Developer", whick will show a Modal Pop-up with my contact information on the screen.
+        - One button will let the user go back to planning a new conference with talks (unmounts Conference Component and mounts Inputs/Submit Component again).
+        - Another button will be "About The Developer", which will show a Modal Pop-up with my contact information on the screen.
 
         <br>
 
@@ -599,8 +599,8 @@ Today I have to:
     1. To go back to menu Component.
     2. To go again with the same UI.
 
-Tomorrow I'm aiming to:
-- Install 'prettier' as a dev dependecy and use it to make my code look better (better formatted).
+Tomorrow I'm aiming for:
+- Install 'prettier' as a dev dependency and use it to make my code look better (better formatted).
 - Spend some time in QA, using my application.
 - Create a new release branch and merge develop into it. Use git tag to tag the release.
 - Merge release/version into main.
@@ -618,11 +618,11 @@ Yesterday I was able to build the Menu and buttons that allow the user to naviga
 
 Today I was able to finish the required validation for the text field option of inserting Talks. I already spent some time doing QA and the App is working correctly and as expected.
 
-I did some cleanup to my code and today, in the evening, I expect to start getting things ready for deployment to production. I expect to deliver this tomorrow morning, by email.
+I did some cleanup of my code and today, in the evening, I expect to start getting things ready for deployment to production. I expect to deliver this tomorrow morning, by email.
 
 **Evening**
 
-Just formatted all code with prettier. I will now start preparing everything and getting things ready for production. Just deployed the App on Firebase. Will now merge this with main branch.
+Just formatted all code with prettier. I will now start preparing everything and getting things ready for production. Just deployed the App on Firebase. Will now merge this with the main branch.
 
 --- END
 
