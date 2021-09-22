@@ -188,7 +188,7 @@ const TextFieldBuilder = (props) => {
         >
           <TextField
             name="textField"
-            label="Please enter your talks here: {Talk.title : string}  , {Talk.duration : number || lightning}"
+            label="Enter your talks: {title} , {duration}"
             value={textAreaInput}
             error={error}
             helperText={warningMessage}
