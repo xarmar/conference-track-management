@@ -599,7 +599,7 @@ Today I have to:
     1. To go back to menu Component.
     2. To go again with the same UI.
 
-Tomorrow I'm aiming for:
+Tomorrow I'm aiming to:
 - Install 'prettier' as a dev dependency and use it to make my code look better (better formatted).
 - Spend some time in QA, using my application.
 - Create a new release branch and merge develop into it. Use git tag to tag the release.
