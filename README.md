@@ -4,7 +4,9 @@ This coding challenge proposed by **itemis AG** for the position of *Junior Soft
 
 <br> 
 
-I decided to create a React Application.
+I decided to create a React Application. You can view it right now: [Conference Management App](https://conference-track-managem-7e406.web.app/)
+
+<br>
 
 - To understand my thought process and how I went about this project from a logical point of view, read [ThoughtProcess.md](./ThoughtProcess.md).
 
