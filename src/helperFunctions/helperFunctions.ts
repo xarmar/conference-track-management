@@ -1,3 +1,4 @@
+// Check if a string contains a number
 export const containsNumber = (string: string) => {
   let containsNumber;
 
@@ -12,6 +13,7 @@ export const containsNumber = (string: string) => {
   return containsNumber;
 };
 
+// Checks if a string is a number between 5 and 60 or the word "lightning"
 export const isLightningOrNumber = (input: string) => {
   let inputWithNoWhiteSpace = input.trim();
 
@@ -36,6 +38,7 @@ export const isLightningOrNumber = (input: string) => {
   }
 };
 
+// Removes empty lines from a TextBox and returns just the lines with content
 export const removeEmptyLines = (arrayOfLines: string[]) => {
   let filteredArray: string[] = [];
 

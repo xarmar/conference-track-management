@@ -1,5 +1,5 @@
-import Track from "../Track";
 import { Grid } from "@mui/material";
+import Track from "../Track";
 
 interface listOfTracksProps {
   arrayOfTracks: Track[];

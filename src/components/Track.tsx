@@ -1,15 +1,15 @@
-import { Grid, Typography } from "@mui/material";
-import { Component } from "react";
 import {
   addMinutesToDate,
   convertToAmPm,
   createDate,
 } from "../dateManipulation/timeOperations";
+import { Component } from "react";
+import FoodBankIcon from "@mui/icons-material/FoodBank";
+import { Grid, Typography } from "@mui/material";
 import ListOfTalks from "./listGenerators/ListOfTalks";
 import Talk from "./Talk";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
-import FoodBankIcon from "@mui/icons-material/FoodBank";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
 
 class Track extends Component<any, any> {
   trackNumber: number;
@@ -65,7 +65,7 @@ class Track extends Component<any, any> {
 
     // Lunch hours equals the time constrait of finishMorningTalksBy
     this.lunchHourStartTime = finishMorningTalksBy;
-    // The start time of the networking event will be calculated by a method.
+    // The start time of the networking event will be calculated by a method below.
     this.networkingEventStartTime = undefined;
   }
 
