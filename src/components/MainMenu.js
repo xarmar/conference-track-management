@@ -1,8 +1,8 @@
-import Grid from "@mui/material/Grid";
+import { Box } from "@mui/system";
 import { Button, Typography } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import TuneIcon from "@mui/icons-material/Tune";
-import { Box } from "@mui/system";
 
 const MainMenu = (props) => {
   const handleTextFieldOptionSelected = () => {

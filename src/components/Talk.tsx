@@ -3,9 +3,9 @@ import {
   convertToAmPm,
   subtrackMinutesFromDate,
 } from "../dateManipulation/timeOperations";
-import Track from "./Track";
-import { Session } from "../types/types";
 import { Grid, Typography } from "@mui/material";
+import { Session } from "../types/types";
+import Track from "./Track";
 class Talk extends Component<any, any> {
   duration: number;
   hasSpot: Boolean;
@@ -70,6 +70,7 @@ class Talk extends Component<any, any> {
     }
   }
 
+  // Returns the start time of a talk
   calculateTalkStartTime(track: Track, session: Session) {
     let talkStartTime;
     if (session === "morning") {
@@ -100,7 +101,9 @@ class Talk extends Component<any, any> {
     talk.isLightning
       ? (durationOutput = "lightning")
       : (durationOutput = talk.duration);
-    talk.isLightning ? (sufix = "") : (sufix = "m");
+    talk.isLightning 
+      ? (sufix = "") 
+      : (sufix = "m");
 
     return (
       <Grid item>

@@ -1,21 +1,21 @@
-import { useState } from "react";
-import TextField from "@mui/material/TextField";
-import TitleIcon from "@mui/icons-material/Title";
-import Grid from "@mui/material/Grid";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import Box from "@mui/material/Box";
+import { Button, IconButton, Tooltip, Typography } from "@mui/material";
+import CheckBox from "@mui/material/Checkbox";
+import { containsNumber } from "../helperFunctions/helperFunctions";
+import DateRangeIcon from "@mui/icons-material/DateRange";
 import FlashOnIcon from "@mui/icons-material/FlashOn";
 import FlashOffIcon from "@mui/icons-material/FlashOff";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import { Button, IconButton, Tooltip, Typography } from "@mui/material";
-import DateRangeIcon from "@mui/icons-material/DateRange";
+import Grid from "@mui/material/Grid";
 import { InputAdornment } from "@mui/material";
-import { containsNumber } from "../helperFunctions/helperFunctions";
-import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
-import ScheduleIcon from "@mui/icons-material/Schedule";
-import CheckBox from "@mui/material/Checkbox";
-import Talk from "./Talk";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import RestartAlt from "@mui/icons-material/RestartAlt";
+import ScheduleIcon from "@mui/icons-material/Schedule";
+import Slider from "@mui/material/Slider";
+import Talk from "./Talk";
+import TextField from "@mui/material/TextField";
+import TitleIcon from "@mui/icons-material/Title";
+import { useState } from "react";
 
 const SliderBuilder = (props) => {
   // Initiate State for Form Inputs

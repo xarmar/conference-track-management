@@ -1,16 +1,16 @@
-import { useState } from "react";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
+import { Box } from "@mui/system";
 import { Button, Typography } from "@mui/material";
-import DateRangeIcon from "@mui/icons-material/DateRange";
 import {
   containsNumber,
   isLightningOrNumber,
   removeEmptyLines,
 } from "../helperFunctions/helperFunctions";
-import Talk from "./Talk";
-import { Box } from "@mui/system";
+import DateRangeIcon from "@mui/icons-material/DateRange";
+import Grid from "@mui/material/Grid";
 import RestartAlt from "@mui/icons-material/RestartAlt";
+import Talk from "./Talk";
+import TextField from "@mui/material/TextField";
+import { useState } from "react";
 
 const TextFieldBuilder = (props) => {
   // Used to pass boolean value to TextField's fullWith and multiline properties
@@ -75,7 +75,7 @@ const TextFieldBuilder = (props) => {
 
     // VALIDATE USER INPUT
 
-    // Rejects whitespace and undefined values - WORKING
+    // Rejects whitespace and undefined values
     if (
       arrayToValidate.some((input) => input.title === undefined) ||
       arrayToValidate.some((input) => input.duration === undefined) ||
@@ -98,7 +98,7 @@ const TextFieldBuilder = (props) => {
       return;
     }
 
-    // If a title contains numbers in Title, reject input - WORKING
+    // If a title contains numbers in Title, reject input
     else if (arrayToValidate.some((input) => containsNumber(input.title))) {
       setWarningMessage("Invalid! There are numbers in your title.");
       setError(true);

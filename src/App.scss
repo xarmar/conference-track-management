@@ -7,14 +7,9 @@ $primary: #1976D2;
   background-color: $mint;
 }
 
-.linkedin-link {
-  color: $primary;
-  font-weight: 600;
-  text-decoration: none;
-  &:hover {
-    cursor: pointer;
-    text-decoration: underline;
-  }
+// Stop slider from overflowing talk container
+.css-1hskriy {
+  width: auto !important;
 }
 
 // Give input groups border and margin
@@ -27,7 +22,12 @@ $primary: #1976D2;
   }
 }
 
-// Stop slider from overflowing talk container
-.css-1hskriy {
-  width: auto !important;
+.linkedin-link {
+  color: $primary;
+  font-weight: 600;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }

@@ -83,7 +83,7 @@ describe("Method createNewTrack() works as Expected", () => {
 // Method placeNetworkingEvents() from Conference.ts
 describe("Method placeNetworkingEvents() works as Expected", () => {
   test("placeNetworkingEvents() correctly determines the startTime of Networking events", () => {
-    // Pretend TrackS have time constraits
+    // Pretend Tracks have time constraits
     trackExampleOne.sessions.afternoon.availableMinutes = 60;
     trackExampleTwo.sessions.afternoon.availableMinutes = 40;
     trackExampleThree.sessions.afternoon.availableMinutes = 0;

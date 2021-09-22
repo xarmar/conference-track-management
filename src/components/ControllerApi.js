@@ -1,9 +1,9 @@
-import { Component } from "react";
-import { Container } from "@mui/material";
-import SliderBuilder from "./SliderBuilder";
-import Conference from "./Conference";
-import MainMenu from "./MainMenu";
 import { Box } from "@mui/system";
+import Conference from "./Conference";
+import { Container } from "@mui/material";
+import { Component } from "react";
+import MainMenu from "./MainMenu";
+import SliderBuilder from "./SliderBuilder";
 import TextFieldBuilder from "./TextFieldBuilder";
 
 class ControllerApi extends Component {
