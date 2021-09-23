@@ -24,7 +24,7 @@ const SliderBuilder = (props) => {
       talkTitle: "",
       talkHelperText: "",
       talkError: false,
-      talkDuration: "",
+      talkDuration: "5",
       isLightning: true,
     },
   ]);
@@ -136,7 +136,7 @@ const SliderBuilder = (props) => {
     const values = [...inputFields];
     let newinput = {
       talkTitle: "",
-      talkDuration: "",
+      talkDuration: "5",
       isLightning: true,
       talkHelperText: "",
       talkError: false,
