@@ -50,81 +50,68 @@ const TextFieldBuilder = (props) => {
     // Initiate Array That will go through validation steps
     let arrayToValidate = [];
 
-    // Extact Talk title and duration
+    // Extract Talk title and duration
     filteredArrayThatIgnoresEmptyLines.forEach((lineOfText) => {
-      let moreThanOneCommaInALine = false;
+      // Use spaces to separate and get array of words
+      let arrayOfWords = lineOfText.split(" ");
 
-      // Use comma to separate between Title and Duration
-      let titleTime = lineOfText.split(",");
-
-      // If user entered more than one comma in a line, register that
-      if (titleTime.length > 2) {
-        moreThanOneCommaInALine = true;
+      // Title is the sum of all words except the last one
+      let chosenTitle = "";
+      for (let i = 0; i < arrayOfWords.length - 1; i++) {
+        chosenTitle += arrayOfWords[i] + " ";
       }
 
-      // Get title (to left to the comma) and duration (to the right of the comma)
-      let title = titleTime[0];
-      let duration = titleTime[1];
+      // Duration is the last typed word
+      let chosenDuration = arrayOfWords[arrayOfWords.length - 1];
+
+      // Set title and duration
+      let title = chosenTitle.trim();
+      let duration = chosenDuration;
 
       arrayToValidate.push({
         title: title,
         duration: duration,
-        moreThanOneCommaInALine: moreThanOneCommaInALine,
       });
     });
 
     // VALIDATE USER INPUT
 
-    // Rejects whitespace and undefined values
+    // If is there is whitespace at the end of each line, warn the user
     if (
-      arrayToValidate.some((input) => input.title === undefined) ||
-      arrayToValidate.some((input) => input.duration === undefined) ||
-      arrayToValidate.some((input) => !input.title.trim()) ||
-      arrayToValidate.some((input) => !input.duration.trim())
+      arrayToValidate.some((input) => !input.duration.match("\\S+")) ||
+      arrayToValidate.some((input) => input.duration === "")
     ) {
       setWarningMessage(
-        "Invalid! Make sure you are using a comma between the title and the duration."
+        "Your last word on a line must be your talk's {duration}. Look for whitespace at the end of each line and delete it!"
       );
       setError(true);
-      return;
     }
-
-    // Rejects if any of the lines has more than one comma
-    else if (arrayToValidate.some((input) => input.moreThanOneCommaInALine)) {
-      setWarningMessage(
-        "Invalid! You have more than one comma in a line. Correct Synthax: '{Title} , {Duration}'"
-      );
-      setError(true);
+    // If user gives an invalid duration.
+    else if (
+      arrayToValidate.some((input) => !isLightningOrNumber(input.duration))
+    ) {
+      if (!toggleAlternativeHelperText) {
+        setWarningMessage(
+          "Invalid duration! Pick 'lightning' OR a number between 5 and 60 with the sufix 'min'. i.e {Your Title} {60min}."
+        );
+        setError(true);
+        settoggleAlternativeHelperText(!toggleAlternativeHelperText);
+      }
+      // When user copy-pastes from a pdf to the textArea (for example the intructions PDF), it comes with whitespace that cannot be removed with .trim() - tell user to delete it
+      else {
+        setWarningMessage(
+          "If you have a valid duration (minutes/lightning), look for any whitespace or characters at the end of each line and delete them!"
+        );
+        setError(true);
+        settoggleAlternativeHelperText(!toggleAlternativeHelperText);
+      }
       return;
     }
 
     // If a title contains numbers in Title, reject input
     else if (arrayToValidate.some((input) => containsNumber(input.title))) {
-      setWarningMessage("Invalid! There are numbers in your title.");
+      setWarningMessage("Invalid! There are numbers in your titles.");
       setError(true);
-      return;
-    }
-
-    // Reject any duration inputs that are not lightning or numbers between 5 and 60
-    else if (
-      !arrayToValidate.every((input) => isLightningOrNumber(input.duration))
-    ) {
-      if (!toggleAlternativeHelperText) {
-        setWarningMessage(
-          'Invalid! Numbers after the comma should be between 5 and 60 and only the word "lightning" can be used.'
-        );
-        setError(true);
-        settoggleAlternativeHelperText(true);
-      }
-
-      // When copy-pasting from a pdf comment, warn user that hidden characters are often placed at the end of each line (you can't see them),
-      else {
-        setWarningMessage(
-          "If you copy-pasted your talks here, check the end of each line for hidden spaces and delete them."
-        );
-        setError(true);
-        settoggleAlternativeHelperText(false);
-      }
       return;
     } else {
       //Prepare arrayOfTalks that will be sent to buildTrackList Method
@@ -188,7 +175,7 @@ const TextFieldBuilder = (props) => {
         >
           <TextField
             name="textField"
-            label="Enter your talks: {title} , {duration}"
+            label="Enter your talks. i.e: {My title} {60min}"
             value={textAreaInput}
             error={error}
             helperText={warningMessage}
