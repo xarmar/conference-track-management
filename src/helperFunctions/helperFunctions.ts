@@ -22,31 +22,24 @@ export const isLightningOrNumber = (input: string) => {
     return true;
   }
 
-  let number;
-
-  // Check it input only contains digits
-  let isNumber = /^\d+$/.test(inputWithNoWhiteSpace);
-
-  // If it contains more than just digits
-  if (!isNumber) {
-
-    // Get the string without the 'min' sufix i.e "60 min" becomes "60" and "60 random" remains "60 random"
-    let numberWithoutMinSufix = inputWithNoWhiteSpace.replace('min', '').trim();
-
-    // The number without the suffix should match exactly the number parsed to an Integrer. 
-    // "60 random" !== "60" so it returns false. 
-    if(numberWithoutMinSufix !== parseInt(inputWithNoWhiteSpace).toString()) {
-      return false
-    }
-
-    // Extract the numbers from the string
-    number = parseInt(numberWithoutMinSufix);
+  // If user didn't use the 'min' suffix reject request
+  if(inputWithNoWhiteSpace.indexOf('min') < 0) {
+    return false
   }
 
-  // If it only contains numbers, convert input string a number
-  else {
-    number = parseInt(inputWithNoWhiteSpace);
+  let number: number;
+
+  // Get the string without the 'min' sufix i.e "60 min" becomes "60" and "60 random" remains "60 random"
+  let numberWithoutMinSufix = inputWithNoWhiteSpace.replace('min', '').trim();
+
+  // The number without the suffix should match exactly the number parsed to an Integrer. This only occurs if 'min' is succesfully removed
+  // i.e "60 minotaur" becomes "60 otaur" !== "60" so it returns false. 
+  if(numberWithoutMinSufix !== parseInt(inputWithNoWhiteSpace).toString()) {
+    return false
   }
+
+  // Extract the numbers from the string
+  number = parseInt(numberWithoutMinSufix);
 
   // Validate for value range
   if (number >= 5 && number <= 60) {
