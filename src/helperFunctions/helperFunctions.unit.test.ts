@@ -27,11 +27,10 @@ describe("isLightningOrNumber works as expected", () => {
   });
 
   test("isLightningOrNumber returns true when a input has exactly the suffix 'min' but rejects any other sufixes", () => {
-    
     let iHaveMin: string = "60min";
     let iamValidToo: string = "40min";
     let iDont: string = "60mint";
-    let iDontHaveJustMin: string = "40 minotaur"
+    let iDontHaveJustMin: string = "40 minotaur";
 
     expect(isLightningOrNumber(iHaveMin)).toBe(true);
     expect(isLightningOrNumber(iamValidToo)).toBe(true);

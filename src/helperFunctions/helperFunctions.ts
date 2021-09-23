@@ -23,19 +23,19 @@ export const isLightningOrNumber = (input: string) => {
   }
 
   // If user didn't use the 'min' suffix reject request
-  if(inputWithNoWhiteSpace.indexOf('min') < 0) {
-    return false
+  if (inputWithNoWhiteSpace.indexOf("min") < 0) {
+    return false;
   }
 
   let number: number;
 
   // Get the string without the 'min' sufix i.e "60 min" becomes "60" and "60 random" remains "60 random"
-  let numberWithoutMinSufix = inputWithNoWhiteSpace.replace('min', '').trim();
+  let numberWithoutMinSufix = inputWithNoWhiteSpace.replace("min", "").trim();
 
   // The number without the suffix should match exactly the number parsed to an Integrer. This only occurs if 'min' is succesfully removed
-  // i.e "60 minotaur" becomes "60 otaur" !== "60" so it returns false. 
-  if(numberWithoutMinSufix !== parseInt(inputWithNoWhiteSpace).toString()) {
-    return false
+  // i.e "60 minotaur" becomes "60 otaur" !== "60" so it returns false.
+  if (numberWithoutMinSufix !== parseInt(inputWithNoWhiteSpace).toString()) {
+    return false;
   }
 
   // Extract the numbers from the string
