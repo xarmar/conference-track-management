@@ -1,4 +1,4 @@
-import { containsComma, isLightningOrNumber, removeEmptyLines } from "./helperFunctions";
+import { isLightningOrNumber, removeEmptyLines } from "./helperFunctions";
 
 describe("isLightningOrNumber works as expected", () => {
   test("isLightningOrNumber returns true when input is lightning", () => {
@@ -81,19 +81,5 @@ describe("removeEmptyLines works as expected", () => {
     expect(removeEmptyLines(arrayOfLines)).toEqual(
       expect.not.arrayContaining([iDontHaveContent, iAmTabWhiteSpace])
     );
-  });
-});
-
-describe("containsComma() works as expected", () => {
-  test("Contains comma detects when a sentence has a comma", () => {
-
-    let contains = "I contain a comma,";
-    let containsToo = "Me to, I have, two";
-    let iDont = "I don't have one";
-
-    // removeEmptyLines has an array wth content only
-    expect(containsComma(contains)).toBe(true);
-    expect(containsComma(containsToo)).toBe(true);
-    expect(containsComma(iDont)).toBe(false);
   });
 });

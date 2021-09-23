@@ -60,13 +60,3 @@ export const removeEmptyLines = (arrayOfLines: string[]) => {
 
   return filteredArray;
 };
-
-export const containsComma = (line: string) => {
- 
-  let containsComma = line.match(".*,.*$");
-
-  if(containsComma) {
-    return true
-  }
-  return false
-}
