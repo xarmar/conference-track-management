@@ -1,8 +1,10 @@
 import { Box } from "@mui/system";
 import { Button, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import PopUp from "./PopUp";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import TuneIcon from "@mui/icons-material/Tune";
+import React, {useState} from 'react'
 
 const MainMenu = (props) => {
   const handleTextFieldOptionSelected = () => {
@@ -15,6 +17,14 @@ const MainMenu = (props) => {
     props.unmontMainMenuComponent();
   };
 
+  // Set state to show/hide popUp - it's initially set to false before the user clicks my name.
+  const [showPopUp, setShowPopUp] = useState(false);
+
+  // Toggles the PopUp on and off
+  const togglePopUp = () => {
+    setShowPopUp(!showPopUp);
+  } 
+
   return (
     <Box
       display="flex"
@@ -22,6 +32,7 @@ const MainMenu = (props) => {
       alignItems="center"
       minHeight="100vh"
     >
+      <PopUp showPopUp={showPopUp} setShowPopUp={setShowPopUp} />
       <Grid
         container
         direction="column"
@@ -35,6 +46,7 @@ const MainMenu = (props) => {
           <Typography variant="overline" align="center">
             App created by{" "}
             <a
+              onClick={togglePopUp}
               className="linkedin-link"
               rel="noreferrer"
               href="https://www.linkedin.com/in/xavierpmarques/"
