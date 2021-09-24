@@ -626,7 +626,35 @@ Just formatted all code with prettier. I will now start preparing everything and
 
 --- END
 
+<br> 
 
+---
+
+<br>
+
+
+**EXTRA FEATURES**
+
+Since releasing the first version of this app, I've already fixed and improved a few things like:
+- Mobile responsiveness (feature).
+- The slider builder having an initial state.duration of " ". Which meant that, if the user didn't move a Talk's slider, the submited valuee would be null (hotfix).
+
+I also changed the way the Text Area captures user input (feature).
+- Now the App uses spaces to get the array of words, instead of a comma.
+- The previous version was working, but this method is closer to the method used in the PDF, so I chose to include this feature instead.
+
+        // My old version (comma based)
+       {My amazing talk, 20} // this would register a talk with 20 min.
+
+        // New version that gets array by splitting spaces
+        {My amazing talk 20min} // this also registers a talk with 20 min.
+
+Yes, the output will be the same, but at least now, the way the user inputs the talks is closer to the example in the PDF.
+
+<br>
+
+Now that all of the above is done, I want to take an opportunity to dive into *React Spring.*
+- I'm curious about this library and so I'm aiming to build a simple pop-up for my menu page. Maybe when someone clicks my name, a pop-up with appear on the screen with some of my information, that would be nice.
 
 
 
