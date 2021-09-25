@@ -6,7 +6,14 @@ import myAvatar from '../assets/myAvatar.png'
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
-// Set styling for blurred background
+
+const mediaBreakPoint = {
+	mobile: '@media screen and (max-width: 568px)',
+	tablet: '@media screen and (max-width: 899px)'
+}
+
+// Style All Components Of The Popup ---
+
 const BlurredBackground = styled(Box)`
 	align-items: center;
 	background-color: rgba(0,0,0,0.6);
@@ -18,47 +25,63 @@ const BlurredBackground = styled(Box)`
 	z-index: 2;
 `
 
-// Must find out how to add media query to @emotion styling, height must increase when device size is smaller - TODO
 const FloatingGrid = styled(Grid)`
-	position: relative;
-	color: #000;
-	z-index: 5;
-	border-radius: 10px;
 	background: #fff;
-	width: 70%;
-	height: 70%;
-	max-width: 1400px;
+	border-radius: 10px;
+	color: #000;
+	height: 80%;
+	position: relative;
 	max-height: 600px;
+	max-width: 1400px;
+	width: 80%;
+	z-index: 5;
 
-	&@media screen and (max-width: 899px) {
-		height: 900px;
+	${mediaBreakPoint.tablet} {
+		height: 90%;
 	}
 `
 
 const ContentBoxGrid = styled(Grid)`
 	align-items: center;
 	justify-content: center;
-	box-sizing: content-box;
 	max-height: 100%;
 	max-width: 100%;
 `
 
-// Must find out how to add media query to @emotion styling, margin-top must increase when device size is smaller - TODO
 const StyledAvatar = styled.img`
-	box-shadow: 0 0 5px #1976D2;
-	box-sizing: border-box;
-	margin: auto;
 	border-radius: 50%;
+	box-shadow: 0 0 5px #1976D2;
+	margin: auto;
 	max-height: auto;
-	max-width: 70%;
+	max-width: 85%;
 
-	&@media screen and (max-width: 899px) {
-		margin-top: 50px;
+	${mediaBreakPoint.tablet} {
+		margin-top: 20px;
+		max-height: 165px;
+		max-width: auto;
+	}
+`
+
+const ResponsiveTypography = styled(Typography)`
+
+	${mediaBreakPoint.tablet} {
+		font-size: 90%;
+	}
+`
+
+const ResponsiveHeaderTypography = styled(Typography)`
+
+	${mediaBreakPoint.tablet} {
+		font-size: 24px;
 	}
 `
 
 const UnderlinedTypography = styled(Typography)`
 	text-decoration: underline;
+
+	${mediaBreakPoint.mobile} {
+		font-size: 90%;
+	}
 `
 
 const AnchorTagNoHightlight = styled.a`
@@ -81,56 +104,55 @@ const CustomLinkedInIcon = styled(LinkedInIcon)`
 
 const CloseButton = styled(CloseIcon)`
 	cursor: pointer;
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	width: 40px;
 	height: 40px;
 	padding: 0;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	width: 40px;
 	z-index: 6;
 `
 
-
 const PopUp = (props) => {
 
-  return (
+	return (
       <>
       {props.showPopUp ? (
 				<BlurredBackground showPopUp={props.showPopUp} togglePopUp={props.togglePopUp}>
-					<FloatingGrid container direction="row" showPopUp={props.showPopUp} boxShadow={18}>
-						<ContentBoxGrid container item md={6}>
+					<FloatingGrid container direction="row" showPopUp={props.showPopUp} boxShadow={18} alignItems="center">
+						<ContentBoxGrid container item md={5}>
 								<StyledAvatar alt="Xavier Marques" src={myAvatar} />
 						</ContentBoxGrid>
-						<ContentBoxGrid container item direction="column" md={6}>
-							<Grid item m={2} mb={0}>
-								<Typography variant="h4" textAlign="center">Hallo, ich bin</Typography>
+						<ContentBoxGrid container item direction="column" md={6} m={1}>
+							<Grid item mb={0} mt={2}>
+								<ResponsiveHeaderTypography variant="h4" textAlign="center">Hallo, ich heiße</ResponsiveHeaderTypography>
 							</Grid>
-							<Grid item m={2} mt={0}>
-								<Typography color="primary" variant="h4" textAlign="center" >Xavier Marques</Typography>
+							<Grid item mb={2} mt={0}>
+								<ResponsiveHeaderTypography color="primary" variant="h4" textAlign="center" >Xavier Marques</ResponsiveHeaderTypography>
 							</Grid>
-							<Grid item m={2} mt={0}>
-								<Typography variant="h5" textAlign="center" sx={{fontWeight: '520'}}>Schön dich kennenzulernen!</Typography>
+							<Grid item mb={2} mt={0}>
+								<ResponsiveTypography variant="h5" textAlign="center" sx={{fontWeight: '520'}}>Schön dich kennenzulernen!</ResponsiveTypography>
 							</Grid>
-							<Grid item m={2} mt={2}>
-								<Typography variant="subtitle1" textAlign="center"> Thank you for checking out my project.</Typography>
+							<Grid item mb={2} mt={2}>
+								<ResponsiveTypography variant="subtitle1" textAlign="center"> Thank you for checking out my project.</ResponsiveTypography>
 							</Grid>
-							<Grid item m={2} mt={1}>
+							<Grid item mb={2} mt={1}>
 								<UnderlinedTypography variant="subtitle2" textAlign="center"> Find me on social media</UnderlinedTypography>
 							</Grid>
-							<Grid container item m={2} mt={1} direction="row" justifyContent="center">
-								<Grid mx={2}>
+							<Grid container item mt={1} direction="row" justifyContent="center">
+								<Grid>
 									<AnchorTagNoHightlight rel="noreferrer" href="https://www.linkedin.com/in/xavierpmarques/" target="_blank">
-										<CustomGitHubIcon fontSize="medium" />
+										<CustomLinkedInIcon fontSize="medium" />
 									</AnchorTagNoHightlight>
 								</Grid>
 								<Grid mx={2}>
 									<AnchorTagNoHightlight rel="noreferrer" href="https://github.com/xarmar" target="_blank">
-										<CustomLinkedInIcon fontSize="medium" />
+										<CustomGitHubIcon fontSize="medium" />
 									</AnchorTagNoHightlight>
 								</Grid>
 							</Grid>
 						</ContentBoxGrid>
-						<CloseButton aria-label='Close PopUp' onClick={() => {props.setShowPopUp(!props.showPopUp)}} />
+						<CloseButton aria-label='Close PopUp' md={1} onClick={() => {props.setShowPopUp(!props.showPopUp)}} />
 					</FloatingGrid>
 				</BlurredBackground>
       )
