@@ -18,14 +18,21 @@ const BlurredBackground = styled(Box)`
 	z-index: 2;
 `
 
+// Must find out how to add media query to @emotion styling, height must increase when device size is smaller - TODO
 const FloatingGrid = styled(Grid)`
 	position: relative;
+	color: #000;
 	z-index: 5;
 	border-radius: 10px;
 	background: #fff;
-	color: #000;
 	width: 70%;
 	height: 70%;
+	max-width: 1400px;
+	max-height: 600px;
+
+	&@media screen and (max-width: 899px) {
+		height: 900px;
+	}
 `
 
 const ContentBoxGrid = styled(Grid)`
@@ -36,14 +43,18 @@ const ContentBoxGrid = styled(Grid)`
 	max-width: 100%;
 `
 
-// Make image take full width of parent
+// Must find out how to add media query to @emotion styling, margin-top must increase when device size is smaller - TODO
 const StyledAvatar = styled.img`
 	box-shadow: 0 0 5px #1976D2;
 	box-sizing: border-box;
 	margin: auto;
 	border-radius: 50%;
-	height: 70%;
-	width: auto;
+	max-height: auto;
+	max-width: 70%;
+
+	&@media screen and (max-width: 899px) {
+		margin-top: 50px;
+	}
 `
 
 const UnderlinedTypography = styled(Typography)`
@@ -92,19 +103,19 @@ const PopUp = (props) => {
 						</ContentBoxGrid>
 						<ContentBoxGrid container item direction="column" md={6}>
 							<Grid item m={2} mb={0}>
-								<Typography variant="h4">Hallo, ich bin</Typography>
+								<Typography variant="h4" textAlign="center">Hallo, ich bin</Typography>
 							</Grid>
 							<Grid item m={2} mt={0}>
-								<Typography color="primary" variant="h4">Xavier Marques</Typography>
+								<Typography color="primary" variant="h4" textAlign="center" >Xavier Marques</Typography>
 							</Grid>
 							<Grid item m={2} mt={0}>
-								<Typography variant="h5" sx={{fontWeight: '520'}}>Schön dich kennenzulernen!</Typography>
+								<Typography variant="h5" textAlign="center" sx={{fontWeight: '520'}}>Schön dich kennenzulernen!</Typography>
 							</Grid>
 							<Grid item m={2} mt={2}>
-								<Typography variant="subtitle1"> Thank you for checking out my project.</Typography>
+								<Typography variant="subtitle1" textAlign="center"> Thank you for checking out my project.</Typography>
 							</Grid>
 							<Grid item m={2} mt={1}>
-								<UnderlinedTypography variant="subtitle2"> Find me on social media</UnderlinedTypography>
+								<UnderlinedTypography variant="subtitle2" textAlign="center"> Find me on social media</UnderlinedTypography>
 							</Grid>
 							<Grid container item m={2} mt={1} direction="row" justifyContent="center">
 								<Grid mx={2}>
