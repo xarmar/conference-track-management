@@ -45,15 +45,12 @@ const MainMenu = (props) => {
         <Grid item m={2} p={2}>
           <Typography variant="overline" align="center">
             App created by{" "}
-            <a
+            <span
               onClick={togglePopUp}
               className="linkedin-link"
-              rel="noreferrer"
-              href="https://www.linkedin.com/in/xavierpmarques/"
-              target="_blank"
             >
               Xavier Marques
-            </a>
+            </span>
           </Typography>
           <Typography variant="h6" align="center">
             ‌CONFERENCE‌‌ TRACK‌‌ MANAGEMENT‌ ‌APP
