@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import PopUp from "./PopUp";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import TuneIcon from "@mui/icons-material/Tune";
-import React, {useState} from 'react'
+import React, { useState } from "react";
 
 const MainMenu = (props) => {
   const handleTextFieldOptionSelected = () => {
@@ -23,7 +23,7 @@ const MainMenu = (props) => {
   // Toggles the PopUp on and off
   const togglePopUp = () => {
     setShowPopUp(!showPopUp);
-  } 
+  };
 
   return (
     <Box
@@ -32,7 +32,7 @@ const MainMenu = (props) => {
       alignItems="center"
       minHeight="100vh"
     >
-      <PopUp showPopUp={showPopUp} setShowPopUp={setShowPopUp} />
+      <PopUp showPopUp={showPopUp} togglePopUp={togglePopUp} />
       <Grid
         container
         direction="column"
@@ -45,10 +45,7 @@ const MainMenu = (props) => {
         <Grid item m={2} p={2}>
           <Typography variant="overline" align="center">
             App created by{" "}
-            <span
-              onClick={togglePopUp}
-              className="linkedin-link"
-            >
+            <span onClick={togglePopUp} className="linkedin-link">
               Xavier Marques
             </span>
           </Typography>
