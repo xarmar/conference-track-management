@@ -1,8 +1,10 @@
 import { Box } from "@mui/system";
 import { Button, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import PopUp from "./PopUp";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import TuneIcon from "@mui/icons-material/Tune";
+import React, { useState } from "react";
 
 const MainMenu = (props) => {
   const handleTextFieldOptionSelected = () => {
@@ -15,6 +17,14 @@ const MainMenu = (props) => {
     props.unmontMainMenuComponent();
   };
 
+  // Set state to show/hide popUp - it's initially set to false before the user clicks my name.
+  const [showPopUp, setShowPopUp] = useState(false);
+
+  // Toggles the PopUp on and off
+  const togglePopUp = () => {
+    setShowPopUp(!showPopUp);
+  };
+
   return (
     <Box
       display="flex"
@@ -22,6 +32,7 @@ const MainMenu = (props) => {
       alignItems="center"
       minHeight="100vh"
     >
+      <PopUp showPopUp={showPopUp} togglePopUp={togglePopUp} />
       <Grid
         container
         direction="column"
@@ -34,14 +45,9 @@ const MainMenu = (props) => {
         <Grid item m={2} p={2}>
           <Typography variant="overline" align="center">
             App created by{" "}
-            <a
-              className="linkedin-link"
-              rel="noreferrer"
-              href="https://www.linkedin.com/in/xavierpmarques/"
-              target="_blank"
-            >
+            <span onClick={togglePopUp} className="linkedin-link">
               Xavier Marques
-            </a>
+            </span>
           </Typography>
           <Typography variant="h6" align="center">
             ‌CONFERENCE‌‌ TRACK‌‌ MANAGEMENT‌ ‌APP
