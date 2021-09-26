@@ -104,8 +104,8 @@ class Talk extends Component<any, any> {
       ? (durationOutput = "lightning")
       : (durationOutput = talk.duration);
     talk.isLightning 
-    ? (sufix = "")
-    : (sufix = "min");
+      ? (sufix = "")
+      : (sufix = "min");
 
     return (
       <Grid item>
