@@ -654,10 +654,25 @@ Yes, the output will be the same, but at least now, the way the user inputs the 
 <br>
 
 Now that all of the above is done, I want to take an opportunity to dive into *React Spring.*
-- I'm curious about this library and so I'm aiming to build a simple pop-up for my menu page. Maybe when someone clicks my name, a pop-up with appear on the screen with some of my information, that would be nice.
+- I'm curious about this library and so I'm aiming to build a simple pop-up for my menu page. 
+- Maybe when someone clicks my name, a pop-up will appear on the screen with some of my information, that would be nice.
 
 <br>
 
-Just finished creating the PopUp and styling it with @emotion, now it's time to use React Spring to get a simple animation going. After I finish this, I will merge this new feature into develop and then into main. 
+---
+
+- Just finished creating the PopUp and styling it with @emotion, now it's time to use React Spring to get a simple animation going. 
+- After I finish this, I will merge this new feature into develop and then into main. 
+
+<br>
+
+---
+
+- Finished building the logic for react-spring and the pop up is working as expected. 
+- Will now implement the new popUp feature in the App.
+
+<br>
+
+-- END
 
 
