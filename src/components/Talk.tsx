@@ -40,33 +40,35 @@ class Talk extends Component<any, any> {
 
   // Tries to place a Talk inside a target Track
   placeTalk(track: Track) {
-    // Check if talk fits inside track's morning
-    if (this.duration <= track.sessions.morning.availableMinutes) {
-      // Set startTime of Talk
-      this.startTime = this.calculateTalkStartTime(track, "morning");
+    if (!this.hasSpot) {
+      // Check if talk fits inside track's morning
+      if (this.duration <= track.sessions.morning.availableMinutes) {
+        // Set startTime of Talk
+        this.startTime = this.calculateTalkStartTime(track, "morning");
 
-      // Subtrack from track.sessions.morning.availableMinutes
-      track.sessions.morning.availableMinutes -= this.duration;
+        // Subtrack from track.sessions.morning.availableMinutes
+        track.sessions.morning.availableMinutes -= this.duration;
 
-      // Add talk to track's morning array
-      track.sessions.morning.talks.push(this);
+        // Add talk to track's morning array
+        track.sessions.morning.talks.push(this);
 
-      // Tell App the talk is placed
-      this.hasSpot = true;
-    }
-    // Check if talk fits inside track's afternoon
-    else if (this.duration <= track.sessions.afternoon.availableMinutes) {
-      // Set startTime of Talk
-      this.startTime = this.calculateTalkStartTime(track, "afternoon");
+        // Tell App the talk is placed
+        this.hasSpot = true;
+      }
+      // Check if talk fits inside track's afternoon
+      else if (this.duration <= track.sessions.afternoon.availableMinutes) {
+        // Set startTime of Talk
+        this.startTime = this.calculateTalkStartTime(track, "afternoon");
 
-      // Subtrack from track.sessions.afternoon.availableMinutes
-      track.sessions.afternoon.availableMinutes -= this.duration;
+        // Subtrack from track.sessions.afternoon.availableMinutes
+        track.sessions.afternoon.availableMinutes -= this.duration;
 
-      // Add talk to track's afternoon array
-      track.sessions.afternoon.talks.push(this);
+        // Add talk to track's afternoon array
+        track.sessions.afternoon.talks.push(this);
 
-      // Tell App the talk is placed
-      this.hasSpot = true;
+        // Tell App the talk is placed
+        this.hasSpot = true;
+      }
     }
   }
 
@@ -102,7 +104,7 @@ class Talk extends Component<any, any> {
       ? (durationOutput = "lightning")
       : (durationOutput = talk.duration);
     talk.isLightning 
-      ? (sufix = "") 
+      ? (sufix = "")
       : (sufix = "min");
 
     return (
