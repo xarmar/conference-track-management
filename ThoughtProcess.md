@@ -673,6 +673,21 @@ Now that all of the above is done, I want to take an opportunity to dive into *R
 
 <br>
 
--- END
+## **26/09/2021 - Day 14**
+
+<br> 
+
+**Released *v0.2.0* of the Conference Track Management App.**
+- New Features since v0.1.0:
+    - Text Area receives input like the PDF.
+    - Main menu now has a popup when user clicks my name.
+- Fixes since v0.1.0:
+    - Improve mobile responsiveness across the whole App.
+    - Fix sliderBuilder not incrementing in Track when user didn't move the slider (talk.duration was set to " " as default).
+    - Fix bug where in certain conditions, the last talk could appear in 2 Tracks.
+
+<br>
+
+-- END --
 
 
