@@ -1,6 +1,6 @@
-# CODING CHALLENGE FOR itemis AG
+# CODING CHALLENGE
 
-This coding challenge was proposed by **itemis AG** for the position of *Junior Software Developer* in Germany. 
+This coding challenge was proposed by a company as part of the recruitment process for the position of *Junior Software Developer*. 
 
 <br> 
 
